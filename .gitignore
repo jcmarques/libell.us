@@ -1,0 +1,2 @@
+# MCP config (may contain secrets e.g. Figma token)
+.cursor/mcp.json
