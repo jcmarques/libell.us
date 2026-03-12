@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   imgLogo,
   imgVector,
@@ -12,7 +13,58 @@ import codeIcon from '../assets/code.png';
 import gameSettingIcon from '../assets/game-setting.png';
 import requestIcon from '../assets/request.png';
 
+const PLATFORM_TABS = [
+  { id: 'story-editor', label: 'Story Editor' },
+  { id: 'visual-styles', label: 'Visual Styles' },
+  { id: 'ai-narration', label: 'AI Narration' },
+  { id: 'sound-effects', label: 'Sound Effects' },
+] as const;
+
+const PLATFORM_TAB_CONTENT: Record<(typeof PLATFORM_TABS)[number]['id'], { label: string }[]> = {
+  'story-editor': [
+    { label: 'Branches' },
+    { label: 'Choices' },
+    { label: 'Variables' },
+    { label: 'Conditions' },
+    { label: 'Scenes' },
+    { label: 'Chapters' },
+    { label: 'Notes' },
+    { label: 'Export' },
+  ],
+  'visual-styles': [
+    { label: 'Themes' },
+    { label: 'Fonts' },
+    { label: 'Layouts' },
+    { label: 'Colors' },
+    { label: 'Backgrounds' },
+    { label: 'Cards' },
+    { label: 'Animations' },
+    { label: 'Preview' },
+  ],
+  'ai-narration': [
+    { label: 'Voices' },
+    { label: 'Pace' },
+    { label: 'Emotion' },
+    { label: 'Languages' },
+    { label: 'Pause' },
+    { label: 'Highlight' },
+    { label: 'Sync' },
+    { label: 'Settings' },
+  ],
+  'sound-effects': [
+    { label: 'Ambience' },
+    { label: 'SFX' },
+    { label: 'Music' },
+    { label: 'Volume' },
+    { label: 'Fade' },
+    { label: 'Loop' },
+    { label: 'Triggers' },
+    { label: 'Library' },
+  ],
+};
+
 export function LibellLanding() {
+  const [activePlatformTab, setActivePlatformTab] = useState<(typeof PLATFORM_TABS)[number]['id']>('story-editor');
   return (
     <div className="flex w-full flex-col items-center bg-white font-sans" data-node-id="1:41">
       <div className="w-full max-w-[2560px]">
@@ -30,18 +82,18 @@ export function LibellLanding() {
             <span className="text-xl font-bold text-black md:text-[31px]">Libell.us</span>
           </div>
           <nav className="flex items-center gap-4 md:gap-8">
-            <a href="#features" className="text-base text-primary-600 md:text-xl">
+            <a href="#features" className="text-base text-primary-600 transition-colors hover:text-primary-800 md:text-xl">
               Features
             </a>
-            <a href="#about" className="text-base text-primary-600 md:text-xl">
+            <a href="#about" className="text-base text-primary-600 transition-colors hover:text-primary-800 md:text-xl">
               About Us
             </a>
-            <a href="#login" className="text-base text-primary-600 md:text-xl">
+            <a href="#login" className="text-base text-primary-600 transition-colors hover:text-primary-800 md:text-xl">
               Login
             </a>
             <button
               type="button"
-              className="rounded-2xl border-2 border-neutral-10 bg-primary-600 px-6 py-3 text-base font-medium text-white md:text-xl"
+              className="rounded-2xl border-2 border-neutral-10 bg-primary-600 px-6 py-3 text-base font-medium text-white transition-colors hover:bg-primary-700 md:text-xl"
             >
               Back the Kickstarter
             </button>
@@ -69,13 +121,13 @@ export function LibellLanding() {
             <div className="mt-6 flex flex-wrap gap-3">
               <button
                 type="button"
-                className="rounded-2xl border border-neutral-2 bg-white px-5 py-2.5 text-base font-medium text-primary-800"
+                className="rounded-2xl border border-neutral-2 bg-white px-5 py-2.5 text-base font-medium text-primary-800 transition-colors hover:border-neutral-6 hover:bg-neutral-1"
               >
                 Back the Kickstarter
               </button>
               <button
                 type="button"
-                className="rounded-2xl border-2 border-primary-800 bg-transparent px-5 py-2.5 text-base text-primary-800"
+                className="rounded-2xl border-2 border-primary-800 bg-transparent px-5 py-2.5 text-base text-primary-800 transition-colors hover:bg-primary-100 hover:text-primary-800"
               >
                 Join the Beta
               </button>
@@ -224,7 +276,7 @@ export function LibellLanding() {
                   </p>
                   <button
                     type="button"
-                    className="rounded-2xl border-2 border-primary-700 px-6 py-2.5 text-base text-primary-700 md:text-lg"
+                    className="rounded-2xl border-2 border-primary-700 px-6 py-2.5 text-base text-primary-700 transition-colors hover:bg-primary-100 hover:text-primary-800 md:text-lg"
                   >
                     Learn More
                   </button>
@@ -252,54 +304,46 @@ export function LibellLanding() {
             <br className="hidden md:block" />
             can build interactive stories with:
           </p>
-          <div className="mx-auto mt-12 max-w-4xl">
-            <div className="flex flex-wrap justify-center gap-6 border-b-2 border-primary-800 pb-4 md:gap-12">
-              <button
-                type="button"
-                className="text-xl text-primary-800 md:text-3xl"
-              >
-                Story Editor
-              </button>
-              <button
-                type="button"
-                className="text-xl text-primary-800/60 md:text-3xl"
-              >
-                Visual Styles
-              </button>
-              <button
-                type="button"
-                className="text-xl text-primary-800/60 md:text-3xl"
-              >
-                AI Narration
-              </button>
-              <button
-                type="button"
-                className="text-xl text-primary-800/60 md:text-3xl"
-              >
-                Sound Effects
-              </button>
+          <div className="mx-auto mt-8 max-w-3xl">
+            <div
+              aria-label="Platform features"
+              className="flex flex-wrap justify-center gap-4 border-b-2 border-neutral-2 pb-3 md:gap-6 md:pb-4"
+              role="tablist"
+            >
+              {PLATFORM_TABS.map((tab) => (
+                <button
+                  key={tab.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={activePlatformTab === tab.id}
+                  onClick={() => setActivePlatformTab(tab.id)}
+                  className={`relative -mb-[2px] border-b-2 pb-3 pt-1 text-base font-medium transition-colors md:pb-4 md:text-lg ${
+                    activePlatformTab === tab.id
+                      ? 'border-primary-800 text-primary-800'
+                      : 'border-transparent text-primary-800/60 hover:text-primary-800/80'
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
             </div>
           </div>
-          <div className="mx-auto mt-12 grid max-w-4xl grid-cols-2 justify-items-center gap-4 md:grid-cols-4 md:gap-6">
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+          <div
+            aria-label={`Content for ${PLATFORM_TABS.find((t) => t.id === activePlatformTab)?.label ?? activePlatformTab}`}
+            className="mx-auto mt-8 grid max-w-3xl grid-cols-2 justify-items-center gap-3 md:grid-cols-4 md:gap-4"
+            role="tabpanel"
+          >
+            {PLATFORM_TAB_CONTENT[activePlatformTab].map((item, i) => (
               <div
-                key={i}
-                className="flex aspect-square w-full max-w-[220px] flex-col overflow-hidden rounded-2xl bg-neutral-2"
+                key={`${activePlatformTab}-${i}`}
+                className="flex aspect-square w-full max-w-[160px] flex-col overflow-hidden rounded-xl bg-neutral-2 md:max-w-[180px]"
               >
-                <div className="flex min-h-0 flex-1 items-center justify-center p-3">
-                  <img alt="" className="max-h-12 max-w-12 object-contain" src={imgVuesaxBoldGallery} />
+                <div className="flex min-h-0 flex-1 items-center justify-center p-2">
+                  <img alt="" className="max-h-10 max-w-10 object-contain" src={imgVuesaxBoldGallery} />
                 </div>
-                <p className="p-2 text-center text-sm text-primary-600">Image-{i}</p>
+                <p className="p-1.5 text-center text-xs text-primary-600">{item.label}</p>
               </div>
             ))}
-          </div>
-          <div className="mt-12 flex justify-center">
-            <button
-              type="button"
-              className="rounded-xl bg-white px-8 py-4 text-xl text-primary-600"
-            >
-              Show more
-            </button>
           </div>
         </section>
 
@@ -327,7 +371,7 @@ export function LibellLanding() {
           <div className="mt-12 flex justify-center">
             <button
               type="button"
-              className="rounded-xl border-2 border-primary-800 bg-white px-6 py-3 text-base text-primary-600 md:text-lg"
+              className="rounded-xl border-2 border-primary-800 bg-white px-6 py-3 text-base text-primary-600 transition-colors hover:bg-primary-100 hover:text-primary-800 md:text-lg"
             >
               Read more
             </button>
@@ -346,13 +390,13 @@ export function LibellLanding() {
                 Our vision is to provide convenience and help increase your sales business.
               </p>
               <div className="mt-6 flex gap-4">
-                <a href="#facebook" aria-label="Facebook">
+                <a href="#facebook" aria-label="Facebook" className="opacity-80 transition-opacity hover:opacity-100">
                   <img alt="" className="size-12 object-contain" src={imgSocmedFacebook} />
                 </a>
-                <a href="#twitter" aria-label="Twitter">
+                <a href="#twitter" aria-label="Twitter" className="opacity-80 transition-opacity hover:opacity-100">
                   <img alt="" className="size-12 object-contain" src={imgSocmedTwitter} />
                 </a>
-                <a href="#instagram" aria-label="Instagram">
+                <a href="#instagram" aria-label="Instagram" className="opacity-80 transition-opacity hover:opacity-100">
                   <img alt="" className="size-12 object-contain" src={imgSocmedInstagram} />
                 </a>
               </div>
@@ -360,28 +404,28 @@ export function LibellLanding() {
             <div>
               <h3 className="text-xl font-semibold text-black md:text-2xl">About</h3>
               <ul className="mt-4 space-y-2 text-base text-black md:text-lg">
-                <li><a href="#how">How it works</a></li>
-                <li><a href="#featured">Featured</a></li>
-                <li><a href="#partnership">Partnership</a></li>
-                <li><a href="#business">Bussiness Relation</a></li>
+                <li><a href="#how" className="transition-colors hover:text-primary-800">How it works</a></li>
+                <li><a href="#featured" className="transition-colors hover:text-primary-800">Featured</a></li>
+                <li><a href="#partnership" className="transition-colors hover:text-primary-800">Partnership</a></li>
+                <li><a href="#business" className="transition-colors hover:text-primary-800">Bussiness Relation</a></li>
               </ul>
             </div>
             <div>
               <h3 className="text-xl font-semibold text-black md:text-2xl">Community</h3>
               <ul className="mt-4 space-y-2 text-base text-black md:text-lg">
-                <li><a href="#events">Events</a></li>
-                <li><a href="#blog">Blog</a></li>
-                <li><a href="#podcast">Podcast</a></li>
-                <li><a href="#invite">Invite a friend</a></li>
+                <li><a href="#events" className="transition-colors hover:text-primary-800">Events</a></li>
+                <li><a href="#blog" className="transition-colors hover:text-primary-800">Blog</a></li>
+                <li><a href="#podcast" className="transition-colors hover:text-primary-800">Podcast</a></li>
+                <li><a href="#invite" className="transition-colors hover:text-primary-800">Invite a friend</a></li>
               </ul>
             </div>
             <div>
               <h3 className="text-xl font-semibold text-black md:text-2xl">Socials</h3>
               <ul className="mt-4 space-y-2 text-base text-black md:text-lg">
-                <li><a href="#discord">Discord</a></li>
-                <li><a href="#instagram">Instagram</a></li>
-                <li><a href="#twitter">Twitter</a></li>
-                <li><a href="#facebook">Facebook</a></li>
+                <li><a href="#discord" className="transition-colors hover:text-primary-800">Discord</a></li>
+                <li><a href="#instagram" className="transition-colors hover:text-primary-800">Instagram</a></li>
+                <li><a href="#twitter" className="transition-colors hover:text-primary-800">Twitter</a></li>
+                <li><a href="#facebook" className="transition-colors hover:text-primary-800">Facebook</a></li>
               </ul>
             </div>
           </div>
@@ -391,10 +435,10 @@ export function LibellLanding() {
               ©2022 Company Name. All rights reserved
             </p>
             <div className="mt-4 flex gap-8 md:mt-0">
-              <a href="#privacy" className="text-sm text-black md:text-base">
+              <a href="#privacy" className="text-sm text-black transition-colors hover:text-primary-800 md:text-base">
                 Privacy & Policy
               </a>
-              <a href="#terms" className="text-sm text-black md:text-base">
+              <a href="#terms" className="text-sm text-black transition-colors hover:text-primary-800 md:text-base">
                 Terms & Condition
               </a>
             </div>
