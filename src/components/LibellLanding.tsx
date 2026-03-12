@@ -3,10 +3,6 @@ import {
   imgLogo,
   imgVector,
   imgVector1,
-  imgLine,
-  imgSocmedFacebook,
-  imgSocmedTwitter,
-  imgSocmedInstagram,
   imgVuesaxBoldGallery,
 } from '../assets/figma-assets';
 import codeIcon from '../assets/code.png';
@@ -378,70 +374,81 @@ export function LibellLanding() {
           </div>
         </section>
 
-        {/* Footer */}
-        <footer
-          className="bg-primary-100 px-6 py-16 md:px-12 md:py-24"
-          data-node-id="1:43"
+        {/* Community / Future */}
+        <section
+          className="bg-primary-50 px-6 py-16 md:px-12 md:py-24"
+          data-node-id="community-future"
         >
-          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 md:grid-cols-4">
-            <div className="md:col-span-1">
-              <span className="text-2xl font-semibold text-black md:text-4xl">Logo</span>
-              <p className="mt-4 text-base text-black md:text-lg">
-                Our vision is to provide convenience and help increase your sales business.
-              </p>
-              <div className="mt-6 flex gap-4">
-                <a href="#facebook" aria-label="Facebook" className="opacity-80 transition-opacity hover:opacity-100">
-                  <img alt="" className="size-12 object-contain" src={imgSocmedFacebook} />
-                </a>
-                <a href="#twitter" aria-label="Twitter" className="opacity-80 transition-opacity hover:opacity-100">
-                  <img alt="" className="size-12 object-contain" src={imgSocmedTwitter} />
-                </a>
-                <a href="#instagram" aria-label="Instagram" className="opacity-80 transition-opacity hover:opacity-100">
-                  <img alt="" className="size-12 object-contain" src={imgSocmedInstagram} />
-                </a>
-              </div>
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold text-black md:text-2xl">About</h3>
-              <ul className="mt-4 space-y-2 text-base text-black md:text-lg">
-                <li><a href="#how" className="transition-colors hover:text-primary-800">How it works</a></li>
-                <li><a href="#featured" className="transition-colors hover:text-primary-800">Featured</a></li>
-                <li><a href="#partnership" className="transition-colors hover:text-primary-800">Partnership</a></li>
-                <li><a href="#business" className="transition-colors hover:text-primary-800">Bussiness Relation</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold text-black md:text-2xl">Community</h3>
-              <ul className="mt-4 space-y-2 text-base text-black md:text-lg">
-                <li><a href="#events" className="transition-colors hover:text-primary-800">Events</a></li>
-                <li><a href="#blog" className="transition-colors hover:text-primary-800">Blog</a></li>
-                <li><a href="#podcast" className="transition-colors hover:text-primary-800">Podcast</a></li>
-                <li><a href="#invite" className="transition-colors hover:text-primary-800">Invite a friend</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold text-black md:text-2xl">Socials</h3>
-              <ul className="mt-4 space-y-2 text-base text-black md:text-lg">
-                <li><a href="#discord" className="transition-colors hover:text-primary-800">Discord</a></li>
-                <li><a href="#instagram" className="transition-colors hover:text-primary-800">Instagram</a></li>
-                <li><a href="#twitter" className="transition-colors hover:text-primary-800">Twitter</a></li>
-                <li><a href="#facebook" className="transition-colors hover:text-primary-800">Facebook</a></li>
-              </ul>
+          <div className="mx-auto max-w-4xl text-center">
+            <h2 className="text-xl font-medium text-primary-800 md:text-2xl lg:text-3xl">
+              Join the Next Generation of Storytelling
+            </h2>
+            <p className="mx-auto mt-6 max-w-2xl text-base text-primary-600 md:text-lg">
+              We’re building a platform for immersive, interactive stories.
+            </p>
+            <p className="mx-auto mt-4 max-w-2xl text-base text-primary-600 md:text-lg">
+              To see the platform in action, check out our{' '}
+              <a
+                href="https://www.youtube.com/watch?v=TRqNSkkrD8o"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-primary-800 underline transition-colors hover:text-primary-700"
+              >
+                YouTube channel
+              </a>
+              !
+            </p>
+            <div className="mx-auto mt-10 aspect-video w-full max-w-2xl overflow-hidden rounded-2xl bg-neutral-2 shadow-lg">
+              <iframe
+                title="Libell.us on YouTube"
+                src="https://www.youtube.com/embed/TRqNSkkrD8o"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                className="h-full w-full"
+              />
             </div>
           </div>
-          <div className="mx-auto mt-16 flex max-w-6xl flex-col items-center justify-between border-t-2 border-primary-800 pt-8 md:flex-row">
-            <img alt="" className="hidden md:block" src={imgLine} />
-            <p className="text-center text-sm text-black md:text-base">
-              ©2022 Company Name. All rights reserved
+        </section>
+
+        {/* Join the Beta CTA */}
+        <section
+          className="bg-primary-100 px-6 py-12 md:px-12 md:py-16 lg:px-24 lg:py-20"
+          data-node-id="join-beta"
+        >
+          <div className="mx-auto max-w-4xl text-center">
+            <p className="text-base text-primary-700 md:text-lg">
+              Join the beta and help shape what’s next!
             </p>
-            <div className="mt-4 flex gap-8 md:mt-0">
-              <a href="#privacy" className="text-sm text-black transition-colors hover:text-primary-800 md:text-base">
-                Privacy & Policy
-              </a>
-              <a href="#terms" className="text-sm text-black transition-colors hover:text-primary-800 md:text-base">
-                Terms & Condition
+            <div className="mt-6 flex justify-center">
+              <a
+                href="#beta"
+                className="inline-block rounded-2xl border-2 border-primary-800 bg-primary-600 px-8 py-3 text-base font-medium text-white transition-colors hover:bg-primary-700 md:text-lg"
+              >
+                Join the Beta
               </a>
             </div>
+          </div>
+        </section>
+
+        {/* Footer */}
+        <footer
+          className="bg-primary-50 px-6 py-8 md:px-12 md:py-10"
+          data-node-id="1:43"
+        >
+          <div className="mx-auto flex max-w-4xl flex-col items-center gap-8 text-center">
+            <div className="flex items-center gap-2">
+              <img alt="" className="size-9 object-contain" src={imgLogo} />
+              <span className="text-xl font-bold text-black">Libell.us</span>
+            </div>
+            <nav className="flex flex-wrap justify-center gap-6 text-sm text-black md:gap-8 md:text-base">
+              <a href="#features" className="transition-colors hover:text-primary-800">Features</a>
+              <a href="#about" className="transition-colors hover:text-primary-800">About</a>
+              <a href="#privacy" className="transition-colors hover:text-primary-800">Privacy</a>
+              <a href="#terms" className="transition-colors hover:text-primary-800">Terms</a>
+            </nav>
+            <p className="text-sm text-black/80">
+              ©{new Date().getFullYear()} Libell.us
+            </p>
           </div>
         </footer>
       </div>
