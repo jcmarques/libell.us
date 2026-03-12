@@ -1,20 +1,16 @@
 import {
   imgLogo,
+  imgVector,
   imgVector1,
-  imgVector2,
-  imgGameSetting1,
-  imgCode1,
-  imgRequest1,
   imgLine,
-  imgLine4,
-  imgVector5,
   imgSocmedFacebook,
   imgSocmedTwitter,
   imgSocmedInstagram,
   imgVuesaxBoldGallery,
-  imgVuesaxBoldGallery1,
 } from '../assets/figma-assets';
-import { PlaceholderImage } from './PlaceholderImage';
+import codeIcon from '../assets/code.png';
+import gameSettingIcon from '../assets/game-setting.png';
+import requestIcon from '../assets/request.png';
 
 export function LibellLanding() {
   return (
@@ -22,7 +18,7 @@ export function LibellLanding() {
       <div className="w-full max-w-[2560px]">
         {/* 0. Navigation */}
         <header
-          className="flex h-32 items-center justify-between border-b-2 border-neutral-2 bg-white px-6 py-4 md:px-12 lg:px-[174px]"
+          className="flex h-32 items-center justify-between border-b-2 border-neutral-2 bg-white px-6 py-4 md:px-12 lg:px-24"
           data-node-id="1:258"
         >
           <div className="flex items-center gap-3">
@@ -45,7 +41,7 @@ export function LibellLanding() {
             </a>
             <button
               type="button"
-              className="rounded-full border-2 border-neutral-10 bg-primary-600 px-6 py-3 text-base font-medium text-white md:text-xl"
+              className="rounded-2xl border-2 border-neutral-10 bg-primary-600 px-6 py-3 text-base font-medium text-white md:text-xl"
             >
               Back the Kickstarter
             </button>
@@ -58,112 +54,129 @@ export function LibellLanding() {
           data-node-id="1:243"
         >
           <div className="max-w-2xl flex-1 lg:max-w-3xl">
-            <p className="text-xl text-primary-500 md:text-2xl lg:text-[31px]">
+            <p className="text-sm text-primary-500 md:text-base">
               Interactive storytelling platform
             </p>
-            <h1 className="mt-4 text-3xl font-medium leading-tight text-primary-800 md:text-4xl lg:text-5xl xl:text-[61px]">
+            <h1 className="mt-3 text-2xl font-semibold leading-tight text-primary-800 md:text-3xl lg:text-4xl lg:leading-[1.2]">
               Create interactive stories
               <br />
               without writing code
             </h1>
-            <p className="mt-4 text-lg text-primary-600 md:text-xl lg:text-[39px]">
+            <p className="mt-3 text-base text-primary-600 md:text-lg">
               Build branching adventures or traditional books with visuals, sound, and AI
               storytelling.
             </p>
-            <div className="mt-8 flex flex-wrap gap-4">
+            <div className="mt-6 flex flex-wrap gap-3">
               <button
                 type="button"
-                className="rounded-2xl bg-white px-6 py-3 text-lg font-medium text-primary-800 md:text-xl"
+                className="rounded-2xl border border-neutral-2 bg-white px-5 py-2.5 text-base font-medium text-primary-800"
               >
                 Back the Kickstarter
               </button>
               <button
                 type="button"
-                className="rounded-2xl border-2 border-primary-800 bg-transparent px-6 py-3 text-lg text-primary-800 md:text-xl"
+                className="rounded-2xl border-2 border-primary-800 bg-transparent px-5 py-2.5 text-base text-primary-800"
               >
                 Join the Beta
               </button>
             </div>
           </div>
-          <div className="mt-8 flex-1 md:mt-0 md:max-w-xl lg:max-w-2xl">
-            <img
-              alt=""
-              className="w-full rounded-2xl object-cover"
-              src={imgVuesaxBoldGallery1}
-            />
+          <div className="mt-8 flex flex-1 items-center justify-center md:mt-0 md:max-w-md lg:max-w-lg">
+            <div className="flex size-[220px] items-center justify-center rounded-2xl bg-neutral-2 p-3">
+              <img alt="" className="size-10 object-contain" src={imgVector} />
+            </div>
           </div>
         </section>
 
         {/* 2. Writers want to create / Problem Section */}
         <section
-          className="bg-white px-6 py-16 md:px-12 md:py-24"
+          className="bg-white px-6 py-14 md:px-12 md:py-20"
           data-node-id="1:208"
         >
-          <h2 className="text-center text-2xl font-medium text-primary-800 md:text-4xl lg:text-5xl">
+          <h2 className="text-center text-xl font-medium text-primary-800 md:text-2xl">
             Writers want to create:
           </h2>
-          <ul className="mx-auto mt-12 flex max-w-6xl flex-col items-center gap-8 md:flex-row md:justify-center md:gap-12">
+          <ul className="mx-auto mt-8 flex max-w-4xl flex-col items-center gap-6 md:flex-row md:justify-center md:gap-14">
             {[
               { label: 'Interactive Adventures', id: '1:229' },
               { label: 'Visual Novels', id: '1:233' },
               { label: 'Game Books', id: '1:237' },
             ].map(({ label, id }) => (
-              <li
-                key={id}
-                className="flex w-full max-w-[539px] flex-col items-center rounded-lg"
-              >
-                <PlaceholderImage className="flex h-[300px] w-full items-center justify-center rounded-3xl bg-neutral-1 p-4 md:h-[400px]" />
-                <p className="mt-4 text-center text-xl text-primary-700 md:text-2xl lg:text-[39px]">
+              <li key={id} className="flex flex-col items-center">
+                <div className="flex size-[220px] items-center justify-center rounded-2xl bg-neutral-1 p-3">
+                  <img
+                    alt=""
+                    className="size-10 object-contain"
+                    src={imgVector}
+                  />
+                </div>
+                <p className="mt-2 text-center text-base text-primary-700">
                   {label}
                 </p>
               </li>
             ))}
           </ul>
 
-          <h2 className="mt-20 text-center text-2xl font-medium text-primary-800 md:text-4xl lg:text-5xl">
-            But that often requires:
-          </h2>
-          <div className="mx-auto mt-12 flex max-w-4xl flex-col items-center justify-between gap-8 md:flex-row md:gap-12">
-            <div className="flex flex-col items-center">
-              <img
-                alt=""
-                className="size-24 opacity-30 md:size-32"
-                src={imgCode1}
+          <div className="mx-auto mt-12 flex w-full max-w-3xl flex-col items-center justify-center gap-4 text-center">
+            <h2 className="text-xl font-medium text-primary-800 md:text-2xl">
+              But that often requires:
+            </h2>
+            <div className="mt-10 flex w-full flex-col items-center justify-center gap-4 md:mt-12 md:flex-row md:items-end md:justify-center md:gap-10">
+              <div className="flex w-36 flex-shrink-0 flex-col items-center">
+                <img
+                  alt=""
+                  className="size-12 object-contain opacity-70"
+                  src={codeIcon}
+                />
+                <p className="mt-2 text-center text-base text-primary-700">Code</p>
+              </div>
+              <div
+                aria-hidden
+                className="hidden h-px w-16 flex-shrink-0 self-center bg-primary-600/40 md:block"
               />
-              <p className="mt-4 text-xl text-primary-700 md:text-2xl">Code</p>
-            </div>
-            <img alt="" className="hidden h-2 w-24 flex-1 object-contain md:block" src={imgVector5} />
-            <div className="flex flex-col items-center">
-              <img
-                alt=""
-                className="size-28 opacity-30 md:size-36"
-                src={imgGameSetting1}
+              <div className="flex w-36 flex-shrink-0 flex-col items-center">
+                <img
+                  alt=""
+                  className="size-12 object-contain opacity-70"
+                  src={gameSettingIcon}
+                />
+                <p className="mt-2 text-center text-base text-primary-700">Game Engines</p>
+              </div>
+              <div
+                aria-hidden
+                className="hidden h-px w-16 flex-shrink-0 self-center bg-primary-600/40 md:block"
               />
-              <p className="mt-4 text-xl text-primary-700 md:text-2xl">Game Engines</p>
-            </div>
-            <img alt="" className="hidden h-2 w-24 flex-1 object-contain md:block" src={imgVector5} />
-            <div className="flex flex-col items-center">
-              <img
-                alt=""
-                className="size-20 opacity-30 md:size-28"
-                src={imgRequest1}
-              />
-              <p className="mt-4 text-center text-xl text-primary-700 md:text-2xl">
-                Complicated Tools
-              </p>
+              <div className="flex w-36 flex-shrink-0 flex-col items-center">
+                <img
+                  alt=""
+                  className="size-12 object-contain opacity-70"
+                  src={requestIcon}
+                />
+                <p className="mt-2 text-center text-base text-primary-700">
+                  Complicated Tools
+                </p>
+              </div>
             </div>
           </div>
+          <p className="mx-auto mt-10 max-w-2xl py-4 text-center text-base text-primary-600 md:mt-12 md:text-lg">
+            That’s a lot to learn before you can tell your story.
+          </p>
         </section>
 
         {/* 3.1 Transition - Libell.us changes that */}
         <section
-          className="flex flex-col items-center justify-center bg-primary-50 py-16 md:py-24"
+          className="flex flex-col items-center justify-center bg-primary-50 py-10 md:py-14"
           data-node-id="1:177"
         >
-          <div className="relative flex flex-col items-center">
-            <div className="absolute -z-10 size-36 rounded-full bg-primary-600 opacity-10 md:size-40" />
-            <img alt="Libell.us" className="size-24 md:size-36" src={imgLogo} />
-            <h2 className="mt-6 text-2xl font-medium text-primary-800 md:text-4xl lg:text-5xl">
+          <div className="flex flex-row items-center justify-center gap-3">
+            <div className="flex size-14 items-center justify-center rounded-2xl bg-neutral-2 md:size-16">
+              <img
+                alt="Libell.us"
+                className="size-8 md:size-9"
+                src={imgLogo}
+              />
+            </div>
+            <h2 className="text-base font-medium text-primary-800 md:text-lg">
               Libell.us changes that
             </h2>
           </div>
@@ -174,10 +187,10 @@ export function LibellLanding() {
           className="bg-white px-6 py-16 md:px-12 md:py-24"
           data-node-id="1:184"
         >
-          <h2 className="text-center text-2xl font-medium text-primary-800 md:text-4xl lg:text-5xl">
+          <h2 className="text-center text-xl font-medium text-primary-800 md:text-2xl lg:text-3xl">
             From imagination to interactive stories
           </h2>
-          <div className="mx-auto mt-16 max-w-6xl space-y-24">
+          <div className="mx-auto mt-12 max-w-4xl space-y-16">
             {[
               {
                 title: 'Write Stories',
@@ -200,25 +213,25 @@ export function LibellLanding() {
             ].map(({ title, description, imageFirst }) => (
               <div
                 key={title}
-                className={`flex flex-col gap-8 md:flex-row md:items-center md:gap-16 ${
+                className={`flex flex-col items-center gap-6 md:flex-row md:items-center md:justify-center md:gap-10 ${
                   imageFirst ? 'md:flex-row-reverse' : ''
                 }`}
               >
-                <div className="flex-1 space-y-6">
-                  <h3 className="text-2xl font-medium text-neutral-10 md:text-4xl">{title}</h3>
-                  <p className="text-lg text-primary-600 md:text-2xl lg:text-[39px]">
+                <div className="flex-1 space-y-4 md:max-w-md">
+                  <h3 className="text-xl font-medium text-neutral-10 md:text-2xl">{title}</h3>
+                  <p className="text-base text-primary-600 md:text-lg">
                     {description}
                   </p>
                   <button
                     type="button"
-                    className="rounded-full border-2 border-primary-700 px-8 py-3 text-lg text-primary-700 md:text-xl"
+                    className="rounded-2xl border-2 border-primary-700 px-6 py-2.5 text-base text-primary-700 md:text-lg"
                   >
                     Learn More
                   </button>
                 </div>
-                <div className="flex-1">
-                  <div className="flex h-72 items-center justify-center rounded-3xl bg-neutral-1 p-4 md:h-96">
-                    <img alt="" className="max-h-40 object-contain" src={imgVector2} />
+                <div className="flex w-fit justify-center md:justify-start">
+                  <div className="flex h-[220px] w-[360px] shrink-0 items-center justify-center rounded-2xl bg-neutral-1 p-6 md:w-[440px]">
+                    <img alt="" className="size-10 shrink-0 object-contain" src={imgVector} />
                   </div>
                 </div>
               </div>
@@ -231,17 +244,16 @@ export function LibellLanding() {
           className="bg-neutral-1 px-6 py-16 md:px-12 md:py-24"
           data-node-id="1:71"
         >
-          <h2 className="text-center text-2xl font-medium text-primary-800 md:text-4xl lg:text-5xl">
+          <h2 className="text-center text-xl font-medium text-primary-800 md:text-2xl lg:text-3xl">
             The Platform for Interactive Storytelling
           </h2>
-          <p className="mx-auto mt-6 max-w-4xl text-center text-lg text-primary-600 md:text-2xl lg:text-5xl">
+          <p className="mx-auto mt-6 max-w-4xl text-center text-base text-primary-600 md:text-lg lg:text-xl">
             Libell.us is a creative platform where creators
             <br className="hidden md:block" />
             can build interactive stories with:
           </p>
           <div className="mx-auto mt-12 max-w-4xl">
-            <img alt="" className="w-full" src={imgLine4} />
-            <div className="flex flex-wrap justify-center gap-6 border-b-2 border-primary-800 pt-4 md:gap-12">
+            <div className="flex flex-wrap justify-center gap-6 border-b-2 border-primary-800 pb-4 md:gap-12">
               <button
                 type="button"
                 className="text-xl text-primary-800 md:text-3xl"
@@ -268,23 +280,23 @@ export function LibellLanding() {
               </button>
             </div>
           </div>
-          <div className="mx-auto mt-12 grid max-w-6xl grid-cols-2 gap-6 md:grid-cols-4 md:gap-8">
+          <div className="mx-auto mt-12 grid max-w-4xl grid-cols-2 justify-items-center gap-4 md:grid-cols-4 md:gap-6">
             {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
               <div
                 key={i}
-                className="flex flex-col overflow-hidden rounded-2xl bg-neutral-2"
+                className="flex aspect-square w-full max-w-[220px] flex-col overflow-hidden rounded-2xl bg-neutral-2"
               >
-                <div className="flex aspect-square items-center justify-center p-4">
-                  <img alt="" className="max-h-24 object-contain" src={imgVuesaxBoldGallery} />
+                <div className="flex min-h-0 flex-1 items-center justify-center p-3">
+                  <img alt="" className="max-h-12 max-w-12 object-contain" src={imgVuesaxBoldGallery} />
                 </div>
-                <p className="p-4 text-center text-primary-600">Image-{i}</p>
+                <p className="p-2 text-center text-sm text-primary-600">Image-{i}</p>
               </div>
             ))}
           </div>
           <div className="mt-12 flex justify-center">
             <button
               type="button"
-              className="rounded-lg bg-white px-8 py-4 text-xl text-primary-600"
+              className="rounded-xl bg-white px-8 py-4 text-xl text-primary-600"
             >
               Show more
             </button>
@@ -296,26 +308,26 @@ export function LibellLanding() {
           className="bg-white px-6 py-16 md:px-12 md:py-24"
           data-node-id="54:212"
         >
-          <h2 className="text-center text-2xl font-medium text-neutral-10 md:text-4xl lg:text-5xl">
+          <h2 className="text-center text-xl font-medium text-neutral-10 md:text-2xl lg:text-3xl">
             Explore stories created with Libell.us
           </h2>
-          <p className="mx-auto mt-6 max-w-4xl text-center text-lg text-neutral-7 md:text-2xl lg:text-5xl">
+          <p className="mx-auto mt-6 max-w-4xl text-center text-base text-neutral-7 md:text-lg lg:text-xl">
             From fantasy adventures and children's books to sci-fi interactive stories.
           </p>
-          <div className="mx-auto mt-12 grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-3">
+          <div className="mx-auto mt-12 grid max-w-4xl grid-cols-1 justify-items-center gap-8 md:grid-cols-3">
             {[1, 2, 3].map((i) => (
               <div
                 key={i}
-                className="flex h-72 items-center justify-center rounded-3xl bg-neutral-1 p-6 md:h-96"
+                className="flex aspect-square w-full max-w-[220px] items-center justify-center overflow-hidden rounded-3xl bg-neutral-1 p-6"
               >
-                <img alt="" className="max-h-40 object-contain" src={imgVector1} />
+                <img alt="" className="max-h-16 max-w-16 object-contain" src={imgVector1} />
               </div>
             ))}
           </div>
           <div className="mt-12 flex justify-center">
             <button
               type="button"
-              className="rounded-lg border-2 border-primary-800 bg-white px-8 py-4 text-xl text-primary-600"
+              className="rounded-xl border-2 border-primary-800 bg-white px-6 py-3 text-base text-primary-600 md:text-lg"
             >
               Read more
             </button>
