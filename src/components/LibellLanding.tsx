@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   imgLogo,
   imgVector,
@@ -61,40 +61,109 @@ const PLATFORM_TAB_CONTENT: Record<(typeof PLATFORM_TABS)[number]['id'], { label
 
 export function LibellLanding() {
   const [activePlatformTab, setActivePlatformTab] = useState<(typeof PLATFORM_TABS)[number]['id']>('story-editor');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const closeMobileMenu = () => setMobileMenuOpen(false);
+
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
+  const navLinks = (
+    <>
+      <a href="#features" className="text-sm text-primary-600 transition-colors hover:text-primary-800 sm:text-base lg:text-lg" onClick={closeMobileMenu}>
+        Features
+      </a>
+      <a href="#about" className="text-sm text-primary-600 transition-colors hover:text-primary-800 sm:text-base lg:text-lg" onClick={closeMobileMenu}>
+        About
+      </a>
+      <a href="#login" className="text-sm text-primary-600 transition-colors hover:text-primary-800 sm:text-base lg:text-lg" onClick={closeMobileMenu}>
+        Login
+      </a>
+      <button
+        type="button"
+        className="whitespace-nowrap rounded-2xl border-2 border-neutral-10 bg-primary-600 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-primary-700 sm:px-5 sm:py-2.5 sm:text-base lg:px-6 lg:py-3 lg:text-base"
+      >
+        Back the Kickstarter
+      </button>
+    </>
+  );
+
   return (
     <div className="flex w-full flex-col items-center bg-white font-sans" data-node-id="1:41">
       <div className="w-full max-w-[2560px]">
         {/* 0. Navigation */}
         <header
-          className="flex h-32 items-center justify-between border-b-2 border-neutral-2 bg-white px-6 py-4 md:px-12 lg:px-24"
+          className="relative flex h-20 min-h-[4rem] items-center justify-between border-b-2 border-neutral-2 bg-white px-4 py-3 sm:h-24 sm:px-6 sm:py-3 lg:px-12"
           data-node-id="1:258"
         >
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <img
               alt="Libell.us logomark"
-              className="size-20 object-contain md:size-24"
+              className="size-12 object-contain sm:size-16"
               src={imgLogo}
             />
-            <span className="text-xl font-bold text-black md:text-[31px]">Libell.us</span>
+            <span className="text-lg font-bold text-black sm:text-xl lg:text-2xl">Libell.us</span>
           </div>
-          <nav className="flex items-center gap-4 md:gap-8">
-            <a href="#features" className="text-base text-primary-600 transition-colors hover:text-primary-800 md:text-xl">
-              Features
-            </a>
-            <a href="#about" className="text-base text-primary-600 transition-colors hover:text-primary-800 md:text-xl">
-              About
-            </a>
-            <a href="#login" className="text-base text-primary-600 transition-colors hover:text-primary-800 md:text-xl">
-              Login
-            </a>
-            <button
-              type="button"
-              className="rounded-2xl border-2 border-neutral-10 bg-primary-600 px-6 py-3 text-base font-medium text-white transition-colors hover:bg-primary-700 md:text-xl"
-            >
-              Back the Kickstarter
-            </button>
+
+          {/* Desktop nav - visible from sm and up, no hamburger on bigger screens */}
+          <nav className="hidden items-center gap-3 sm:flex sm:gap-4 lg:gap-6">
+            {navLinks}
           </nav>
+
+          {/* Mobile hamburger button - only on small screens */}
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen((open) => !open)}
+            className="flex size-10 flex-shrink-0 items-center justify-center rounded-lg text-primary-800 transition-colors hover:bg-primary-100 sm:hidden"
+            aria-expanded={mobileMenuOpen}
+            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+          >
+            {mobileMenuOpen ? (
+              <svg className="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg className="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            )}
+          </button>
         </header>
+
+        {/* Mobile menu panel */}
+        {mobileMenuOpen && (
+          <div
+            className="fixed left-0 right-0 top-20 z-50 border-b-2 border-neutral-2 bg-white px-4 py-6 shadow-lg sm:hidden"
+            style={{ minHeight: 'calc(100vh - 5rem)' }}
+          >
+            <nav className="flex flex-col gap-6">
+              <a href="#features" className="text-lg font-medium text-primary-800 hover:text-primary-600" onClick={closeMobileMenu}>
+                Features
+              </a>
+              <a href="#about" className="text-lg font-medium text-primary-800 hover:text-primary-600" onClick={closeMobileMenu}>
+                About
+              </a>
+              <a href="#login" className="text-lg font-medium text-primary-800 hover:text-primary-600" onClick={closeMobileMenu}>
+                Login
+              </a>
+              <button
+                type="button"
+                className="w-full rounded-2xl border-2 border-primary-800 bg-primary-600 py-3 text-base font-medium text-white transition-colors hover:bg-primary-700"
+                onClick={closeMobileMenu}
+              >
+                Back the Kickstarter
+              </button>
+            </nav>
+          </div>
+        )}
 
         {/* 1. Hero */}
         <section
@@ -109,21 +178,19 @@ export function LibellLanding() {
               Build stories.<br />
               Skip the code.
             </h1>
-            <p className="mt-3 text-base text-primary-600 md:text-lg">
-              Build branching adventures or traditional books
-              <br />
-              with visuals, sound, and AI storytelling.
+            <p className="mt-3 max-w-xl text-base text-primary-600 md:text-lg">
+              Build branching adventures or traditional books with visuals, sound, and AI storytelling.
             </p>
-            <div className="mt-6 flex flex-wrap gap-3">
+            <div className="mt-6 flex flex-nowrap gap-3">
               <button
                 type="button"
-                className="rounded-2xl border-2 border-primary-800 bg-primary-600 px-6 py-3 text-base font-medium text-white transition-colors hover:bg-primary-700"
+                className="shrink-0 rounded-2xl border-2 border-primary-800 bg-primary-600 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-primary-700 sm:px-6 sm:py-3 sm:text-base"
               >
                 Back the Kickstarter
               </button>
               <button
                 type="button"
-                className="rounded-2xl border-2 border-primary-800 bg-transparent px-6 py-3 text-base text-primary-800 transition-colors hover:bg-primary-100 hover:text-primary-800"
+                className="shrink-0 rounded-2xl border-2 border-primary-800 bg-transparent px-4 py-2.5 text-sm text-primary-800 transition-colors hover:bg-primary-100 hover:text-primary-800 sm:px-6 sm:py-3 sm:text-base"
               >
                 Join the waitlist
               </button>
@@ -235,7 +302,7 @@ export function LibellLanding() {
 
         {/* Who it's for - Built for Story Creators */}
         <section
-          id="who-its-for"
+          id="about"
           className="bg-neutral-1 px-6 py-14 md:px-12 md:py-20"
           data-node-id="who-its-for"
         >
@@ -306,17 +373,19 @@ export function LibellLanding() {
                 className={`flex flex-col items-center gap-6 md:flex-row md:items-center md:justify-center md:gap-10 ${imageFirst ? 'md:flex-row-reverse' : ''
                   }`}
               >
-                <div className="flex-1 space-y-4 md:max-w-md">
+                <div className="flex flex-1 flex-col items-center space-y-4 text-center md:max-w-md md:items-start md:text-left">
                   <h3 className="text-xl font-medium text-neutral-10 md:text-2xl">{title}</h3>
                   <p className="text-base text-primary-600 md:text-lg">
                     {description}
                   </p>
-                  <button
-                    type="button"
-                    className="rounded-2xl border-2 border-primary-700 px-6 py-3 text-base font-medium text-primary-700 transition-colors hover:bg-primary-100 hover:text-primary-800 md:text-lg"
-                  >
-                    Learn More
-                  </button>
+                  <div className="flex w-full justify-center md:justify-start">
+                    <button
+                      type="button"
+                      className="rounded-2xl border-2 border-primary-700 px-6 py-3 text-base font-medium text-primary-700 transition-colors hover:bg-primary-100 hover:text-primary-800 md:text-lg"
+                    >
+                      Learn More
+                    </button>
+                  </div>
                 </div>
                 <div className="flex w-fit justify-center md:justify-start">
                   <div className="flex h-[220px] w-[360px] shrink-0 items-center justify-center rounded-2xl bg-neutral-1 p-6 md:w-[440px]">
@@ -330,6 +399,7 @@ export function LibellLanding() {
 
         {/* 4. The Platform for Interactive Storytelling */}
         <section
+          id="features"
           className="bg-neutral-1 px-6 py-16 md:px-12 md:py-24"
           data-node-id="1:71"
         >
