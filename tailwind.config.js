@@ -12,14 +12,14 @@ export default {
       colors: {
         black: '#000000',
         dark: {
-          DEFAULT: '#0a0e1a',
-          section: '#0f1729',
-          card: '#1e293b',
-          border: '#334155',
+          DEFAULT: '#0f0f0f',
+          section: '#171717',
+          card: '#262626',
+          border: '#404040',
         },
         accent: {
-          DEFAULT: '#00BFFF',
-          hover: '#33CCFF',
+          DEFAULT: '#ca8a04',
+          hover: '#eab308',
         },
         primary: {
           50: '#FAFAFA',

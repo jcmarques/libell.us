@@ -8,6 +8,7 @@ import {
 import codeIcon from '../assets/code.png';
 import gameSettingIcon from '../assets/game-setting.png';
 import requestIcon from '../assets/request.png';
+import heroImage from '../assets/hero-01.png';
 
 const PLATFORM_TABS = [
   { id: 'story-editor', label: 'Story Editor' },
@@ -110,7 +111,7 @@ export function LibellLanding() {
               className="size-12 object-contain sm:size-16"
               src={imgLogo}
             />
-            <span className="text-lg font-bold text-accent sm:text-xl lg:text-2xl">Libell.us</span>
+            <span className="text-lg font-bold text-black sm:text-xl lg:text-2xl">Libell.us</span>
           </div>
 
           {/* Desktop nav - visible from sm and up, no hamburger on bigger screens */}
@@ -167,10 +168,10 @@ export function LibellLanding() {
 
         {/* 1. Hero */}
         <section
-          className="relative flex flex-col items-start justify-center bg-black px-6 py-16 md:flex-row md:items-center md:gap-12 md:px-12 md:py-24 lg:px-24 lg:py-32"
+          className="relative flex flex-col items-center justify-center bg-black px-6 py-16 md:flex-row md:items-center md:justify-between md:gap-12 md:px-12 md:py-24 lg:px-24 lg:py-32"
           data-node-id="1:243"
         >
-          <div className="max-w-2xl flex-1 lg:max-w-3xl">
+          <div className="w-full max-w-2xl flex-1 text-center lg:max-w-3xl md:text-left">
             <p className="text-sm text-neutral-6 md:text-base">
               Interactive storytelling platform
             </p>
@@ -178,10 +179,14 @@ export function LibellLanding() {
               Build stories.<br />
               Skip the code.
             </h1>
-            <p className="mt-3 max-w-xl text-base text-neutral-6 md:text-lg">
-              Build branching adventures or traditional books with visuals, sound, and AI storytelling.
+            <p className="mx-auto mt-3 max-w-xl text-base text-neutral-6 md:mx-0 md:text-lg">
+              Build branching adventures
+              <br className="md:hidden" />
+              {' '}or traditional books{'\u00a0'}with
+              <br className="md:hidden" />
+              {' '}visuals, sound and AI storytelling.
             </p>
-            <div className="mt-6 flex flex-nowrap gap-3">
+            <div className="mt-6 flex flex-nowrap justify-center gap-3 md:justify-start">
               <button
                 type="button"
                 className="shrink-0 rounded-2xl border-2 border-white bg-white px-4 py-2.5 text-sm font-medium text-black transition-colors hover:bg-neutral-2 hover:text-black sm:px-6 sm:py-3 sm:text-base"
@@ -200,8 +205,8 @@ export function LibellLanding() {
             </p>
           </div>
           <div className="mt-8 flex flex-1 items-center justify-center self-center md:mt-0 md:max-w-md lg:max-w-lg">
-            <div className="flex size-[220px] items-center justify-center rounded-2xl bg-white/10 p-3">
-              <img alt="" className="size-10 object-contain" src={imgVector} />
+            <div className="flex w-full max-w-[360px] items-center justify-center overflow-hidden rounded-2xl md:max-w-md">
+              <img alt="Create interactive stories with Libell" className="w-full object-contain mix-blend-screen" src={heroImage} />
             </div>
           </div>
         </section>
@@ -303,39 +308,49 @@ export function LibellLanding() {
         {/* Who it's for - Built for Story Creators */}
         <section
           id="about"
-          className="bg-dark-section px-6 py-14 md:px-12 md:py-20"
+          className="relative overflow-hidden bg-gradient-to-b from-dark-section via-dark-section to-dark px-6 py-14 md:px-12 md:py-20"
           data-node-id="who-its-for"
         >
-          <h2 className="text-center text-xl font-medium text-white md:text-2xl lg:text-3xl">
-            Built for Story Creators
-          </h2>
-          <div className="mx-auto mt-10 grid max-w-6xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              {
-                title: 'Writers',
-                description: 'Create interactive novels and immersive narrative worlds.',
-              },
-              {
-                title: 'Game Designers',
-                description: 'Prototype branching narratives and interactive storytelling systems.',
-              },
-              {
-                title: 'Educators',
-                description: 'Build interactive learning experiences and educational simulations.',
-              },
-              {
-                title: 'Content Creators',
-                description: 'Publish visually rich storytelling experiences.',
-              },
-            ].map(({ title, description }) => (
-              <div
-                key={title}
-                className="flex flex-col rounded-2xl border border-dark-border bg-dark-card p-6 transition-colors hover:border-accent/50"
-              >
-                <h3 className="min-h-[2.75rem] text-lg font-medium text-white md:min-h-14 md:text-xl">{title}</h3>
-                <p className="mt-2 text-sm text-neutral-6 md:text-base">{description}</p>
-              </div>
-            ))}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(202,138,4,0.08),transparent)] pointer-events-none" aria-hidden />
+          <div className="relative">
+            <h2 className="text-center text-xl font-medium tracking-wide text-white md:text-2xl lg:text-3xl">
+              Built for Story Creators
+            </h2>
+            <div className="mx-auto mt-4 h-px w-16 bg-accent/60 rounded-full" aria-hidden />
+            <div className="mx-auto mt-10 grid max-w-6xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+              {[
+                {
+                  title: 'Writers',
+                  description: 'Create interactive novels and immersive narrative worlds.',
+                  icon: 'fa-pen-fancy',
+                },
+                {
+                  title: 'Game Designers',
+                  description: 'Prototype branching narratives and interactive storytelling systems.',
+                  icon: 'fa-gamepad',
+                },
+                {
+                  title: 'Educators',
+                  description: 'Build interactive learning experiences and educational simulations.',
+                  icon: 'fa-graduation-cap',
+                },
+                {
+                  title: 'Content Creators',
+                  description: 'Publish visually rich storytelling experiences.',
+                  icon: 'fa-video',
+                },
+              ].map(({ title, description, icon }) => (
+                <div
+                  key={title}
+                  className="group relative flex flex-col items-center rounded-2xl border border-dark-border bg-dark-card/90 p-6 text-center transition-all duration-300 hover:border-accent/60 hover:shadow-[0_0_24px_rgba(202,138,4,0.12)]"
+                >
+                  <div className="absolute inset-px rounded-2xl border-l-2 border-accent/0 transition-colors duration-300 group-hover:border-accent/60" aria-hidden />
+                  <i className={`fa-solid ${icon} text-accent mb-4 text-2xl md:text-3xl`} aria-hidden />
+                  <h3 className="min-h-[2.75rem] text-lg font-medium text-white md:min-h-14 md:text-xl">{title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-neutral-6 md:text-base">{description}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
