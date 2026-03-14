@@ -720,7 +720,7 @@ export function LibellLanding() {
 
         {/* Community / Future */}
         <section
-          className="relative overflow-hidden bg-[#0f0f0f] px-6 pb-16 pt-0 md:px-12 md:pb-24 md:pt-0"
+          className="relative overflow-hidden bg-[#0f0f0f] px-6 pb-px pt-0 md:px-12 md:pb-px md:pt-0"
           data-node-id="community-future"
         >
           <div className="mb-16 h-px w-full shadow-[0_1px_0_0_rgba(255,255,255,0.15),0_2px_8px_-2px_rgba(255,255,255,0.08)] md:mb-24" aria-hidden />
@@ -755,11 +755,12 @@ export function LibellLanding() {
               />
             </div>
           </div>
+          <div className="mt-16 h-px w-full shadow-[0_1px_0_0_rgba(255,255,255,0.15),0_2px_8px_-2px_rgba(255,255,255,0.08)] md:mt-24" aria-hidden />
         </section>
 
         {/* Back the Kickstarter CTA */}
         <section
-          className="bg-black px-6 py-12 md:px-12 md:py-16 lg:px-24 lg:py-20"
+          className="bg-[#0f172a] px-6 py-12 md:px-12 md:py-16 lg:px-24 lg:py-20"
           data-node-id="join-beta"
         >
           <div className="mx-auto max-w-4xl text-center">
