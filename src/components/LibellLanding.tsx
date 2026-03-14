@@ -3,16 +3,16 @@ import {
   imgLogo,
   imgVuesaxBoldGallery,
 } from '../assets/figma-assets';
-import codeIcon from '../assets/code.png';
-import gameSettingIcon from '../assets/game-setting.png';
-import requestIcon from '../assets/request.png';
-import heroImage from '../assets/hero.png';
-import interactiveAdventuresImg from '../assets/interactive-adventures.png';
-import visualNovelsImg from '../assets/visual-novels.png';
-import gameBooksImg from '../assets/game-books.png';
-import writeStoriesImg from '../assets/write-stories.png';
-import buildWorldsImg from '../assets/build-worlds.png';
-import publishImg from '../assets/publish.png';
+import codeIcon from '../assets/icons/code.png';
+import gameSettingIcon from '../assets/icons/game-setting.png';
+import requestIcon from '../assets/icons/request.png';
+import heroImage from '../assets/hero/hero.png';
+import interactiveAdventuresImg from '../assets/writers/interactive-adventures.png';
+import visualNovelsImg from '../assets/writers/visual-novels.png';
+import gameBooksImg from '../assets/writers/game-books.png';
+import writeStoriesImg from '../assets/imagination/write-stories.png';
+import buildWorldsImg from '../assets/imagination/build-worlds.png';
+import publishImg from '../assets/imagination/publish.png';
 import inkRain from '../assets/mobile/inkRain.png';
 import pixelSwamp from '../assets/mobile/pixelSwamp.png';
 import cartoonSwamp from '../assets/mobile/cartoonSwamp.png';
@@ -309,7 +309,7 @@ export function LibellLanding() {
         {/* 2. Writers want to create / Problem Section */}
         <section
           ref={writersSectionRef}
-          className="bg-black px-6 py-14 md:px-12 md:py-20"
+          className="bg-black px-6 pb-14 pt-0 md:px-12 md:pb-20 md:pt-0"
           data-node-id="1:208"
         >
           <div className="mx-auto mb-14 max-w-4xl border-t border-white/30 md:mb-16" aria-hidden />
