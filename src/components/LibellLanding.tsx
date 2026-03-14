@@ -103,13 +103,29 @@ export function LibellLanding() {
   const closeMobileMenu = () => setMobileMenuOpen(false);
   const libellChangesRef = useRef<HTMLDivElement>(null);
   const [libellSectionVisible, setLibellSectionVisible] = useState(false);
+  const heroSectionRef = useRef<HTMLElement>(null);
+  const [heroSectionVisible, setHeroSectionVisible] = useState(false);
   const writersSectionRef = useRef<HTMLElement>(null);
   const [writersSectionVisible, setWritersSectionVisible] = useState(false);
+  const [writersScrollDown, setWritersScrollDown] = useState(true);
   const imaginationSectionRef = useRef<HTMLElement>(null);
   const [imaginationSectionVisible, setImaginationSectionVisible] = useState(false);
+  const [imaginationScrollDown, setImaginationScrollDown] = useState(true);
+  const scrollPosRef = useRef({ y: 0, prevY: 0 });
   const exploreStoriesRef = useRef<HTMLElement>(null);
   const [exploreStoriesVisible, setExploreStoriesVisible] = useState(false);
   const [carouselIndex, setCarouselIndex] = useState(0);
+
+  useEffect(() => {
+    const el = heroSectionRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => setHeroSectionVisible(entry.isIntersecting),
+      { threshold: 0.2 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
 
   useEffect(() => {
     const el = libellChangesRef.current;
@@ -126,7 +142,13 @@ export function LibellLanding() {
     const el = writersSectionRef.current;
     if (!el) return;
     const obs = new IntersectionObserver(
-      ([entry]) => setWritersSectionVisible(entry.isIntersecting),
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          const { y, prevY } = scrollPosRef.current;
+          setWritersScrollDown(y >= prevY);
+        }
+        setWritersSectionVisible(entry.isIntersecting);
+      },
       { threshold: 0.2 }
     );
     obs.observe(el);
@@ -134,11 +156,26 @@ export function LibellLanding() {
   }, []);
 
   useEffect(() => {
+    const handleScroll = () => {
+      scrollPosRef.current.prevY = scrollPosRef.current.y;
+      scrollPosRef.current.y = window.scrollY ?? window.pageYOffset;
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
     const el = imaginationSectionRef.current;
     if (!el) return;
     const obs = new IntersectionObserver(
-      ([entry]) => setImaginationSectionVisible(entry.isIntersecting),
-      { threshold: 0.2 }
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          const { y, prevY } = scrollPosRef.current;
+          setImaginationScrollDown(y >= prevY);
+        }
+        setImaginationSectionVisible(entry.isIntersecting);
+      },
+      { threshold: 0 }
     );
     obs.observe(el);
     return () => obs.disconnect();
@@ -261,6 +298,7 @@ export function LibellLanding() {
 
         {/* 1. Hero */}
         <section
+          ref={heroSectionRef}
           className="relative bg-black py-16 md:py-24 lg:py-32"
           data-node-id="1:243"
         >
@@ -298,7 +336,7 @@ export function LibellLanding() {
                 Your all-in-one platform. No code required.
               </p>
             </div>
-            <div className="-mt-1 flex flex-1 items-center justify-center self-center animate-fade-in-up md:mt-0 md:max-w-[1008px] lg:max-w-[1344px]">
+            <div className={`-mt-1 flex flex-1 items-center justify-center self-center md:mt-0 md:max-w-[1008px] lg:max-w-[1344px] [animation-fill-mode:backwards] ${heroSectionVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
               <div className="flex w-full max-w-full items-center justify-center overflow-hidden rounded-2xl md:max-w-[1008px] lg:max-w-[1344px]">
                 <img alt="Create interactive stories with Libell" className="w-full object-contain mix-blend-screen" src={heroImage} />
               </div>
@@ -309,10 +347,10 @@ export function LibellLanding() {
         {/* 2. Writers want to create / Problem Section */}
         <section
           ref={writersSectionRef}
-          className="bg-black px-6 pb-14 pt-0 md:px-12 md:pb-20 md:pt-0"
+          className="bg-[#0f0f0f] px-6 pb-14 pt-0 md:px-12 md:pb-20 md:pt-0"
           data-node-id="1:208"
         >
-          <div className="mx-auto mb-14 max-w-4xl border-t border-white/30 md:mb-16" aria-hidden />
+          <div className="mb-14 h-px w-full shadow-[0_1px_0_0_rgba(255,255,255,0.15),0_2px_8px_-2px_rgba(255,255,255,0.08)] md:mb-16" aria-hidden />
           <h2 className="text-center text-xl font-medium text-white md:text-2xl">
             Writers want to create:
           </h2>
@@ -321,11 +359,14 @@ export function LibellLanding() {
               { label: 'Interactive Adventures', id: '1:229', img: interactiveAdventuresImg },
               { label: 'Visual Novels', id: '1:233', img: visualNovelsImg },
               { label: 'Game Books', id: '1:237', img: gameBooksImg },
-            ].map(({ label, id, img }, index) => (
+            ].map(({ label, id, img }, index) => {
+              const lastIndex = 2;
+              const delayMs = writersScrollDown ? 450 + index * 400 : 450 + (lastIndex - index) * 400;
+              return (
               <li
                 key={id}
                 className={`flex flex-col items-center [animation-fill-mode:backwards] ${writersSectionVisible ? 'animate-fade-in-up-slow' : 'opacity-0'}`}
-                style={{ animationDelay: writersSectionVisible ? `${450 + index * 400}ms` : undefined }}
+                style={{ animationDelay: writersSectionVisible ? `${delayMs}ms` : undefined }}
               >
                 <div className="flex size-[220px] items-center justify-center overflow-hidden rounded-2xl bg-white/10 p-3">
                   <img
@@ -338,7 +379,8 @@ export function LibellLanding() {
                   {label}
                 </p>
               </li>
-            ))}
+            );
+            })}
           </ul>
 
           <div className="mx-auto mt-12 flex w-full max-w-3xl flex-col items-center justify-center gap-4 text-center">
@@ -389,9 +431,10 @@ export function LibellLanding() {
 
         {/* 3.1 Transition - Libell.us changes that */}
         <section
-          className="flex flex-col items-center justify-center bg-[#0f172a] py-10 md:py-14"
+          className="flex flex-col items-center justify-center bg-[#0f172a] pb-10 pt-0 md:pb-14 md:pt-0"
           data-node-id="1:177"
         >
+          <div className="mb-10 h-px w-full shadow-[0_1px_0_0_rgba(255,255,255,0.15),0_2px_8px_-2px_rgba(255,255,255,0.08)] md:mb-12" aria-hidden />
           <div
             ref={libellChangesRef}
             className="mx-4 w-full max-w-2xl rounded-2xl bg-[#1e293b] px-8 py-10 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.7),0_16px_32px_-8px_rgba(0,0,0,0.5)] md:px-12 md:py-12"
@@ -491,12 +534,15 @@ export function LibellLanding() {
                 imageFirst: false,
                 img: publishImg,
               },
-            ].map(({ title, description, imageFirst, img }, index) => (
+            ].map(({ title, description, imageFirst, img }, index) => {
+              const lastIndex = 2;
+              const delayMs = imaginationScrollDown ? index * 300 : (lastIndex - index) * 300;
+              return (
               <div
                 key={title}
                 className={`flex flex-col items-center gap-6 md:flex-row md:items-center md:justify-center md:gap-10 [animation-fill-mode:backwards] ${imageFirst ? 'md:flex-row-reverse' : ''
                   } ${imaginationSectionVisible ? 'animate-fade-in-up-slow' : 'opacity-0'}`}
-                style={{ animationDelay: imaginationSectionVisible ? `${index * 300}ms` : undefined }}
+                style={{ animationDelay: imaginationSectionVisible ? `${delayMs}ms` : undefined }}
               >
                 <div className="flex flex-1 flex-col items-center space-y-4 text-center md:max-w-md md:items-start md:text-left">
                   <h3 className="text-xl font-medium text-content md:text-2xl">{title}</h3>
@@ -518,28 +564,29 @@ export function LibellLanding() {
                   </div>
                 </div>
               </div>
-            ))}
+            );
+            })}
           </div>
         </section>
 
         {/* 4. The Platform for Interactive Storytelling */}
         <section
           id="features"
-          className="relative overflow-hidden bg-[#00C0E6] px-6 py-16 md:px-12 md:py-24"
+          className="relative overflow-hidden border-t border-b border-white/30 bg-[#0f0f0f] px-6 py-16 md:px-12 md:py-24"
           data-node-id="1:71"
         >
-          <h2 className="text-center text-xl font-medium text-black md:text-2xl lg:text-3xl">
+          <h2 className="text-center text-xl font-medium text-white md:text-2xl lg:text-3xl">
             The Platform for Interactive Storytelling
           </h2>
-          <p className="mx-auto mt-6 max-w-4xl text-center text-base text-black md:text-lg lg:text-xl">
-            <span className="text-black font-semibold">Libell.us</span> is a creative platform where creators
+          <p className="mx-auto mt-6 max-w-4xl text-center text-base text-white/70 md:text-lg lg:text-xl">
+            <span className="font-semibold text-white/90">Libell.us</span> is a creative platform where creators
             <br className="hidden md:block" />
             can build interactive stories with:
           </p>
           <div className="relative mx-auto mt-8 max-w-3xl">
             <div
               aria-label="Platform features"
-              className="flex flex-wrap justify-center gap-4 border-b-2 border-black/30 pb-3 md:gap-6 md:pb-4"
+              className="flex flex-wrap justify-center gap-4 border-b-2 border-white/30 pb-3 md:gap-6 md:pb-4"
               role="tablist"
             >
               {PLATFORM_TABS.map((tab) => (
@@ -550,8 +597,8 @@ export function LibellLanding() {
                   aria-selected={activePlatformTab === tab.id}
                   onClick={() => setActivePlatformTab(tab.id)}
                   className={`relative -mb-[2px] border-b-2 pb-3 pt-1 text-base font-medium transition-colors md:pb-4 md:text-lg ${activePlatformTab === tab.id
-                    ? 'border-black text-black'
-                    : 'border-transparent text-content hover:text-black'
+                    ? 'border-white text-white'
+                    : 'border-transparent text-white/70 hover:text-white'
                     }`}
                 >
                   {tab.label}
@@ -567,19 +614,19 @@ export function LibellLanding() {
             {PLATFORM_TAB_CONTENT[activePlatformTab].map((item, i) => (
               <div
                 key={`${activePlatformTab}-${i}`}
-                className="flex aspect-square w-full max-w-[160px] flex-col overflow-hidden rounded-xl bg-white/10 border border-black/20 backdrop-blur-sm md:max-w-[180px]"
+                className="flex aspect-square w-full max-w-[160px] flex-col overflow-hidden rounded-xl border border-white/20 bg-white/10 backdrop-blur-sm md:max-w-[180px]"
               >
                 <div className="flex min-h-0 flex-1 items-center justify-center p-2">
                   <img alt="" className="max-h-10 max-w-10 object-contain" src={imgVuesaxBoldGallery} />
                 </div>
-                <p className="p-1.5 text-center text-xs text-black">{item.label}</p>
+                <p className="p-1.5 text-center text-xs text-white">{item.label}</p>
               </div>
             ))}
           </div>
           <div className="mx-auto mt-10 flex flex-wrap justify-center gap-4">
             <button
               type="button"
-              className="rounded-2xl border-2 border-black px-6 py-3 text-base font-medium text-black transition-all duration-200 hover:scale-[1.03] hover:bg-white/25 hover:shadow-md"
+              className="rounded-2xl border border-white px-6 py-3 text-base font-medium text-white transition-all duration-200 hover:scale-[1.03] hover:bg-white/25 hover:shadow-md"
             >
               See how Libell works
             </button>
@@ -673,23 +720,24 @@ export function LibellLanding() {
 
         {/* Community / Future */}
         <section
-          className="relative overflow-hidden bg-[#00C0E6] px-6 py-16 md:px-12 md:py-24"
+          className="relative overflow-hidden bg-[#0f0f0f] px-6 pb-16 pt-0 md:px-12 md:pb-24 md:pt-0"
           data-node-id="community-future"
         >
+          <div className="mb-16 h-px w-full shadow-[0_1px_0_0_rgba(255,255,255,0.15),0_2px_8px_-2px_rgba(255,255,255,0.08)] md:mb-24" aria-hidden />
           <div className="relative mx-auto max-w-4xl text-center">
-            <h2 className="text-xl font-medium text-black md:text-2xl lg:text-3xl">
+            <h2 className="text-xl font-medium text-white md:text-2xl lg:text-3xl">
               Join the Next Generation of Storytelling
             </h2>
-            <p className="mx-auto mt-6 max-w-2xl text-base text-black/70 md:text-lg">
+            <p className="mx-auto mt-6 max-w-2xl text-base text-white/70 md:text-lg">
               We’re building a platform for immersive, interactive stories.
             </p>
-            <p className="mx-auto mt-4 max-w-2xl text-base text-black md:text-lg">
+            <p className="mx-auto mt-4 max-w-2xl text-base text-white/70 md:text-lg">
               To see the platform in action, check out our{' '}
               <a
                 href="https://www.youtube.com/watch?v=TRqNSkkrD8o"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-medium text-black underline transition-colors hover:text-black/80"
+                className="font-medium text-white underline transition-colors hover:text-white/80"
               >
                 YouTube channel
               </a>
@@ -733,23 +781,23 @@ export function LibellLanding() {
 
         {/* Footer */}
         <footer
-          className="bg-white px-6 py-8 md:px-12 md:py-10 border-t border-neutral-2"
+          className="border-t border-[#00C0E6]/30 bg-[#00C0E6] px-6 py-8 md:px-12 md:py-10"
           data-node-id="1:43"
         >
           <div className="mx-auto flex max-w-4xl flex-col items-center gap-8 text-center">
             <div className="flex items-center gap-2">
               <img alt="" className="size-9 object-contain" src={imgLogo} />
-              <span className="text-xl font-bold text-accent">Libell.us</span>
+              <span className="text-xl font-bold text-black">Libell.us</span>
             </div>
-            <nav className="flex flex-wrap justify-center gap-6 text-sm text-content md:gap-8 md:text-base">
-              <a href="#features" className="transition-colors hover:text-accent">Features</a>
-              <a href="#about" className="transition-colors hover:text-accent">About</a>
-              <a href="#docs" className="transition-colors hover:text-accent">Docs</a>
-              <a href="#contact" className="transition-colors hover:text-accent">Contact</a>
-              <a href="#privacy" className="transition-colors hover:text-accent">Privacy</a>
-              <a href="#terms" className="transition-colors hover:text-accent">Terms</a>
+            <nav className="flex flex-wrap justify-center gap-6 text-sm text-black md:gap-8 md:text-base">
+              <a href="#features" className="transition-colors hover:text-black/80">Features</a>
+              <a href="#about" className="transition-colors hover:text-black/80">About</a>
+              <a href="#docs" className="transition-colors hover:text-black/80">Docs</a>
+              <a href="#contact" className="transition-colors hover:text-black/80">Contact</a>
+              <a href="#privacy" className="transition-colors hover:text-black/80">Privacy</a>
+              <a href="#terms" className="transition-colors hover:text-black/80">Terms</a>
             </nav>
-            <p className="text-sm text-content">
+            <p className="text-sm text-black">
               ©{new Date().getFullYear()} Libell.us
             </p>
           </div>
