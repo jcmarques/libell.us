@@ -6,6 +6,20 @@ export default {
   ],
   theme: {
     extend: {
+      keyframes: {
+        'fade-in-up': {
+          '0%': { opacity: '0', transform: 'translateY(12px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        'soft-pulse': {
+          '0%, 100%': { boxShadow: '0 0 0 0 rgba(255,255,255,0.15)' },
+          '50%': { boxShadow: '0 0 36px 10px rgba(255,255,255,0.45)' },
+        },
+      },
+      animation: {
+        'fade-in-up': 'fade-in-up 0.6s ease-out forwards',
+        'soft-pulse': 'soft-pulse 2.5s ease-in-out infinite',
+      },
       fontFamily: {
         sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
       },

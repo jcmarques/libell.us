@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import {
   imgLogo,
-  imgVector,
   imgVector1,
   imgVuesaxBoldGallery,
 } from '../assets/figma-assets';
@@ -9,6 +8,12 @@ import codeIcon from '../assets/code.png';
 import gameSettingIcon from '../assets/game-setting.png';
 import requestIcon from '../assets/request.png';
 import heroImage from '../assets/hero.png';
+import interactiveAdventuresImg from '../assets/interactive-adventures.png';
+import visualNovelsImg from '../assets/visual-novels.png';
+import gameBooksImg from '../assets/game-books.png';
+import writeStoriesImg from '../assets/write-stories.png';
+import buildWorldsImg from '../assets/build-worlds.png';
+import publishImg from '../assets/publish.png';
 
 const PLATFORM_TABS = [
   { id: 'story-editor', label: 'Story Editor' },
@@ -63,31 +68,19 @@ const PLATFORM_TAB_CONTENT: Record<(typeof PLATFORM_TABS)[number]['id'], { label
 export function LibellLanding() {
   const [activePlatformTab, setActivePlatformTab] = useState<(typeof PLATFORM_TABS)[number]['id']>('story-editor');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [heroParallax, setHeroParallax] = useState(0);
-  const heroSectionRef = useRef<HTMLElement>(null);
-
   const closeMobileMenu = () => setMobileMenuOpen(false);
+  const libellChangesRef = useRef<HTMLDivElement>(null);
+  const [libellSectionVisible, setLibellSectionVisible] = useState(false);
 
   useEffect(() => {
-    let rafId: number;
-    const handleScroll = () => {
-      rafId = requestAnimationFrame(() => {
-        const section = heroSectionRef.current;
-        if (!section) return;
-        const rect = section.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        if (rect.bottom < 0 || rect.top > windowHeight) return;
-        const rate = 0.2;
-        const offset = (windowHeight * 0.2 - rect.top) * rate;
-        setHeroParallax(offset);
-      });
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      cancelAnimationFrame(rafId);
-    };
+    const el = libellChangesRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => entry.isIntersecting && setLibellSectionVisible(true),
+      { threshold: 0.2 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
   }, []);
 
   useEffect(() => {
@@ -194,7 +187,6 @@ export function LibellLanding() {
 
         {/* 1. Hero */}
         <section
-          ref={heroSectionRef}
           className="relative bg-black py-16 md:py-24 lg:py-32"
           data-node-id="1:243"
         >
@@ -233,10 +225,7 @@ export function LibellLanding() {
               </p>
             </div>
             <div className="-mt-1 flex flex-1 items-center justify-center self-center md:mt-0 md:max-w-[1008px] lg:max-w-[1344px]">
-              <div
-                className="flex w-full max-w-full items-center justify-center overflow-hidden rounded-2xl md:max-w-[1008px] lg:max-w-[1344px]"
-                style={{ transform: `translateY(${heroParallax}px)` }}
-              >
+              <div className="flex w-full max-w-full items-center justify-center overflow-hidden rounded-2xl md:max-w-[1008px] lg:max-w-[1344px]">
                 <img alt="Create interactive stories with Libell" className="w-full object-contain mix-blend-screen" src={heroImage} />
               </div>
             </div>
@@ -253,16 +242,16 @@ export function LibellLanding() {
           </h2>
           <ul className="mx-auto mt-8 flex max-w-4xl flex-col items-center gap-6 md:flex-row md:justify-center md:gap-14">
             {[
-              { label: 'Interactive Adventures', id: '1:229' },
-              { label: 'Visual Novels', id: '1:233' },
-              { label: 'Game Books', id: '1:237' },
-            ].map(({ label, id }) => (
+              { label: 'Interactive Adventures', id: '1:229', img: interactiveAdventuresImg },
+              { label: 'Visual Novels', id: '1:233', img: visualNovelsImg },
+              { label: 'Game Books', id: '1:237', img: gameBooksImg },
+            ].map(({ label, id, img }) => (
               <li key={id} className="flex flex-col items-center">
-                <div className="flex size-[220px] items-center justify-center rounded-2xl bg-white/10 p-3">
+                <div className="flex size-[220px] items-center justify-center overflow-hidden rounded-2xl bg-white/10 p-3">
                   <img
                     alt=""
-                    className="size-10 object-contain opacity-90 brightness-0 invert"
-                    src={imgVector}
+                    className="h-full w-full object-contain"
+                    src={img}
                   />
                 </div>
                 <p className="mt-2 text-center text-base text-white">
@@ -280,7 +269,7 @@ export function LibellLanding() {
               <div className="flex w-36 flex-shrink-0 flex-col items-center">
                 <img
                   alt=""
-                  className="size-12 object-contain opacity-90 brightness-0 invert"
+                  className="size-12 object-contain opacity-90 [filter:brightness(0)_saturate(100%)_invert(75%)_sepia(57%)_saturate(2500%)_hue-rotate(166deg)]"
                   src={codeIcon}
                 />
                 <p className="mt-2 text-center text-base text-white/90">Code</p>
@@ -292,7 +281,7 @@ export function LibellLanding() {
               <div className="flex w-36 flex-shrink-0 flex-col items-center">
                 <img
                   alt=""
-                  className="size-12 object-contain opacity-90 brightness-0 invert"
+                  className="size-12 object-contain opacity-90 [filter:brightness(0)_saturate(100%)_invert(75%)_sepia(57%)_saturate(2500%)_hue-rotate(166deg)]"
                   src={gameSettingIcon}
                 />
                 <p className="mt-2 text-center text-base text-white/90">Game Engines</p>
@@ -304,7 +293,7 @@ export function LibellLanding() {
               <div className="flex w-36 flex-shrink-0 flex-col items-center">
                 <img
                   alt=""
-                  className="size-12 object-contain opacity-90 brightness-0 invert"
+                  className="size-12 object-contain opacity-90 [filter:brightness(0)_saturate(100%)_invert(75%)_sepia(57%)_saturate(2500%)_hue-rotate(166deg)]"
                   src={requestIcon}
                 />
                 <p className="mt-2 text-center text-base text-white/90">
@@ -320,11 +309,12 @@ export function LibellLanding() {
 
         {/* 3.1 Transition - Libell.us changes that */}
         <section
+          ref={libellChangesRef}
           className="flex flex-col items-center justify-center bg-black py-10 md:py-14"
           data-node-id="1:177"
         >
-          <div className="flex flex-row items-center justify-center gap-3">
-            <div className="flex size-14 items-center justify-center rounded-2xl bg-white md:size-16 ring-1 ring-white/30 transition-all duration-200 hover:scale-[1.05] hover:shadow-lg">
+          <div className={`flex flex-row items-center justify-center gap-3 ${libellSectionVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+            <div className="flex size-14 items-center justify-center rounded-2xl bg-white ring-1 ring-white/30 transition-all duration-200 hover:scale-[1.05] hover:shadow-lg md:size-16 animate-soft-pulse">
               <img
                 alt="Libell.us"
                 className="size-8 md:size-9"
@@ -374,7 +364,7 @@ export function LibellLanding() {
               ].map(({ title, description, icon }) => (
                 <div
                   key={title}
-                  className="group relative flex flex-col items-center rounded-2xl border-2 border-white/30 bg-white/10 p-6 text-center backdrop-blur-sm transition-all duration-300 hover:border-white hover:bg-white/25 hover:shadow-[0_0_40px_rgba(255,255,255,0.25),0_0_24px_rgba(0,192,230,0.4)]"
+                  className="group relative flex flex-col items-center rounded-2xl border-2 border-white/30 bg-white/10 p-6 text-center backdrop-blur-sm transition-all duration-300 hover:border-2 hover:border-white hover:bg-white/25 hover:shadow-[0_0_40px_rgba(255,255,255,0.25),0_0_24px_rgba(0,192,230,0.4)]"
                 >
                   <div className="absolute inset-0 rounded-2xl border-l-4 border-transparent transition-colors duration-300 group-hover:border-white pointer-events-none" aria-hidden />
                   <i className={`fa-solid ${icon} text-white mb-4 text-2xl md:text-3xl drop-shadow-sm`} aria-hidden />
@@ -401,20 +391,23 @@ export function LibellLanding() {
                 description:
                   'Start with an idea and write your story using an intuitive editor designed for interactive storytelling.',
                 imageFirst: false,
+                img: writeStoriesImg,
               },
               {
                 title: 'Build Worlds',
                 description:
                   "Create characters, locations, and branching paths that shape your story's universe.",
                 imageFirst: true,
+                img: buildWorldsImg,
               },
               {
                 title: 'Publish Interactive Books',
                 description:
                   'Turn your story into an interactive experience readers can explore.',
                 imageFirst: false,
+                img: publishImg,
               },
-            ].map(({ title, description, imageFirst }) => (
+            ].map(({ title, description, imageFirst, img }) => (
               <div
                 key={title}
                 className={`flex flex-col items-center gap-6 md:flex-row md:items-center md:justify-center md:gap-10 ${imageFirst ? 'md:flex-row-reverse' : ''
@@ -435,8 +428,8 @@ export function LibellLanding() {
                   </div>
                 </div>
                 <div className="flex w-fit justify-center md:justify-start">
-                  <div className="flex h-[220px] w-[360px] shrink-0 items-center justify-center rounded-2xl bg-neutral-1 p-6 md:w-[440px]">
-                    <img alt="" className="size-10 shrink-0 object-contain" src={imgVector} />
+                  <div className="flex h-[280px] w-[400px] shrink-0 overflow-hidden rounded-2xl shadow-xl md:h-[340px] md:w-[500px]">
+                    <img alt="" className="h-full w-full object-cover" src={img} />
                   </div>
                 </div>
               </div>
