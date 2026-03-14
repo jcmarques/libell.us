@@ -13,9 +13,21 @@ import gameBooksImg from '../assets/game-books.png';
 import writeStoriesImg from '../assets/write-stories.png';
 import buildWorldsImg from '../assets/build-worlds.png';
 import publishImg from '../assets/publish.png';
-import book1Img from '../assets/book-1.png';
-import book2Img from '../assets/book-2.png';
-import book3Img from '../assets/book-3.png';
+import inkRain from '../assets/mobile/inkRain.png';
+import pixelSwamp from '../assets/mobile/pixelSwamp.png';
+import cartoonSwamp from '../assets/mobile/cartoonSwamp.png';
+import pixelMountains from '../assets/mobile/pixelMountains.png';
+import cartoonRain from '../assets/mobile/cartoonRain.png';
+import woodMountains from '../assets/mobile/woodMountains.png';
+import cartoonMountains from '../assets/mobile/cartoonMountains.png';
+import inkSwamp from '../assets/mobile/inkSwamp.png';
+import woodSwamp from '../assets/mobile/woodSwamp.png';
+import mangaRain from '../assets/mobile/mangaRain.png';
+import mangaSwamp from '../assets/mobile/mangaSwamp.png';
+import inkMountains from '../assets/mobile/inkMountains.png';
+import mangaMountains from '../assets/mobile/mangaMountains.png';
+import woodRain from '../assets/mobile/woodRain.png';
+import pixelRain from '../assets/mobile/pixelRain.png';
 
 const PLATFORM_TABS = [
   { id: 'story-editor', label: 'Story Editor' },
@@ -67,6 +79,24 @@ const PLATFORM_TAB_CONTENT: Record<(typeof PLATFORM_TABS)[number]['id'], { label
   ],
 };
 
+const CAROUSEL_IMAGES = [
+  { src: inkRain, alt: 'Rainy and windy day in the city' },
+  { src: pixelSwamp, alt: 'Foggy swamp with dense vegetation' },
+  { src: cartoonSwamp, alt: 'Foggy swamp with dense vegetation' },
+  { src: pixelMountains, alt: 'Snow in the mountains' },
+  { src: cartoonRain, alt: 'Rainy and windy day in the city' },
+  { src: woodMountains, alt: 'Snow in the mountains' },
+  { src: cartoonMountains, alt: 'Snow in the mountains' },
+  { src: inkSwamp, alt: 'Foggy swamp with dense vegetation' },
+  { src: woodSwamp, alt: 'Foggy swamp with dense vegetation' },
+  { src: mangaRain, alt: 'Rainy and windy day in the city' },
+  { src: mangaSwamp, alt: 'Foggy swamp with dense vegetation' },
+  { src: inkMountains, alt: 'Snow in the mountains' },
+  { src: mangaMountains, alt: 'Snow in the mountains' },
+  { src: woodRain, alt: 'Rainy and windy day in the city' },
+  { src: pixelRain, alt: 'Rainy and windy day in the city' },
+];
+
 export function LibellLanding() {
   const [activePlatformTab, setActivePlatformTab] = useState<(typeof PLATFORM_TABS)[number]['id']>('story-editor');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -75,12 +105,17 @@ export function LibellLanding() {
   const [libellSectionVisible, setLibellSectionVisible] = useState(false);
   const writersSectionRef = useRef<HTMLElement>(null);
   const [writersSectionVisible, setWritersSectionVisible] = useState(false);
+  const imaginationSectionRef = useRef<HTMLElement>(null);
+  const [imaginationSectionVisible, setImaginationSectionVisible] = useState(false);
+  const exploreStoriesRef = useRef<HTMLElement>(null);
+  const [exploreStoriesVisible, setExploreStoriesVisible] = useState(false);
+  const [carouselIndex, setCarouselIndex] = useState(0);
 
   useEffect(() => {
     const el = libellChangesRef.current;
     if (!el) return;
     const obs = new IntersectionObserver(
-      ([entry]) => entry.isIntersecting && setLibellSectionVisible(true),
+      ([entry]) => setLibellSectionVisible(entry.isIntersecting),
       { threshold: 0.2 }
     );
     obs.observe(el);
@@ -91,7 +126,29 @@ export function LibellLanding() {
     const el = writersSectionRef.current;
     if (!el) return;
     const obs = new IntersectionObserver(
-      ([entry]) => entry.isIntersecting && setWritersSectionVisible(true),
+      ([entry]) => setWritersSectionVisible(entry.isIntersecting),
+      { threshold: 0.2 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const el = imaginationSectionRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => setImaginationSectionVisible(entry.isIntersecting),
+      { threshold: 0.2 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const el = exploreStoriesRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => setExploreStoriesVisible(entry.isIntersecting),
       { threshold: 0.2 }
     );
     obs.observe(el);
@@ -111,18 +168,18 @@ export function LibellLanding() {
 
   const navLinks = (
     <>
-      <a href="#features" className="text-sm text-black transition-colors hover:text-black/80 sm:text-base lg:text-lg" onClick={closeMobileMenu}>
+      <a href="#features" className="text-sm text-black hover:text-black/80 sm:text-base lg:text-lg" onClick={closeMobileMenu}>
         Features
       </a>
-      <a href="#about" className="text-sm text-black transition-colors hover:text-black/80 sm:text-base lg:text-lg" onClick={closeMobileMenu}>
+      <a href="#about" className="text-sm text-black hover:text-black/80 sm:text-base lg:text-lg" onClick={closeMobileMenu}>
         About
       </a>
-      <a href="#login" className="text-sm text-black transition-colors hover:text-black/80 sm:text-base lg:text-lg" onClick={closeMobileMenu}>
+      <a href="#login" className="text-sm text-black hover:text-black/80 sm:text-base lg:text-lg" onClick={closeMobileMenu}>
         Login
       </a>
       <button
         type="button"
-        className="whitespace-nowrap rounded-2xl border-2 border-white bg-white px-4 py-2.5 text-sm font-medium text-black transition-all duration-200 hover:scale-[1.03] hover:bg-white hover:shadow-lg sm:px-5 sm:py-2.5 sm:text-base lg:px-6 lg:py-3 lg:text-base"
+        className="whitespace-nowrap rounded-2xl border-2 border-white bg-white px-4 py-2.5 text-sm font-medium text-black hover:bg-white sm:px-5 sm:py-2.5 sm:text-base lg:px-6 lg:py-3 lg:text-base"
       >
         Back the Kickstarter
       </button>
@@ -139,11 +196,13 @@ export function LibellLanding() {
         >
           <div className="mx-auto flex h-20 min-h-[4rem] w-full max-w-6xl items-center justify-between px-4 py-3 sm:h-24 sm:px-6 lg:px-12">
             <div className="flex items-center gap-2 sm:gap-3">
-              <img
-                alt="Libell.us logomark"
-                className="size-12 object-contain sm:size-16"
-                src={imgLogo}
-              />
+              <div className="flex size-12 items-center justify-center rounded-2xl bg-transparent ring-1 ring-white/40 sm:size-16 animate-soft-pulse">
+                <img
+                  alt="Libell.us logomark"
+                  className="size-10 object-contain sm:size-12"
+                  src={imgLogo}
+                />
+              </div>
               <span className="font-sans text-lg font-semibold text-black sm:text-xl lg:text-2xl">Libell.us</span>
             </div>
 
@@ -156,7 +215,7 @@ export function LibellLanding() {
             <button
               type="button"
               onClick={() => setMobileMenuOpen((open) => !open)}
-              className="flex size-10 flex-shrink-0 items-center justify-center rounded-lg text-black transition-colors hover:bg-white/20 sm:hidden"
+              className="flex size-10 flex-shrink-0 items-center justify-center rounded-lg text-black hover:bg-white/20 sm:hidden"
               aria-expanded={mobileMenuOpen}
               aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
             >
@@ -191,7 +250,7 @@ export function LibellLanding() {
               </a>
               <button
                 type="button"
-                className="w-full rounded-2xl border-2 border-white bg-white py-3 text-base font-medium text-black transition-all duration-200 hover:scale-[1.02] hover:bg-white hover:shadow-lg"
+                className="w-full rounded-2xl border-2 border-white bg-white py-3 text-base font-medium text-black hover:bg-white"
                 onClick={closeMobileMenu}
               >
                 Back the Kickstarter
@@ -250,9 +309,10 @@ export function LibellLanding() {
         {/* 2. Writers want to create / Problem Section */}
         <section
           ref={writersSectionRef}
-          className="bg-black px-6 pt-8 pb-14 md:px-12 md:pt-10 md:pb-20"
+          className="bg-black px-6 py-14 md:px-12 md:py-20"
           data-node-id="1:208"
         >
+          <div className="mx-auto mb-14 max-w-4xl border-t border-white/30 md:mb-16" aria-hidden />
           <h2 className="text-center text-xl font-medium text-white md:text-2xl">
             Writers want to create:
           </h2>
@@ -329,11 +389,13 @@ export function LibellLanding() {
 
         {/* 3.1 Transition - Libell.us changes that */}
         <section
-          ref={libellChangesRef}
           className="flex flex-col items-center justify-center bg-[#0f172a] py-10 md:py-14"
           data-node-id="1:177"
         >
-          <div className="mx-4 w-full max-w-2xl rounded-2xl bg-[#1e293b] px-8 py-10 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.7),0_16px_32px_-8px_rgba(0,0,0,0.5)] md:px-12 md:py-12">
+          <div
+            ref={libellChangesRef}
+            className="mx-4 w-full max-w-2xl rounded-2xl bg-[#1e293b] px-8 py-10 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.7),0_16px_32px_-8px_rgba(0,0,0,0.5)] md:px-12 md:py-12"
+          >
           <div className={`flex flex-row items-center justify-center gap-3 ${libellSectionVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
               <div className="flex size-14 items-center justify-center rounded-2xl bg-white ring-1 ring-white/30 transition-all duration-200 hover:scale-[1.05] hover:shadow-lg md:size-16 animate-soft-pulse">
                 <img
@@ -386,9 +448,8 @@ export function LibellLanding() {
               ].map(({ title, description, icon }) => (
                 <div
                   key={title}
-                  className="group relative flex flex-col items-center rounded-2xl border-2 border-white/30 bg-white/10 p-6 text-center backdrop-blur-sm transition-all duration-300 hover:border-2 hover:border-white hover:bg-white/25 hover:shadow-[0_0_40px_rgba(255,255,255,0.25),0_0_24px_rgba(0,192,230,0.4)]"
+                  className="group relative flex flex-col items-center rounded-2xl border border-white/30 bg-white/10 p-6 text-center backdrop-blur-sm transition-all duration-300 hover:border hover:border-white hover:bg-white/25 hover:shadow-[0_0_40px_rgba(255,255,255,0.25),0_0_24px_rgba(0,192,230,0.4)]"
                 >
-                  <div className="absolute inset-0 rounded-2xl border-l-4 border-transparent transition-colors duration-300 group-hover:border-white pointer-events-none" aria-hidden />
                   <i className={`fa-solid ${icon} text-white mb-4 text-2xl md:text-3xl drop-shadow-sm`} aria-hidden />
                   <h3 className="min-h-[2.75rem] text-lg font-medium text-white md:min-h-14 md:text-xl">{title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-black md:text-base">{description}</p>
@@ -400,6 +461,7 @@ export function LibellLanding() {
 
         {/* 3.2 From imagination to interactive stories */}
         <section
+          ref={imaginationSectionRef}
           className="bg-white px-6 py-16 md:px-12 md:py-24"
           data-node-id="1:184"
         >
@@ -429,11 +491,12 @@ export function LibellLanding() {
                 imageFirst: false,
                 img: publishImg,
               },
-            ].map(({ title, description, imageFirst, img }) => (
+            ].map(({ title, description, imageFirst, img }, index) => (
               <div
                 key={title}
-                className={`flex flex-col items-center gap-6 md:flex-row md:items-center md:justify-center md:gap-10 ${imageFirst ? 'md:flex-row-reverse' : ''
-                  }`}
+                className={`flex flex-col items-center gap-6 md:flex-row md:items-center md:justify-center md:gap-10 [animation-fill-mode:backwards] ${imageFirst ? 'md:flex-row-reverse' : ''
+                  } ${imaginationSectionVisible ? 'animate-fade-in-up-slow' : 'opacity-0'}`}
+                style={{ animationDelay: imaginationSectionVisible ? `${index * 300}ms` : undefined }}
               >
                 <div className="flex flex-1 flex-col items-center space-y-4 text-center md:max-w-md md:items-start md:text-left">
                   <h3 className="text-xl font-medium text-content md:text-2xl">{title}</h3>
@@ -531,6 +594,7 @@ export function LibellLanding() {
 
         {/* Explore stories created with Libell.us */}
         <section
+          ref={exploreStoriesRef}
           className="bg-white px-6 py-16 md:px-12 md:py-24"
           data-node-id="54:212"
         >
@@ -540,19 +604,62 @@ export function LibellLanding() {
           <p className="mx-auto mt-6 max-w-4xl text-center text-base text-content md:text-lg lg:text-xl">
             From fantasy adventures and children's books to sci-fi interactive stories.
           </p>
-          <div className="mx-auto mt-12 grid max-w-4xl grid-cols-1 justify-items-center gap-8 md:grid-cols-3">
-            {[
-              { src: book1Img, alt: "Children's storybook - Three Little Pigs" },
-              { src: book2Img, alt: "Fantasy adventure story" },
-              { src: book3Img, alt: "Sci-fi interactive story" },
-            ].map((book, i) => (
-              <img
-                key={i}
-                alt={book.alt}
-                className="aspect-square w-full max-w-[220px] object-cover shadow-lg"
-                src={book.src}
-              />
-            ))}
+          <div
+            className={`mx-auto mt-12 max-w-6xl [animation-fill-mode:backwards] ${exploreStoriesVisible ? 'animate-fade-in-up-slow' : 'opacity-0'}`}
+          >
+            <div className="relative flex items-center justify-center gap-4 md:gap-6">
+              <button
+                type="button"
+                onClick={() => setCarouselIndex((i) => Math.max(0, i - 1))}
+                className="flex size-10 shrink-0 items-center justify-center rounded-full border-2 border-content/30 bg-white text-content transition-colors hover:border-content hover:bg-content hover:text-white disabled:opacity-40 md:size-12"
+                aria-label="Previous"
+                disabled={carouselIndex === 0}
+              >
+                <svg className="size-5 md:size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <div className="flex flex-1 justify-center gap-4 overflow-hidden md:gap-6">
+                {[0, 1, 2].map((offset) => {
+                  const idx = carouselIndex + offset;
+                  const item = CAROUSEL_IMAGES[idx];
+                  if (!item) return null;
+                  return (
+                    <div key={idx} className="flex min-w-0 flex-1 basis-0 justify-center">
+                      <div className="overflow-hidden rounded-xl bg-white">
+                        <img
+                          alt={item.alt}
+                          className="aspect-[9/16] w-full max-w-[200px] object-contain md:max-w-[240px]"
+                          src={item.src}
+                        />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              <button
+                type="button"
+                onClick={() => setCarouselIndex((i) => Math.min(CAROUSEL_IMAGES.length - 3, i + 1))}
+                className="flex size-10 shrink-0 items-center justify-center rounded-full border-2 border-content/30 bg-white text-content transition-colors hover:border-content hover:bg-content hover:text-white disabled:opacity-40 md:size-12"
+                aria-label="Next"
+                disabled={carouselIndex >= CAROUSEL_IMAGES.length - 3}
+              >
+                <svg className="size-5 md:size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+            <div className="mt-4 flex justify-center gap-1">
+              {Array.from({ length: CAROUSEL_IMAGES.length - 2 }).map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => setCarouselIndex(i)}
+                  className={`size-2 rounded-full transition-colors md:size-2.5 ${carouselIndex === i ? 'bg-content' : 'bg-content/30'}`}
+                  aria-label={`Go to slide ${i + 1}`}
+                />
+              ))}
+            </div>
           </div>
           <div className="mt-12 flex flex-wrap justify-center gap-4">
             <button
@@ -573,7 +680,7 @@ export function LibellLanding() {
             <h2 className="text-xl font-medium text-black md:text-2xl lg:text-3xl">
               Join the Next Generation of Storytelling
             </h2>
-            <p className="mx-auto mt-6 max-w-2xl text-base text-black md:text-lg">
+            <p className="mx-auto mt-6 max-w-2xl text-base text-black/70 md:text-lg">
               We’re building a platform for immersive, interactive stories.
             </p>
             <p className="mx-auto mt-4 max-w-2xl text-base text-black md:text-lg">
@@ -616,7 +723,7 @@ export function LibellLanding() {
             <div className="mt-6 flex justify-center">
               <a
                 href="#kickstarter"
-                className="inline-block rounded-2xl border-2 border-white bg-white px-6 py-3 text-base font-medium text-black transition-all duration-200 hover:scale-[1.03] hover:bg-white hover:shadow-lg md:text-lg"
+                className="inline-block rounded-2xl border-2 border-white bg-white px-6 py-3 text-base font-medium text-black transition-all duration-200 hover:scale-[1.03] hover:bg-white hover:shadow-lg md:text-lg animate-soft-pulse"
               >
                 Back the Kickstarter
               </a>
