@@ -90,7 +90,7 @@ export function LibellLanding() {
       </a>
       <button
         type="button"
-        className="whitespace-nowrap rounded-2xl border-2 border-white bg-white px-4 py-2.5 text-sm font-medium text-black transition-colors hover:bg-white/90 sm:px-5 sm:py-2.5 sm:text-base lg:px-6 lg:py-3 lg:text-base"
+        className="whitespace-nowrap rounded-2xl border-2 border-white bg-white px-4 py-2.5 text-sm font-medium text-black transition-all duration-200 hover:scale-[1.03] hover:bg-white hover:shadow-lg sm:px-5 sm:py-2.5 sm:text-base lg:px-6 lg:py-3 lg:text-base"
       >
         Back the Kickstarter
       </button>
@@ -157,7 +157,7 @@ export function LibellLanding() {
               </a>
               <button
                 type="button"
-                className="w-full rounded-2xl border-2 border-white bg-white py-3 text-base font-medium text-black transition-colors hover:bg-white/90"
+                className="w-full rounded-2xl border-2 border-white bg-white py-3 text-base font-medium text-black transition-all duration-200 hover:scale-[1.02] hover:bg-white hover:shadow-lg"
                 onClick={closeMobileMenu}
               >
                 Back the Kickstarter
@@ -189,13 +189,13 @@ export function LibellLanding() {
             <div className="mt-6 flex flex-nowrap justify-center gap-3 md:justify-start">
               <button
                 type="button"
-                className="shrink-0 rounded-2xl border-2 border-white bg-white px-4 py-2.5 text-sm font-medium text-brand transition-colors hover:bg-white/90 sm:px-6 sm:py-3 sm:text-base"
+                className="shrink-0 rounded-2xl border-2 border-white bg-white px-4 py-2.5 text-sm font-medium text-black transition-all duration-200 hover:scale-[1.03] hover:bg-white hover:shadow-lg sm:px-6 sm:py-3 sm:text-base"
               >
                 Back the Kickstarter
               </button>
               <button
                 type="button"
-                className="shrink-0 rounded-2xl border border-white bg-transparent px-4 py-2.5 text-sm text-white transition-colors hover:bg-white/10 sm:px-6 sm:py-3 sm:text-base"
+                className="shrink-0 rounded-2xl border-2 border-white bg-transparent px-4 py-2.5 text-sm text-white transition-all duration-200 hover:scale-[1.03] hover:bg-white/25 hover:shadow-md sm:px-6 sm:py-3 sm:text-base"
               >
                 Join the waitlist
               </button>
@@ -292,7 +292,7 @@ export function LibellLanding() {
           data-node-id="1:177"
         >
           <div className="flex flex-row items-center justify-center gap-3">
-            <div className="flex size-14 items-center justify-center rounded-2xl bg-white md:size-16 ring-1 ring-white/30">
+            <div className="flex size-14 items-center justify-center rounded-2xl bg-white md:size-16 ring-1 ring-white/30 transition-all duration-200 hover:scale-[1.05] hover:shadow-lg">
               <img
                 alt="Libell.us"
                 className="size-8 md:size-9"
@@ -308,7 +308,7 @@ export function LibellLanding() {
         {/* Who it's for - Built for Story Creators */}
         <section
           id="about"
-          className="relative overflow-hidden bg-gradient-to-b from-[#006d80] via-[#00C0E6] to-[#008ba3] px-6 py-14 md:px-12 md:py-20"
+          className="relative overflow-hidden bg-[#00C0E6] px-6 py-14 md:px-12 md:py-20"
           data-node-id="who-its-for"
         >
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(0,192,230,0.2),transparent)] pointer-events-none" aria-hidden />
@@ -342,9 +342,9 @@ export function LibellLanding() {
               ].map(({ title, description, icon }) => (
                 <div
                   key={title}
-                  className="group relative flex flex-col items-center rounded-2xl border border-white/20 bg-white/10 p-6 text-center backdrop-blur-sm transition-all duration-300 hover:border-[#00C0E6]/80 hover:shadow-[0_0_24px_rgba(0,192,230,0.25)]"
+                  className="group relative flex flex-col items-center rounded-2xl border-2 border-white/20 bg-white/10 p-6 text-center backdrop-blur-sm transition-all duration-300 hover:border-white hover:bg-white/25 hover:shadow-[0_0_40px_rgba(255,255,255,0.35),0_0_20px_rgba(0,192,230,0.4)]"
                 >
-                  <div className="absolute inset-px rounded-2xl border-l-2 border-transparent transition-colors duration-300 group-hover:border-[#00C0E6]" aria-hidden />
+                  <div className="absolute inset-0 rounded-2xl border-l-4 border-transparent transition-colors duration-300 group-hover:border-white pointer-events-none" aria-hidden />
                   <i className={`fa-solid ${icon} text-white mb-4 text-2xl md:text-3xl drop-shadow-sm`} aria-hidden />
                   <h3 className="min-h-[2.75rem] text-lg font-medium text-white md:min-h-14 md:text-xl">{title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-white/90 md:text-base">{description}</p>
@@ -396,7 +396,7 @@ export function LibellLanding() {
                   <div className="flex w-full justify-center md:justify-start">
                     <button
                       type="button"
-                      className="rounded-2xl border-2 border-neutral-10 px-6 py-3 text-base font-medium text-neutral-10 transition-colors hover:bg-neutral-2 hover:text-black md:text-lg"
+                      className="rounded-2xl border-2 border-neutral-10 px-6 py-3 text-base font-medium text-neutral-10 transition-all duration-200 hover:scale-[1.03] hover:bg-neutral-2 hover:shadow-lg hover:text-black md:text-lg"
                     >
                       Learn More
                     </button>
@@ -415,21 +415,21 @@ export function LibellLanding() {
         {/* 4. The Platform for Interactive Storytelling */}
         <section
           id="features"
-          className="bg-dark-section px-6 py-16 md:px-12 md:py-24"
+          className="relative overflow-hidden bg-[#00C0E6] px-6 py-16 md:px-12 md:py-24"
           data-node-id="1:71"
         >
           <h2 className="text-center text-xl font-medium text-white md:text-2xl lg:text-3xl">
             The Platform for Interactive Storytelling
           </h2>
-          <p className="mx-auto mt-6 max-w-4xl text-center text-base text-neutral-6 md:text-lg lg:text-xl">
+          <p className="mx-auto mt-6 max-w-4xl text-center text-base text-white/90 md:text-lg lg:text-xl">
             <span className="text-white font-semibold">Libell.us</span> is a creative platform where creators
             <br className="hidden md:block" />
             can build interactive stories with:
           </p>
-          <div className="mx-auto mt-8 max-w-3xl">
+          <div className="relative mx-auto mt-8 max-w-3xl">
             <div
               aria-label="Platform features"
-              className="flex flex-wrap justify-center gap-4 border-b-2 border-dark-border pb-3 md:gap-6 md:pb-4"
+              className="flex flex-wrap justify-center gap-4 border-b-2 border-white/30 pb-3 md:gap-6 md:pb-4"
               role="tablist"
             >
               {PLATFORM_TABS.map((tab) => (
@@ -440,8 +440,8 @@ export function LibellLanding() {
                   aria-selected={activePlatformTab === tab.id}
                   onClick={() => setActivePlatformTab(tab.id)}
                   className={`relative -mb-[2px] border-b-2 pb-3 pt-1 text-base font-medium transition-colors md:pb-4 md:text-lg ${activePlatformTab === tab.id
-                    ? 'border-accent text-white'
-                    : 'border-transparent text-neutral-6 hover:text-white'
+                    ? 'border-white text-white'
+                    : 'border-transparent text-white/80 hover:text-white'
                     }`}
                 >
                   {tab.label}
@@ -457,25 +457,25 @@ export function LibellLanding() {
             {PLATFORM_TAB_CONTENT[activePlatformTab].map((item, i) => (
               <div
                 key={`${activePlatformTab}-${i}`}
-                className="flex aspect-square w-full max-w-[160px] flex-col overflow-hidden rounded-xl bg-dark-card border border-dark-border md:max-w-[180px]"
+                className="flex aspect-square w-full max-w-[160px] flex-col overflow-hidden rounded-xl bg-white/10 border border-white/20 backdrop-blur-sm md:max-w-[180px]"
               >
                 <div className="flex min-h-0 flex-1 items-center justify-center p-2">
                   <img alt="" className="max-h-10 max-w-10 object-contain" src={imgVuesaxBoldGallery} />
                 </div>
-                <p className="p-1.5 text-center text-xs text-neutral-6">{item.label}</p>
+                <p className="p-1.5 text-center text-xs text-white/90">{item.label}</p>
               </div>
             ))}
           </div>
           <div className="mx-auto mt-10 flex flex-wrap justify-center gap-4">
             <button
               type="button"
-              className="rounded-2xl border border-white px-6 py-3 text-base font-medium text-white transition-colors hover:bg-white/10"
+              className="rounded-2xl border-2 border-white px-6 py-3 text-base font-medium text-white transition-all duration-200 hover:scale-[1.03] hover:bg-white/25 hover:shadow-md"
             >
               See how Libell works
             </button>
             <button
               type="button"
-              className="rounded-2xl border-2 border-white bg-white px-6 py-3 text-base font-medium text-black transition-colors hover:bg-neutral-2"
+              className="rounded-2xl border-2 border-white bg-white px-6 py-3 text-base font-medium text-black transition-all duration-200 hover:scale-[1.03] hover:bg-white hover:shadow-lg"
             >
               Back the Kickstarter
             </button>
@@ -506,9 +506,9 @@ export function LibellLanding() {
           <div className="mt-12 flex flex-wrap justify-center gap-4">
             <button
               type="button"
-              className="rounded-2xl border-2 border-black bg-white px-6 py-3 text-base font-medium text-neutral-10 transition-colors hover:bg-neutral-2 hover:text-black md:text-lg"
-            >
-              Read a Story
+className="rounded-2xl border-2 border-black bg-white px-6 py-3 text-base font-medium text-neutral-10 transition-all duration-200 hover:scale-[1.03] hover:bg-white hover:shadow-lg hover:text-black md:text-lg"
+              >
+                Read a Story
             </button>
           </div>
         </section>
@@ -563,7 +563,7 @@ export function LibellLanding() {
             <div className="mt-6 flex justify-center">
               <a
                 href="#kickstarter"
-                className="inline-block rounded-2xl border-2 border-white bg-white px-6 py-3 text-base font-medium text-black transition-colors hover:bg-neutral-2 hover:text-black md:text-lg"
+                className="inline-block rounded-2xl border-2 border-white bg-white px-6 py-3 text-base font-medium text-black transition-all duration-200 hover:scale-[1.03] hover:bg-white hover:shadow-lg md:text-lg"
               >
                 Back the Kickstarter
               </a>
