@@ -199,7 +199,7 @@ export function LibellLanding() {
               Your all-in-one platform. No code required.
             </p>
           </div>
-          <div className="mt-8 flex flex-1 items-center justify-center md:mt-0 md:max-w-md lg:max-w-lg">
+          <div className="mt-8 flex flex-1 items-center justify-center self-center md:mt-0 md:max-w-md lg:max-w-lg">
             <div className="flex size-[220px] items-center justify-center rounded-2xl bg-neutral-2 p-3">
               <img alt="" className="size-10 object-contain" src={imgVector} />
             </div>
