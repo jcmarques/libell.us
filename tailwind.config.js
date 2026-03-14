@@ -11,6 +11,7 @@ export default {
       },
       colors: {
         black: '#000000',
+        content: '#004553',
         brand: '#003035',
         dark: {
           DEFAULT: '#003035',
