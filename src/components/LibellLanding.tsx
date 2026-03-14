@@ -78,18 +78,18 @@ export function LibellLanding() {
 
   const navLinks = (
     <>
-      <a href="#features" className="text-sm text-primary-600 transition-colors hover:text-primary-800 sm:text-base lg:text-lg" onClick={closeMobileMenu}>
+      <a href="#features" className="text-sm text-neutral-10 transition-colors hover:text-black sm:text-base lg:text-lg" onClick={closeMobileMenu}>
         Features
       </a>
-      <a href="#about" className="text-sm text-primary-600 transition-colors hover:text-primary-800 sm:text-base lg:text-lg" onClick={closeMobileMenu}>
+      <a href="#about" className="text-sm text-neutral-10 transition-colors hover:text-black sm:text-base lg:text-lg" onClick={closeMobileMenu}>
         About
       </a>
-      <a href="#login" className="text-sm text-primary-600 transition-colors hover:text-primary-800 sm:text-base lg:text-lg" onClick={closeMobileMenu}>
+      <a href="#login" className="text-sm text-neutral-10 transition-colors hover:text-black sm:text-base lg:text-lg" onClick={closeMobileMenu}>
         Login
       </a>
       <button
         type="button"
-        className="whitespace-nowrap rounded-2xl border-2 border-neutral-10 bg-primary-600 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-primary-700 sm:px-5 sm:py-2.5 sm:text-base lg:px-6 lg:py-3 lg:text-base"
+        className="whitespace-nowrap rounded-2xl border-2 border-black bg-black px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-primary-700 sm:px-5 sm:py-2.5 sm:text-base lg:px-6 lg:py-3 lg:text-base"
       >
         Back the Kickstarter
       </button>
@@ -101,7 +101,7 @@ export function LibellLanding() {
       <div className="w-full max-w-[2560px]">
         {/* 0. Navigation */}
         <header
-          className="relative flex h-20 min-h-[4rem] items-center justify-between border-b-2 border-neutral-2 bg-white px-4 py-3 sm:h-24 sm:px-6 sm:py-3 lg:px-12"
+          className="relative flex h-20 min-h-[4rem] items-center justify-between border-b border-neutral-2 bg-white px-4 py-3 sm:h-24 sm:px-6 sm:py-3 lg:px-12"
           data-node-id="1:258"
         >
           <div className="flex items-center gap-2 sm:gap-3">
@@ -110,7 +110,7 @@ export function LibellLanding() {
               className="size-12 object-contain sm:size-16"
               src={imgLogo}
             />
-            <span className="text-lg font-bold text-black sm:text-xl lg:text-2xl">Libell.us</span>
+            <span className="text-lg font-bold text-accent sm:text-xl lg:text-2xl">Libell.us</span>
           </div>
 
           {/* Desktop nav - visible from sm and up, no hamburger on bigger screens */}
@@ -122,7 +122,7 @@ export function LibellLanding() {
           <button
             type="button"
             onClick={() => setMobileMenuOpen((open) => !open)}
-            className="flex size-10 flex-shrink-0 items-center justify-center rounded-lg text-primary-800 transition-colors hover:bg-primary-100 sm:hidden"
+            className="flex size-10 flex-shrink-0 items-center justify-center rounded-lg text-neutral-10 transition-colors hover:bg-neutral-2 sm:hidden"
             aria-expanded={mobileMenuOpen}
             aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
           >
@@ -141,22 +141,22 @@ export function LibellLanding() {
         {/* Mobile menu panel */}
         {mobileMenuOpen && (
           <div
-            className="fixed left-0 right-0 top-20 z-50 border-b-2 border-neutral-2 bg-white px-4 py-6 shadow-lg sm:hidden"
+            className="fixed left-0 right-0 top-20 z-50 border-b border-neutral-2 bg-white px-4 py-6 shadow-lg sm:hidden"
             style={{ minHeight: 'calc(100vh - 5rem)' }}
           >
             <nav className="flex flex-col gap-6">
-              <a href="#features" className="text-lg font-medium text-primary-800 hover:text-primary-600" onClick={closeMobileMenu}>
+              <a href="#features" className="text-lg font-medium text-neutral-10 hover:text-black" onClick={closeMobileMenu}>
                 Features
               </a>
-              <a href="#about" className="text-lg font-medium text-primary-800 hover:text-primary-600" onClick={closeMobileMenu}>
+              <a href="#about" className="text-lg font-medium text-neutral-10 hover:text-black" onClick={closeMobileMenu}>
                 About
               </a>
-              <a href="#login" className="text-lg font-medium text-primary-800 hover:text-primary-600" onClick={closeMobileMenu}>
+              <a href="#login" className="text-lg font-medium text-neutral-10 hover:text-black" onClick={closeMobileMenu}>
                 Login
               </a>
               <button
                 type="button"
-                className="w-full rounded-2xl border-2 border-primary-800 bg-primary-600 py-3 text-base font-medium text-white transition-colors hover:bg-primary-700"
+                className="w-full rounded-2xl border-2 border-black bg-black py-3 text-base font-medium text-white transition-colors hover:bg-primary-700"
                 onClick={closeMobileMenu}
               >
                 Back the Kickstarter
@@ -167,40 +167,40 @@ export function LibellLanding() {
 
         {/* 1. Hero */}
         <section
-          className="relative flex flex-col items-start justify-center bg-primary-100 px-6 py-16 md:flex-row md:items-center md:gap-12 md:px-12 md:py-24 lg:px-24 lg:py-32"
+          className="relative flex flex-col items-start justify-center bg-black px-6 py-16 md:flex-row md:items-center md:gap-12 md:px-12 md:py-24 lg:px-24 lg:py-32"
           data-node-id="1:243"
         >
           <div className="max-w-2xl flex-1 lg:max-w-3xl">
-            <p className="text-sm text-primary-500 md:text-base">
+            <p className="text-sm text-neutral-6 md:text-base">
               Interactive storytelling platform
             </p>
-            <h1 className="mt-3 text-3xl font-semibold leading-tight text-primary-800 md:text-4xl lg:text-5xl lg:leading-[1.2]">
+            <h1 className="mt-3 text-3xl font-semibold leading-tight text-white md:text-4xl lg:text-5xl lg:leading-[1.2]">
               Build stories.<br />
               Skip the code.
             </h1>
-            <p className="mt-3 max-w-xl text-base text-primary-600 md:text-lg">
+            <p className="mt-3 max-w-xl text-base text-neutral-6 md:text-lg">
               Build branching adventures or traditional books with visuals, sound, and AI storytelling.
             </p>
             <div className="mt-6 flex flex-nowrap gap-3">
               <button
                 type="button"
-                className="shrink-0 rounded-2xl border-2 border-primary-800 bg-primary-600 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-primary-700 sm:px-6 sm:py-3 sm:text-base"
+                className="shrink-0 rounded-2xl border-2 border-white bg-white px-4 py-2.5 text-sm font-medium text-black transition-colors hover:bg-neutral-2 hover:text-black sm:px-6 sm:py-3 sm:text-base"
               >
                 Back the Kickstarter
               </button>
               <button
                 type="button"
-                className="shrink-0 rounded-2xl border-2 border-primary-800 bg-transparent px-4 py-2.5 text-sm text-primary-800 transition-colors hover:bg-primary-100 hover:text-primary-800 sm:px-6 sm:py-3 sm:text-base"
+                className="shrink-0 rounded-2xl border border-white bg-transparent px-4 py-2.5 text-sm text-white transition-colors hover:bg-white/10 sm:px-6 sm:py-3 sm:text-base"
               >
                 Join the waitlist
               </button>
             </div>
-            <p className="mt-4 text-sm text-primary-600 md:text-base">
+            <p className="mt-4 text-sm text-neutral-6 md:text-base">
               Your all-in-one platform. No code required.
             </p>
           </div>
           <div className="mt-8 flex flex-1 items-center justify-center self-center md:mt-0 md:max-w-md lg:max-w-lg">
-            <div className="flex size-[220px] items-center justify-center rounded-2xl bg-neutral-2 p-3">
+            <div className="flex size-[220px] items-center justify-center rounded-2xl bg-white/10 p-3">
               <img alt="" className="size-10 object-contain" src={imgVector} />
             </div>
           </div>
@@ -211,7 +211,7 @@ export function LibellLanding() {
           className="bg-white px-6 py-14 md:px-12 md:py-20"
           data-node-id="1:208"
         >
-          <h2 className="text-center text-xl font-medium text-primary-800 md:text-2xl">
+          <h2 className="text-center text-xl font-medium text-neutral-10 md:text-2xl">
             Writers want to create:
           </h2>
           <ul className="mx-auto mt-8 flex max-w-4xl flex-col items-center gap-6 md:flex-row md:justify-center md:gap-14">
@@ -228,7 +228,7 @@ export function LibellLanding() {
                     src={imgVector}
                   />
                 </div>
-                <p className="mt-2 text-center text-base text-primary-700">
+                <p className="mt-2 text-center text-base text-neutral-7">
                   {label}
                 </p>
               </li>
@@ -236,7 +236,7 @@ export function LibellLanding() {
           </ul>
 
           <div className="mx-auto mt-12 flex w-full max-w-3xl flex-col items-center justify-center gap-4 text-center">
-            <h2 className="text-xl font-medium text-primary-800 md:text-2xl">
+            <h2 className="text-xl font-medium text-neutral-10 md:text-2xl">
               But that often requires:
             </h2>
             <div className="mt-10 flex w-full flex-col items-center justify-center gap-4 md:mt-12 md:flex-row md:items-end md:justify-center md:gap-10">
@@ -246,11 +246,11 @@ export function LibellLanding() {
                   className="size-12 object-contain opacity-70"
                   src={codeIcon}
                 />
-                <p className="mt-2 text-center text-base text-primary-700">Code</p>
+                <p className="mt-2 text-center text-base text-neutral-7">Code</p>
               </div>
               <div
                 aria-hidden
-                className="hidden h-px w-16 flex-shrink-0 self-center bg-primary-600/40 md:block"
+                className="hidden h-px w-16 flex-shrink-0 self-center bg-neutral-2 md:block"
               />
               <div className="flex w-36 flex-shrink-0 flex-col items-center">
                 <img
@@ -258,11 +258,11 @@ export function LibellLanding() {
                   className="size-12 object-contain opacity-70"
                   src={gameSettingIcon}
                 />
-                <p className="mt-2 text-center text-base text-primary-700">Game Engines</p>
+                <p className="mt-2 text-center text-base text-neutral-7">Game Engines</p>
               </div>
               <div
                 aria-hidden
-                className="hidden h-px w-16 flex-shrink-0 self-center bg-primary-600/40 md:block"
+                className="hidden h-px w-16 flex-shrink-0 self-center bg-neutral-2 md:block"
               />
               <div className="flex w-36 flex-shrink-0 flex-col items-center">
                 <img
@@ -270,32 +270,32 @@ export function LibellLanding() {
                   className="size-12 object-contain opacity-70"
                   src={requestIcon}
                 />
-                <p className="mt-2 text-center text-base text-primary-700">
+                <p className="mt-2 text-center text-base text-neutral-7">
                   Complicated Tools
                 </p>
               </div>
             </div>
           </div>
-          <p className="mx-auto mt-10 max-w-2xl py-4 text-center text-base text-primary-600 md:mt-12 md:text-lg">
+          <p className="mx-auto mt-10 max-w-2xl py-4 text-center text-base text-neutral-7 md:mt-12 md:text-lg">
             That’s a lot to learn before you can tell your story.
           </p>
         </section>
 
         {/* 3.1 Transition - Libell.us changes that */}
         <section
-          className="flex flex-col items-center justify-center bg-primary-100 py-10 md:py-14"
+          className="flex flex-col items-center justify-center bg-dark py-10 md:py-14"
           data-node-id="1:177"
         >
           <div className="flex flex-row items-center justify-center gap-3">
-            <div className="flex size-14 items-center justify-center rounded-2xl bg-neutral-2 md:size-16">
+            <div className="flex size-14 items-center justify-center rounded-2xl bg-white md:size-16 ring-1 ring-white/30">
               <img
                 alt="Libell.us"
                 className="size-8 md:size-9"
                 src={imgLogo}
               />
             </div>
-            <h2 className="text-base font-medium text-primary-800 md:text-lg">
-              Libell.us changes that
+            <h2 className="text-base font-medium text-white md:text-lg">
+              <span className="text-accent">Libell.us</span> changes that
             </h2>
           </div>
         </section>
@@ -303,10 +303,10 @@ export function LibellLanding() {
         {/* Who it's for - Built for Story Creators */}
         <section
           id="about"
-          className="bg-neutral-1 px-6 py-14 md:px-12 md:py-20"
+          className="bg-dark-section px-6 py-14 md:px-12 md:py-20"
           data-node-id="who-its-for"
         >
-          <h2 className="text-center text-xl font-medium text-primary-800 md:text-2xl lg:text-3xl">
+          <h2 className="text-center text-xl font-medium text-white md:text-2xl lg:text-3xl">
             Built for Story Creators
           </h2>
           <div className="mx-auto mt-10 grid max-w-6xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -330,10 +330,10 @@ export function LibellLanding() {
             ].map(({ title, description }) => (
               <div
                 key={title}
-                className="flex flex-col rounded-2xl border-2 border-neutral-2 bg-white p-6 transition-colors hover:border-primary-200 hover:bg-primary-50/50"
+                className="flex flex-col rounded-2xl border border-dark-border bg-dark-card p-6 transition-colors hover:border-accent/50"
               >
-                <h3 className="min-h-[2.75rem] text-lg font-medium text-primary-800 md:min-h-14 md:text-xl">{title}</h3>
-                <p className="mt-2 text-sm text-primary-600 md:text-base">{description}</p>
+                <h3 className="min-h-[2.75rem] text-lg font-medium text-white md:min-h-14 md:text-xl">{title}</h3>
+                <p className="mt-2 text-sm text-neutral-6 md:text-base">{description}</p>
               </div>
             ))}
           </div>
@@ -344,7 +344,7 @@ export function LibellLanding() {
           className="bg-white px-6 py-16 md:px-12 md:py-24"
           data-node-id="1:184"
         >
-          <h2 className="text-center text-xl font-medium text-primary-800 md:text-2xl lg:text-3xl">
+          <h2 className="text-center text-xl font-medium text-neutral-10 md:text-2xl lg:text-3xl">
             From imagination to interactive stories
           </h2>
           <div className="mx-auto mt-12 max-w-4xl space-y-16">
@@ -375,13 +375,13 @@ export function LibellLanding() {
               >
                 <div className="flex flex-1 flex-col items-center space-y-4 text-center md:max-w-md md:items-start md:text-left">
                   <h3 className="text-xl font-medium text-neutral-10 md:text-2xl">{title}</h3>
-                  <p className="text-base text-primary-600 md:text-lg">
+                  <p className="text-base text-neutral-7 md:text-lg">
                     {description}
                   </p>
                   <div className="flex w-full justify-center md:justify-start">
                     <button
                       type="button"
-                      className="rounded-2xl border-2 border-primary-700 px-6 py-3 text-base font-medium text-primary-700 transition-colors hover:bg-primary-100 hover:text-primary-800 md:text-lg"
+                      className="rounded-2xl border-2 border-neutral-10 px-6 py-3 text-base font-medium text-neutral-10 transition-colors hover:bg-neutral-2 hover:text-black md:text-lg"
                     >
                       Learn More
                     </button>
@@ -400,21 +400,21 @@ export function LibellLanding() {
         {/* 4. The Platform for Interactive Storytelling */}
         <section
           id="features"
-          className="bg-neutral-1 px-6 py-16 md:px-12 md:py-24"
+          className="bg-dark-section px-6 py-16 md:px-12 md:py-24"
           data-node-id="1:71"
         >
-          <h2 className="text-center text-xl font-medium text-primary-800 md:text-2xl lg:text-3xl">
+          <h2 className="text-center text-xl font-medium text-white md:text-2xl lg:text-3xl">
             The Platform for Interactive Storytelling
           </h2>
-          <p className="mx-auto mt-6 max-w-4xl text-center text-base text-primary-600 md:text-lg lg:text-xl">
-            Libell.us is a creative platform where creators
+          <p className="mx-auto mt-6 max-w-4xl text-center text-base text-neutral-6 md:text-lg lg:text-xl">
+            <span className="text-accent font-semibold">Libell.us</span> is a creative platform where creators
             <br className="hidden md:block" />
             can build interactive stories with:
           </p>
           <div className="mx-auto mt-8 max-w-3xl">
             <div
               aria-label="Platform features"
-              className="flex flex-wrap justify-center gap-4 border-b-2 border-neutral-2 pb-3 md:gap-6 md:pb-4"
+              className="flex flex-wrap justify-center gap-4 border-b-2 border-dark-border pb-3 md:gap-6 md:pb-4"
               role="tablist"
             >
               {PLATFORM_TABS.map((tab) => (
@@ -425,8 +425,8 @@ export function LibellLanding() {
                   aria-selected={activePlatformTab === tab.id}
                   onClick={() => setActivePlatformTab(tab.id)}
                   className={`relative -mb-[2px] border-b-2 pb-3 pt-1 text-base font-medium transition-colors md:pb-4 md:text-lg ${activePlatformTab === tab.id
-                    ? 'border-primary-800 text-primary-800'
-                    : 'border-transparent text-primary-800/60 hover:text-primary-800/80'
+                    ? 'border-accent text-white'
+                    : 'border-transparent text-neutral-6 hover:text-white'
                     }`}
                 >
                   {tab.label}
@@ -442,25 +442,25 @@ export function LibellLanding() {
             {PLATFORM_TAB_CONTENT[activePlatformTab].map((item, i) => (
               <div
                 key={`${activePlatformTab}-${i}`}
-                className="flex aspect-square w-full max-w-[160px] flex-col overflow-hidden rounded-xl bg-neutral-2 md:max-w-[180px]"
+                className="flex aspect-square w-full max-w-[160px] flex-col overflow-hidden rounded-xl bg-dark-card border border-dark-border md:max-w-[180px]"
               >
                 <div className="flex min-h-0 flex-1 items-center justify-center p-2">
                   <img alt="" className="max-h-10 max-w-10 object-contain" src={imgVuesaxBoldGallery} />
                 </div>
-                <p className="p-1.5 text-center text-xs text-primary-600">{item.label}</p>
+                <p className="p-1.5 text-center text-xs text-neutral-6">{item.label}</p>
               </div>
             ))}
           </div>
           <div className="mx-auto mt-10 flex flex-wrap justify-center gap-4">
             <button
               type="button"
-              className="rounded-2xl border-2 border-primary-700 px-6 py-3 text-base font-medium text-primary-700 transition-colors hover:bg-primary-100 hover:text-primary-800"
+              className="rounded-2xl border border-white px-6 py-3 text-base font-medium text-white transition-colors hover:bg-white/10"
             >
               See how Libell works
             </button>
             <button
               type="button"
-              className="rounded-2xl border-2 border-primary-800 bg-primary-600 px-6 py-3 text-base font-medium text-white transition-colors hover:bg-primary-700"
+              className="rounded-2xl border-2 border-white bg-white px-6 py-3 text-base font-medium text-black transition-colors hover:bg-neutral-2"
             >
               Back the Kickstarter
             </button>
@@ -491,7 +491,7 @@ export function LibellLanding() {
           <div className="mt-12 flex flex-wrap justify-center gap-4">
             <button
               type="button"
-              className="rounded-2xl border-2 border-primary-800 bg-white px-6 py-3 text-base font-medium text-primary-600 transition-colors hover:bg-primary-100 hover:text-primary-800 md:text-lg"
+              className="rounded-2xl border-2 border-black bg-white px-6 py-3 text-base font-medium text-neutral-10 transition-colors hover:bg-neutral-2 hover:text-black md:text-lg"
             >
               Read a Story
             </button>
@@ -500,35 +500,35 @@ export function LibellLanding() {
 
         {/* Community / Future */}
         <section
-          className="bg-primary-50 px-6 py-16 md:px-12 md:py-24"
+          className="bg-dark-section px-6 py-16 md:px-12 md:py-24"
           data-node-id="community-future"
         >
           <div className="mx-auto max-w-4xl text-center">
-            <h2 className="text-xl font-medium text-primary-800 md:text-2xl lg:text-3xl">
+            <h2 className="text-xl font-medium text-white md:text-2xl lg:text-3xl">
               Join the Next Generation of Storytelling
             </h2>
-            <p className="mx-auto mt-6 max-w-2xl text-base text-primary-600 md:text-lg">
+            <p className="mx-auto mt-6 max-w-2xl text-base text-neutral-6 md:text-lg">
               We’re building a platform for immersive, interactive stories.
             </p>
-            <p className="mx-auto mt-4 max-w-2xl text-base text-primary-600 md:text-lg">
+            <p className="mx-auto mt-4 max-w-2xl text-base text-neutral-6 md:text-lg">
               To see the platform in action, check out our{' '}
               <a
                 href="https://www.youtube.com/watch?v=TRqNSkkrD8o"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-medium text-primary-800 underline transition-colors hover:text-primary-700"
+                className="font-medium text-accent underline transition-colors hover:text-accent-hover"
               >
                 YouTube channel
               </a>
               !
             </p>
-            <div className="mx-auto mt-10 aspect-video w-full max-w-2xl overflow-hidden rounded-2xl bg-neutral-2 shadow-lg">
+            <div className="relative mx-auto mt-10 aspect-video w-full max-w-2xl min-h-[220px] overflow-hidden rounded-2xl bg-dark-card border border-dark-border shadow-lg">
               <iframe
                 title="Libell.us on YouTube"
                 src="https://www.youtube.com/embed/TRqNSkkrD8o"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
-                className="h-full w-full"
+                className="absolute inset-0 h-full w-full"
               />
             </div>
           </div>
@@ -536,17 +536,19 @@ export function LibellLanding() {
 
         {/* Back the Kickstarter CTA */}
         <section
-          className="bg-primary-100 px-6 py-12 md:px-12 md:py-16 lg:px-24 lg:py-20"
+          className="bg-black px-6 py-12 md:px-12 md:py-16 lg:px-24 lg:py-20"
           data-node-id="join-beta"
         >
           <div className="mx-auto max-w-4xl text-center">
-            <p className="text-base text-primary-700 md:text-lg">
-              Back the project and join the beta. Help shape what’s next!
+            <p className="text-base text-white md:text-lg">
+              Back the project and join the beta.
+              <br />
+              Help shape what's next!
             </p>
             <div className="mt-6 flex justify-center">
               <a
                 href="#kickstarter"
-                className="inline-block rounded-2xl border-2 border-primary-800 bg-primary-600 px-6 py-3 text-base font-medium text-white transition-colors hover:bg-primary-700 md:text-lg"
+                className="inline-block rounded-2xl border-2 border-white bg-white px-6 py-3 text-base font-medium text-black transition-colors hover:bg-neutral-2 hover:text-black md:text-lg"
               >
                 Back the Kickstarter
               </a>
@@ -556,23 +558,23 @@ export function LibellLanding() {
 
         {/* Footer */}
         <footer
-          className="bg-primary-50 px-6 py-8 md:px-12 md:py-10"
+          className="bg-white px-6 py-8 md:px-12 md:py-10 border-t border-neutral-2"
           data-node-id="1:43"
         >
           <div className="mx-auto flex max-w-4xl flex-col items-center gap-8 text-center">
             <div className="flex items-center gap-2">
               <img alt="" className="size-9 object-contain" src={imgLogo} />
-              <span className="text-xl font-bold text-black">Libell.us</span>
+              <span className="text-xl font-bold text-accent">Libell.us</span>
             </div>
-            <nav className="flex flex-wrap justify-center gap-6 text-sm text-black md:gap-8 md:text-base">
-              <a href="#features" className="transition-colors hover:text-primary-800">Features</a>
-              <a href="#about" className="transition-colors hover:text-primary-800">About</a>
-              <a href="#docs" className="transition-colors hover:text-primary-800">Docs</a>
-              <a href="#contact" className="transition-colors hover:text-primary-800">Contact</a>
-              <a href="#privacy" className="transition-colors hover:text-primary-800">Privacy</a>
-              <a href="#terms" className="transition-colors hover:text-primary-800">Terms</a>
+            <nav className="flex flex-wrap justify-center gap-6 text-sm text-neutral-10 md:gap-8 md:text-base">
+              <a href="#features" className="transition-colors hover:text-accent">Features</a>
+              <a href="#about" className="transition-colors hover:text-accent">About</a>
+              <a href="#docs" className="transition-colors hover:text-accent">Docs</a>
+              <a href="#contact" className="transition-colors hover:text-accent">Contact</a>
+              <a href="#privacy" className="transition-colors hover:text-accent">Privacy</a>
+              <a href="#terms" className="transition-colors hover:text-accent">Terms</a>
             </nav>
-            <p className="text-sm text-black/80">
+            <p className="text-sm text-neutral-7">
               ©{new Date().getFullYear()} Libell.us
             </p>
           </div>
