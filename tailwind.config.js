@@ -11,15 +11,16 @@ export default {
       },
       colors: {
         black: '#000000',
+        brand: '#003035',
         dark: {
-          DEFAULT: '#0f0f0f',
-          section: '#171717',
-          card: '#262626',
-          border: '#404040',
+          DEFAULT: '#003035',
+          section: '#002a2e',
+          card: '#004046',
+          border: '#0d5c63',
         },
         accent: {
-          DEFAULT: '#ca8a04',
-          hover: '#eab308',
+          DEFAULT: '#003035',
+          hover: '#0d5c63',
         },
         primary: {
           50: '#FAFAFA',
