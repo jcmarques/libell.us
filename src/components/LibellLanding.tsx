@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   imgLogo,
   imgVector,
@@ -63,8 +63,32 @@ const PLATFORM_TAB_CONTENT: Record<(typeof PLATFORM_TABS)[number]['id'], { label
 export function LibellLanding() {
   const [activePlatformTab, setActivePlatformTab] = useState<(typeof PLATFORM_TABS)[number]['id']>('story-editor');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [heroParallax, setHeroParallax] = useState(0);
+  const heroSectionRef = useRef<HTMLElement>(null);
 
   const closeMobileMenu = () => setMobileMenuOpen(false);
+
+  useEffect(() => {
+    let rafId: number;
+    const handleScroll = () => {
+      rafId = requestAnimationFrame(() => {
+        const section = heroSectionRef.current;
+        if (!section) return;
+        const rect = section.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        if (rect.bottom < 0 || rect.top > windowHeight) return;
+        const rate = 0.2;
+        const offset = (windowHeight * 0.2 - rect.top) * rate;
+        setHeroParallax(offset);
+      });
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      cancelAnimationFrame(rafId);
+    };
+  }, []);
 
   useEffect(() => {
     if (mobileMenuOpen) {
@@ -170,6 +194,7 @@ export function LibellLanding() {
 
         {/* 1. Hero */}
         <section
+          ref={heroSectionRef}
           className="relative bg-black py-16 md:py-24 lg:py-32"
           data-node-id="1:243"
         >
@@ -203,12 +228,15 @@ export function LibellLanding() {
                   Join the waitlist
                 </button>
               </div>
-              <p className="mt-4 text-sm text-neutral-6 md:text-base">
+              <p className="mt-2 text-sm text-neutral-6 md:mt-4 md:text-base">
                 Your all-in-one platform. No code required.
               </p>
             </div>
-            <div className="mt-8 flex flex-1 items-center justify-center self-center md:mt-0 md:max-w-md lg:max-w-lg">
-              <div className="flex w-full max-w-[360px] items-center justify-center overflow-hidden rounded-2xl md:max-w-md">
+            <div className="-mt-1 flex flex-1 items-center justify-center self-center md:mt-0 md:max-w-[1008px] lg:max-w-[1344px]">
+              <div
+                className="flex w-full max-w-full items-center justify-center overflow-hidden rounded-2xl md:max-w-[1008px] lg:max-w-[1344px]"
+                style={{ transform: `translateY(${heroParallax}px)` }}
+              >
                 <img alt="Create interactive stories with Libell" className="w-full object-contain mix-blend-screen" src={heroImage} />
               </div>
             </div>
@@ -217,10 +245,10 @@ export function LibellLanding() {
 
         {/* 2. Writers want to create / Problem Section */}
         <section
-          className="bg-white px-6 py-14 md:px-12 md:py-20"
+          className="bg-black px-6 pt-20 pb-14 md:px-12 md:py-20"
           data-node-id="1:208"
         >
-          <h2 className="text-center text-xl font-medium text-content md:text-2xl">
+          <h2 className="text-center text-xl font-medium text-white md:text-2xl">
             Writers want to create:
           </h2>
           <ul className="mx-auto mt-8 flex max-w-4xl flex-col items-center gap-6 md:flex-row md:justify-center md:gap-14">
@@ -230,14 +258,14 @@ export function LibellLanding() {
               { label: 'Game Books', id: '1:237' },
             ].map(({ label, id }) => (
               <li key={id} className="flex flex-col items-center">
-                <div className="flex size-[220px] items-center justify-center rounded-2xl bg-neutral-1 p-3">
+                <div className="flex size-[220px] items-center justify-center rounded-2xl bg-white/10 p-3">
                   <img
                     alt=""
-                    className="size-10 object-contain"
+                    className="size-10 object-contain opacity-90 brightness-0 invert"
                     src={imgVector}
                   />
                 </div>
-                <p className="mt-2 text-center text-base text-content">
+                <p className="mt-2 text-center text-base text-white">
                   {label}
                 </p>
               </li>
@@ -245,47 +273,47 @@ export function LibellLanding() {
           </ul>
 
           <div className="mx-auto mt-12 flex w-full max-w-3xl flex-col items-center justify-center gap-4 text-center">
-            <h2 className="text-xl font-medium text-content md:text-2xl">
+            <h2 className="text-xl font-medium text-white md:text-2xl">
               But that often requires:
             </h2>
             <div className="mt-10 flex w-full flex-col items-center justify-center gap-4 md:mt-12 md:flex-row md:items-end md:justify-center md:gap-10">
               <div className="flex w-36 flex-shrink-0 flex-col items-center">
                 <img
                   alt=""
-                  className="size-12 object-contain opacity-70"
+                  className="size-12 object-contain opacity-90 brightness-0 invert"
                   src={codeIcon}
                 />
-                <p className="mt-2 text-center text-base text-content">Code</p>
+                <p className="mt-2 text-center text-base text-white/90">Code</p>
               </div>
               <div
                 aria-hidden
-                className="hidden h-px w-16 flex-shrink-0 self-center bg-neutral-2 md:block"
+                className="hidden h-px w-16 flex-shrink-0 self-center bg-white/30 md:block"
               />
               <div className="flex w-36 flex-shrink-0 flex-col items-center">
                 <img
                   alt=""
-                  className="size-12 object-contain opacity-70"
+                  className="size-12 object-contain opacity-90 brightness-0 invert"
                   src={gameSettingIcon}
                 />
-                <p className="mt-2 text-center text-base text-content">Game Engines</p>
+                <p className="mt-2 text-center text-base text-white/90">Game Engines</p>
               </div>
               <div
                 aria-hidden
-                className="hidden h-px w-16 flex-shrink-0 self-center bg-neutral-2 md:block"
+                className="hidden h-px w-16 flex-shrink-0 self-center bg-white/30 md:block"
               />
               <div className="flex w-36 flex-shrink-0 flex-col items-center">
                 <img
                   alt=""
-                  className="size-12 object-contain opacity-70"
+                  className="size-12 object-contain opacity-90 brightness-0 invert"
                   src={requestIcon}
                 />
-<p className="mt-2 text-center text-base text-content">
-                Complicated Tools
-              </p>
+                <p className="mt-2 text-center text-base text-white/90">
+                  Complicated Tools
+                </p>
               </div>
             </div>
           </div>
-          <p className="mx-auto mt-10 max-w-2xl py-4 text-center text-base text-content md:mt-12 md:text-lg">
+          <p className="mx-auto mt-10 max-w-2xl py-4 text-center text-base text-white/90 md:mt-12 md:text-lg">
             That’s a lot to learn before you can tell your story.
           </p>
         </section>
@@ -510,9 +538,9 @@ export function LibellLanding() {
           <div className="mt-12 flex flex-wrap justify-center gap-4">
             <button
               type="button"
-className="rounded-2xl border-2 border-content bg-white px-6 py-3 text-base font-medium text-content transition-all duration-200 hover:scale-[1.03] hover:bg-white hover:shadow-lg hover:text-black md:text-lg"
-              >
-                Read a Story
+              className="rounded-2xl border-2 border-content bg-white px-6 py-3 text-base font-medium text-content transition-all duration-200 hover:scale-[1.03] hover:bg-white hover:shadow-lg hover:text-black md:text-lg"
+            >
+              Read a Story
             </button>
           </div>
         </section>
