@@ -18,6 +18,7 @@ export default {
       },
       animation: {
         'fade-in-up': 'fade-in-up 0.6s ease-out forwards',
+        'fade-in-up-slow': 'fade-in-up 1.2s ease-out forwards',
         'soft-pulse': 'soft-pulse 2.5s ease-in-out infinite',
       },
       fontFamily: {

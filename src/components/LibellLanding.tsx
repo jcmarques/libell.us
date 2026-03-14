@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import {
   imgLogo,
-  imgVector1,
   imgVuesaxBoldGallery,
 } from '../assets/figma-assets';
 import codeIcon from '../assets/code.png';
@@ -14,6 +13,9 @@ import gameBooksImg from '../assets/game-books.png';
 import writeStoriesImg from '../assets/write-stories.png';
 import buildWorldsImg from '../assets/build-worlds.png';
 import publishImg from '../assets/publish.png';
+import book1Img from '../assets/book-1.png';
+import book2Img from '../assets/book-2.png';
+import book3Img from '../assets/book-3.png';
 
 const PLATFORM_TABS = [
   { id: 'story-editor', label: 'Story Editor' },
@@ -71,12 +73,25 @@ export function LibellLanding() {
   const closeMobileMenu = () => setMobileMenuOpen(false);
   const libellChangesRef = useRef<HTMLDivElement>(null);
   const [libellSectionVisible, setLibellSectionVisible] = useState(false);
+  const writersSectionRef = useRef<HTMLElement>(null);
+  const [writersSectionVisible, setWritersSectionVisible] = useState(false);
 
   useEffect(() => {
     const el = libellChangesRef.current;
     if (!el) return;
     const obs = new IntersectionObserver(
       ([entry]) => entry.isIntersecting && setLibellSectionVisible(true),
+      { threshold: 0.2 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const el = writersSectionRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => entry.isIntersecting && setWritersSectionVisible(true),
       { threshold: 0.2 }
     );
     obs.observe(el);
@@ -129,7 +144,7 @@ export function LibellLanding() {
                 className="size-12 object-contain sm:size-16"
                 src={imgLogo}
               />
-              <span className="text-lg font-bold text-black sm:text-xl lg:text-2xl">Libell.us</span>
+              <span className="font-sans text-lg font-semibold text-black sm:text-xl lg:text-2xl">Libell.us</span>
             </div>
 
             {/* Desktop nav - visible from sm and up, no hamburger on bigger screens */}
@@ -224,7 +239,7 @@ export function LibellLanding() {
                 Your all-in-one platform. No code required.
               </p>
             </div>
-            <div className="-mt-1 flex flex-1 items-center justify-center self-center md:mt-0 md:max-w-[1008px] lg:max-w-[1344px]">
+            <div className="-mt-1 flex flex-1 items-center justify-center self-center animate-fade-in-up md:mt-0 md:max-w-[1008px] lg:max-w-[1344px]">
               <div className="flex w-full max-w-full items-center justify-center overflow-hidden rounded-2xl md:max-w-[1008px] lg:max-w-[1344px]">
                 <img alt="Create interactive stories with Libell" className="w-full object-contain mix-blend-screen" src={heroImage} />
               </div>
@@ -234,7 +249,8 @@ export function LibellLanding() {
 
         {/* 2. Writers want to create / Problem Section */}
         <section
-          className="bg-black px-6 pt-20 pb-14 md:px-12 md:py-20"
+          ref={writersSectionRef}
+          className="bg-black px-6 pt-8 pb-14 md:px-12 md:pt-10 md:pb-20"
           data-node-id="1:208"
         >
           <h2 className="text-center text-xl font-medium text-white md:text-2xl">
@@ -245,8 +261,12 @@ export function LibellLanding() {
               { label: 'Interactive Adventures', id: '1:229', img: interactiveAdventuresImg },
               { label: 'Visual Novels', id: '1:233', img: visualNovelsImg },
               { label: 'Game Books', id: '1:237', img: gameBooksImg },
-            ].map(({ label, id, img }) => (
-              <li key={id} className="flex flex-col items-center">
+            ].map(({ label, id, img }, index) => (
+              <li
+                key={id}
+                className={`flex flex-col items-center [animation-fill-mode:backwards] ${writersSectionVisible ? 'animate-fade-in-up-slow' : 'opacity-0'}`}
+                style={{ animationDelay: writersSectionVisible ? `${450 + index * 400}ms` : undefined }}
+              >
                 <div className="flex size-[220px] items-center justify-center overflow-hidden rounded-2xl bg-white/10 p-3">
                   <img
                     alt=""
@@ -310,20 +330,22 @@ export function LibellLanding() {
         {/* 3.1 Transition - Libell.us changes that */}
         <section
           ref={libellChangesRef}
-          className="flex flex-col items-center justify-center bg-black py-10 md:py-14"
+          className="flex flex-col items-center justify-center bg-[#0f172a] py-10 md:py-14"
           data-node-id="1:177"
         >
+          <div className="mx-4 w-full max-w-2xl rounded-2xl bg-[#1e293b] px-8 py-10 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.7),0_16px_32px_-8px_rgba(0,0,0,0.5)] md:px-12 md:py-12">
           <div className={`flex flex-row items-center justify-center gap-3 ${libellSectionVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-            <div className="flex size-14 items-center justify-center rounded-2xl bg-white ring-1 ring-white/30 transition-all duration-200 hover:scale-[1.05] hover:shadow-lg md:size-16 animate-soft-pulse">
-              <img
-                alt="Libell.us"
-                className="size-8 md:size-9"
-                src={imgLogo}
-              />
+              <div className="flex size-14 items-center justify-center rounded-2xl bg-white ring-1 ring-white/30 transition-all duration-200 hover:scale-[1.05] hover:shadow-lg md:size-16 animate-soft-pulse">
+                <img
+                  alt="Libell.us"
+                  className="size-8 md:size-9"
+                  src={imgLogo}
+                />
+              </div>
+              <h2 className="text-base font-medium text-white md:text-lg">
+                <span className="text-white">Libell.us</span> changes that
+              </h2>
             </div>
-            <h2 className="text-base font-medium text-white md:text-lg">
-              <span className="text-white">Libell.us</span> changes that
-            </h2>
           </div>
         </section>
 
@@ -428,7 +450,7 @@ export function LibellLanding() {
                   </div>
                 </div>
                 <div className="flex w-fit justify-center md:justify-start">
-                  <div className="flex h-[280px] w-[400px] shrink-0 overflow-hidden rounded-2xl shadow-xl md:h-[340px] md:w-[500px]">
+                  <div className="flex h-[280px] w-[400px] shrink-0 overflow-hidden rounded-2xl shadow-2xl md:h-[340px] md:w-[500px]">
                     <img alt="" className="h-full w-full object-cover" src={img} />
                   </div>
                 </div>
@@ -519,13 +541,17 @@ export function LibellLanding() {
             From fantasy adventures and children's books to sci-fi interactive stories.
           </p>
           <div className="mx-auto mt-12 grid max-w-4xl grid-cols-1 justify-items-center gap-8 md:grid-cols-3">
-            {[1, 2, 3].map((i) => (
-              <div
+            {[
+              { src: book1Img, alt: "Children's storybook - Three Little Pigs" },
+              { src: book2Img, alt: "Fantasy adventure story" },
+              { src: book3Img, alt: "Sci-fi interactive story" },
+            ].map((book, i) => (
+              <img
                 key={i}
-                className="flex aspect-square w-full max-w-[220px] items-center justify-center overflow-hidden rounded-3xl bg-neutral-1 p-6"
-              >
-                <img alt="" className="max-h-16 max-w-16 object-contain" src={imgVector1} />
-              </div>
+                alt={book.alt}
+                className="aspect-square w-full max-w-[220px] object-cover shadow-lg"
+                src={book.src}
+              />
             ))}
           </div>
           <div className="mt-12 flex flex-wrap justify-center gap-4">
@@ -562,13 +588,15 @@ export function LibellLanding() {
               </a>
               !
             </p>
-            <div className="relative mx-auto mt-10 aspect-video w-full max-w-2xl min-h-[220px] overflow-hidden rounded-2xl bg-white/10 border border-black/20 shadow-lg backdrop-blur-sm">
+            <div className="relative mx-auto mt-10 w-full max-w-2xl overflow-hidden rounded-2xl bg-black shadow-xl" style={{ aspectRatio: '16/9' }}>
               <iframe
                 title="Libell.us on YouTube"
-                src="https://www.youtube.com/embed/TRqNSkkrD8o"
+                src="https://www.youtube.com/embed/TRqNSkkrD8o?rel=0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
+                loading="eager"
                 className="absolute inset-0 h-full w-full"
+                referrerPolicy="strict-origin-when-cross-origin"
               />
             </div>
           </div>
