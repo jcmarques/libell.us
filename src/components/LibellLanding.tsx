@@ -583,7 +583,7 @@ export function LibellLanding() {
               const divider = (
                 <div
                   key={`${title}-divider`}
-                  className="h-px w-full max-w-[12rem] mx-auto bg-black/10 md:hidden"
+                  className="mx-auto h-px w-full max-w-[16rem] bg-black/20"
                   aria-hidden
                 />
               );
