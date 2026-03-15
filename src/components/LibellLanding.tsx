@@ -549,10 +549,10 @@ export function LibellLanding() {
                 imageFirst: false,
                 img: publishImg,
               },
-            ].map(({ title, description, imageFirst, img }, index) => {
+            ].flatMap(({ title, description, imageFirst, img }, index) => {
               const lastIndex = 2;
               const delayMs = imaginationScrollDown ? index * 150 : (lastIndex - index) * 150;
-              return (
+              const block = (
                 <div
                   key={title}
                   className={`flex flex-col items-center gap-6 md:flex-row md:items-center md:justify-center md:gap-10 [animation-fill-mode:backwards] ${imageFirst ? 'md:flex-row-reverse' : ''
@@ -580,6 +580,14 @@ export function LibellLanding() {
                   </div>
                 </div>
               );
+              const divider = (
+                <div
+                  key={`${title}-divider`}
+                  className="h-px w-full max-w-[12rem] mx-auto bg-black/10 md:hidden"
+                  aria-hidden
+                />
+              );
+              return index < lastIndex ? [block, divider] : [block];
             })}
           </div>
         </section>
@@ -594,7 +602,7 @@ export function LibellLanding() {
             The Platform for Interactive Storytelling
           </h2>
           <p className="mx-auto mt-6 max-w-4xl text-center text-base text-white/70 md:text-lg lg:text-xl">
-            <span className="font-semibold text-white/90">Libell.us</span> is a creative platform where creators
+            <span className="font-semibold text-white/90">Libell.us</span> is a creative platform where creators{' '}
             <br className="hidden md:block" />
             can build interactive stories with:
           </p>
@@ -623,13 +631,13 @@ export function LibellLanding() {
           </div>
           <div
             aria-label={`Content for ${PLATFORM_TABS.find((t) => t.id === activePlatformTab)?.label ?? activePlatformTab}`}
-            className="mx-auto mt-8 grid max-w-3xl grid-cols-2 justify-items-center gap-3 md:grid-cols-4 md:gap-4"
+            className="mx-auto mt-8 flex max-w-sm flex-wrap justify-center gap-2 sm:max-w-md sm:gap-3 md:max-w-3xl md:grid md:grid-cols-4 md:gap-4"
             role="tabpanel"
           >
             {PLATFORM_TAB_CONTENT[activePlatformTab].map((item, i) => (
               <div
                 key={`${activePlatformTab}-${i}`}
-                className="flex aspect-square w-full max-w-[160px] flex-col overflow-hidden rounded-xl border border-white/20 bg-white/10 backdrop-blur-sm md:max-w-[180px]"
+                className="flex aspect-square w-full max-w-[110px] flex-col overflow-hidden rounded-xl border border-white/20 bg-white/10 backdrop-blur-sm sm:max-w-[130px] md:max-w-[180px]"
               >
                 <div className="flex min-h-0 flex-1 items-center justify-center p-2">
                   <img alt="" className="max-h-10 max-w-10 object-contain" src={imgVuesaxBoldGallery} />
@@ -745,9 +753,8 @@ export function LibellLanding() {
             </h2>
             <p className="mx-auto mt-6 max-w-2xl text-base text-white/70 md:text-lg">
               We’re building a platform for immersive, interactive stories.
-            </p>
-            <p className="mx-auto mt-4 max-w-2xl text-base text-white/70 md:text-lg">
-              To see the platform in action, check out our{' '}
+              <br className="hidden sm:block lg:hidden" />
+              {' '}To see the platform in action, check out our{' '}
               <a
                 href="https://www.youtube.com/watch?v=TRqNSkkrD8o"
                 target="_blank"
@@ -805,7 +812,7 @@ export function LibellLanding() {
               <img alt="" className="size-9 object-contain" src={imgLogo} />
               <span className="text-xl font-bold text-black">Libell.us</span>
             </div>
-            <nav className="flex flex-wrap justify-center gap-6 text-sm text-black md:gap-8 md:text-base">
+            <nav className="flex flex-wrap justify-center gap-3 text-sm text-black md:gap-8 md:text-base">
               <a href="#features" className="transition-colors hover:text-black/80">Features</a>
               <a href="#about" className="transition-colors hover:text-black/80">About</a>
               <a href="#docs" className="transition-colors hover:text-black/80">Docs</a>
