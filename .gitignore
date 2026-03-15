@@ -1,0 +1,24 @@
+# Dependencies
+node_modules
+
+# Build output
+dist
+
+# Environment variables (may contain API keys, secrets)
+.env
+.env.local
+.env.*.local
+
+# Editor / IDE
+.DS_Store
+*.local
+
+# MCP config (may contain secrets e.g. Figma token)
+.cursor/mcp.json
+
+# Logs
+*.log
+npm-debug.log*
+
+# Vite cache
+.vite
