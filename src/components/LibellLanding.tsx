@@ -510,7 +510,7 @@ export function LibellLanding() {
                 >
                   <i className={`fa-solid ${icon} text-white mb-4 text-2xl md:text-3xl drop-shadow-sm`} aria-hidden />
                   <h3 className="min-h-[2.75rem] text-lg font-medium text-white md:min-h-14 md:text-xl">{title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-black/80 md:text-base">{description}</p>
+                  <p className="mt-2 text-base leading-relaxed text-black/80 md:text-lg">{description}</p>
                 </div>
               ))}
             </div>
