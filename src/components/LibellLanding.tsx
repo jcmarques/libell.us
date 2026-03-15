@@ -115,6 +115,20 @@ export function LibellLanding() {
   const exploreStoriesRef = useRef<HTMLElement>(null);
   const [exploreStoriesVisible, setExploreStoriesVisible] = useState(false);
   const [carouselIndex, setCarouselIndex] = useState(0);
+  const [carouselVisibleCount, setCarouselVisibleCount] = useState(3);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 767px)');
+    const visible = mq.matches ? 2 : 3;
+    setCarouselVisibleCount(visible);
+    const handler = (e: MediaQueryListEvent) => setCarouselVisibleCount(e.matches ? 2 : 3);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
+
+  useEffect(() => {
+    setCarouselIndex((i) => Math.min(i, Math.max(0, CAROUSEL_IMAGES.length - carouselVisibleCount)));
+  }, [carouselVisibleCount]);
 
   useEffect(() => {
     const el = heroSectionRef.current;
@@ -336,7 +350,7 @@ export function LibellLanding() {
                 Your all-in-one platform. No code required.
               </p>
             </div>
-            <div className={`-mt-1 flex flex-1 items-center justify-center self-center md:mt-0 md:max-w-[1008px] lg:max-w-[1344px] [animation-fill-mode:backwards] ${heroSectionVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+            <div className={`mt-8 flex flex-1 items-center justify-center self-center md:mt-0 md:max-w-[1008px] lg:max-w-[1344px] [animation-fill-mode:backwards] ${heroSectionVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
               <div className="flex w-full max-w-full items-center justify-center overflow-hidden rounded-2xl md:max-w-[1008px] lg:max-w-[1344px]">
                 <img alt="Create interactive stories with Libell" className="w-full object-contain mix-blend-screen" src={heroImage} />
               </div>
@@ -347,7 +361,7 @@ export function LibellLanding() {
         {/* 2. Writers want to create / Problem Section */}
         <section
           ref={writersSectionRef}
-          className="bg-[#0f0f0f] px-6 pb-14 pt-0 md:px-12 md:pb-20 md:pt-0"
+          className="bg-[#0f0f0f] px-6 pb-10 pt-0 md:px-12 md:pb-12 md:pt-0"
           data-node-id="1:208"
         >
           <div className="mb-14 h-px w-full shadow-[0_1px_0_0_rgba(255,255,255,0.15),0_2px_8px_-2px_rgba(255,255,255,0.08)] md:mb-16" aria-hidden />
@@ -364,25 +378,25 @@ export function LibellLanding() {
               { label: 'Game Books', id: '1:237', img: gameBooksImg },
             ].map(({ label, id, img }, index) => {
               const lastIndex = 2;
-              const delayMs = writersScrollDown ? 450 + index * 400 : 450 + (lastIndex - index) * 400;
+              const delayMs = writersScrollDown ? 150 + index * 150 : 150 + (lastIndex - index) * 150;
               return (
-              <li
-                key={id}
-                className={`flex flex-col items-center [animation-fill-mode:backwards] ${writersSectionVisible ? 'animate-fade-in-up-slow' : 'opacity-0'}`}
-                style={{ animationDelay: writersSectionVisible ? `${delayMs}ms` : undefined }}
-              >
-                <div className="flex size-[260px] items-center justify-center overflow-hidden rounded-2xl bg-white/10 p-3 md:size-[280px] lg:size-[300px]">
-                  <img
-                    alt=""
-                    className="h-full w-full object-contain"
-                    src={img}
-                  />
-                </div>
-                <p className="mt-2 text-center text-base text-white">
-                  {label}
-                </p>
-              </li>
-            );
+                <li
+                  key={id}
+                  className={`flex flex-col items-center [animation-fill-mode:backwards] ${writersSectionVisible ? 'animate-fade-in-up md:animate-fade-in-up-slow' : 'opacity-0'}`}
+                  style={{ animationDelay: writersSectionVisible ? `${delayMs}ms` : undefined }}
+                >
+                  <div className="flex size-[260px] items-center justify-center overflow-hidden rounded-2xl bg-white/10 p-3 md:size-[280px] lg:size-[300px]">
+                    <img
+                      alt=""
+                      className="h-full w-full object-contain"
+                      src={img}
+                    />
+                  </div>
+                  <p className="mt-2 text-center text-base text-white">
+                    {label}
+                  </p>
+                </li>
+              );
             })}
           </ul>
 
@@ -434,10 +448,10 @@ export function LibellLanding() {
 
         {/* 3.1 Transition - Libell.us changes that */}
         <section
-          className="flex flex-col items-center justify-center bg-[#0f172a] px-6 pt-0 pb-16 md:pb-24"
+          className="flex flex-col items-center justify-center bg-[#0f172a] px-6 pt-0 pb-14 md:pb-16"
           data-node-id="1:177"
         >
-          <div className="mb-10 h-px w-full shadow-[0_1px_0_0_rgba(255,255,255,0.15),0_2px_8px_-2px_rgba(255,255,255,0.08)] md:mb-12" aria-hidden />
+          <div className="mb-14 h-px w-full shadow-[0_1px_0_0_rgba(255,255,255,0.15),0_2px_8px_-2px_rgba(255,255,255,0.08)] md:mb-16" aria-hidden />
           <div
             ref={libellChangesRef}
             className={`flex flex-col items-center justify-center gap-6 ${libellSectionVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
@@ -449,7 +463,7 @@ export function LibellLanding() {
                 src={imgLogo}
               />
             </div>
-            <h2 className="text-center text-3xl font-medium leading-tight text-white md:text-5xl md:leading-tight lg:text-6xl">
+            <h2 className="text-center text-2xl font-medium leading-tight text-white md:text-4xl md:leading-tight lg:text-5xl">
               <span className="text-white">Libell.us</span> changes that
             </h2>
           </div>
@@ -458,7 +472,7 @@ export function LibellLanding() {
         {/* Who it's for - Built for Story Creators */}
         <section
           id="about"
-          className="relative overflow-hidden bg-[#00C0E6] px-6 py-14 md:px-12 md:py-20"
+          className="relative overflow-hidden bg-[#00C0E6] px-6 py-16 md:px-12 md:py-24"
           data-node-id="who-its-for"
         >
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(0,192,230,0.2),transparent)] pointer-events-none" aria-hidden />
@@ -506,7 +520,7 @@ export function LibellLanding() {
         {/* 3.2 Turn imagination into interactive stories */}
         <section
           ref={imaginationSectionRef}
-          className="bg-white px-6 py-16 md:px-12 md:py-24"
+          className="bg-white px-4 py-16 md:px-12 md:py-24"
           data-node-id="1:184"
         >
           <h2 className="text-center text-xl font-medium text-black md:text-2xl lg:text-3xl">
@@ -537,35 +551,35 @@ export function LibellLanding() {
               },
             ].map(({ title, description, imageFirst, img }, index) => {
               const lastIndex = 2;
-              const delayMs = imaginationScrollDown ? index * 300 : (lastIndex - index) * 300;
+              const delayMs = imaginationScrollDown ? index * 150 : (lastIndex - index) * 150;
               return (
-              <div
-                key={title}
-                className={`flex flex-col items-center gap-6 md:flex-row md:items-center md:justify-center md:gap-10 [animation-fill-mode:backwards] ${imageFirst ? 'md:flex-row-reverse' : ''
-                  } ${imaginationSectionVisible ? 'animate-fade-in-up-slow' : 'opacity-0'}`}
-                style={{ animationDelay: imaginationSectionVisible ? `${delayMs}ms` : undefined }}
-              >
-                <div className="flex flex-1 flex-col items-center space-y-4 text-center md:max-w-md md:items-start md:text-left">
-                  <h3 className="text-xl font-medium text-black md:text-2xl">{title}</h3>
-                  <p className="text-base text-body-on-light md:text-lg">
-                    {description}
-                  </p>
-                  <div className="flex w-full justify-center md:justify-start">
-                    <button
-                      type="button"
-                      className="rounded-2xl border-2 border-black px-6 py-3 text-base font-medium text-black transition-all duration-200 hover:scale-[1.03] hover:bg-black/10 hover:shadow-lg md:text-lg"
-                    >
-                      Learn More
-                    </button>
+                <div
+                  key={title}
+                  className={`flex flex-col items-center gap-6 md:flex-row md:items-center md:justify-center md:gap-10 [animation-fill-mode:backwards] ${imageFirst ? 'md:flex-row-reverse' : ''
+                    } ${imaginationSectionVisible ? 'animate-fade-in-up md:animate-fade-in-up-slow' : 'opacity-0'}`}
+                  style={{ animationDelay: imaginationSectionVisible ? `${delayMs}ms` : undefined }}
+                >
+                  <div className="flex flex-1 flex-col items-center space-y-4 text-center md:max-w-md md:items-start md:text-left">
+                    <h3 className="text-xl font-medium text-black md:text-2xl">{title}</h3>
+                    <p className="text-base text-body-on-light md:text-lg">
+                      {description}
+                    </p>
+                    <div className="flex w-full justify-center md:justify-start">
+                      <button
+                        type="button"
+                        className="rounded-2xl border-2 border-black px-6 py-3 text-base font-medium text-black transition-all duration-200 hover:scale-[1.03] hover:bg-black/10 hover:shadow-lg md:text-lg"
+                      >
+                        Learn More
+                      </button>
+                    </div>
+                  </div>
+                  <div className="flex w-full justify-center md:w-fit md:justify-start">
+                    <div className="flex w-full max-w-[calc(100vw-2rem)] aspect-[47/33] shrink-0 overflow-hidden rounded-2xl shadow-[0_30px_80px_rgba(0,0,0,0.2)] md:h-[400px] md:max-w-none md:w-[580px] md:aspect-auto">
+                      <img alt="" className="h-full w-full object-cover" src={img} />
+                    </div>
                   </div>
                 </div>
-                <div className="flex w-fit justify-center md:justify-start">
-                  <div className="flex h-[280px] w-[400px] shrink-0 overflow-hidden rounded-2xl shadow-2xl md:h-[340px] md:w-[500px]">
-                    <img alt="" className="h-full w-full object-cover" src={img} />
-                  </div>
-                </div>
-              </div>
-            );
+              );
             })}
           </div>
         </section>
@@ -576,7 +590,7 @@ export function LibellLanding() {
           className="relative overflow-hidden border-t border-b border-white/30 bg-[#0f0f0f] px-6 py-16 md:px-12 md:py-24"
           data-node-id="1:71"
         >
-          <h2 className="text-center text-xl font-medium text-white md:text-2xl lg:text-3xl">
+          <h2 className="text-center text-2xl font-medium text-white md:text-3xl lg:text-4xl">
             The Platform for Interactive Storytelling
           </h2>
           <p className="mx-auto mt-6 max-w-4xl text-center text-base text-white/70 md:text-lg lg:text-xl">
@@ -653,7 +667,7 @@ export function LibellLanding() {
             From fantasy adventures and children's books to sci-fi interactive stories.
           </p>
           <div
-            className={`mx-auto mt-12 max-w-6xl [animation-fill-mode:backwards] ${exploreStoriesVisible ? 'animate-fade-in-up-slow' : 'opacity-0'}`}
+            className={`mx-auto mt-12 max-w-6xl [animation-fill-mode:backwards] ${exploreStoriesVisible ? 'animate-fade-in-up md:animate-fade-in-up-slow' : 'opacity-0'}`}
           >
             <div className="relative flex items-center justify-center gap-4 md:gap-6">
               <button
@@ -668,7 +682,7 @@ export function LibellLanding() {
                 </svg>
               </button>
               <div className="flex flex-1 justify-center gap-4 overflow-hidden md:gap-6">
-                {[0, 1, 2].map((offset) => {
+                {Array.from({ length: carouselVisibleCount }).map((_, offset) => {
                   const idx = carouselIndex + offset;
                   const item = CAROUSEL_IMAGES[idx];
                   if (!item) return null;
@@ -677,7 +691,7 @@ export function LibellLanding() {
                       <div className="overflow-hidden rounded-xl bg-white">
                         <img
                           alt={item.alt}
-                          className="aspect-[9/16] w-full max-w-[200px] object-contain md:max-w-[240px]"
+                          className="aspect-[9/16] w-full max-w-[240px] object-contain md:max-w-[240px]"
                           src={item.src}
                         />
                       </div>
@@ -687,10 +701,10 @@ export function LibellLanding() {
               </div>
               <button
                 type="button"
-                onClick={() => setCarouselIndex((i) => Math.min(CAROUSEL_IMAGES.length - 3, i + 1))}
+                onClick={() => setCarouselIndex((i) => Math.min(CAROUSEL_IMAGES.length - carouselVisibleCount, i + 1))}
                 className="flex size-10 shrink-0 items-center justify-center rounded-full border-2 border-black/30 bg-white text-black transition-colors hover:border-black hover:bg-black hover:text-white disabled:opacity-40 md:size-12"
                 aria-label="Next"
-                disabled={carouselIndex >= CAROUSEL_IMAGES.length - 3}
+                disabled={carouselIndex >= CAROUSEL_IMAGES.length - carouselVisibleCount}
               >
                 <svg className="size-5 md:size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
@@ -698,7 +712,7 @@ export function LibellLanding() {
               </button>
             </div>
             <div className="mt-4 flex justify-center gap-1">
-              {Array.from({ length: CAROUSEL_IMAGES.length - 2 }).map((_, i) => (
+              {Array.from({ length: CAROUSEL_IMAGES.length - carouselVisibleCount + 1 }).map((_, i) => (
                 <button
                   key={i}
                   type="button"
@@ -761,7 +775,7 @@ export function LibellLanding() {
 
         {/* Back the Kickstarter CTA */}
         <section
-          className="bg-[#0f172a] px-6 py-12 md:px-12 md:py-16 lg:px-24 lg:py-20"
+          className="bg-[#0f172a] px-6 py-8 md:px-12 md:py-10 lg:px-24 lg:py-12"
           data-node-id="join-beta"
         >
           <div className="mx-auto max-w-4xl text-center">
