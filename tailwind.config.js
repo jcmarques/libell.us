@@ -55,6 +55,10 @@ export default {
           10: '#1a1a1a',
         },
         gray: '#90A3BF',
+        // Semantic text (heading = high contrast, body = muted)
+        'heading-on-light': '#000000',
+        'heading-on-dark': '#FFFFFF',
+        'body-on-light': '#525252',
       },
     },
   },

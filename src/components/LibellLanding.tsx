@@ -354,6 +354,9 @@ export function LibellLanding() {
           <h2 className="text-center text-xl font-medium text-white md:text-2xl">
             Writers want to create:
           </h2>
+          <p className="mx-auto mt-2 text-center text-base text-white/80 md:text-lg">
+            Different formats of interactive storytelling.
+          </p>
           <ul className="mx-auto mt-8 flex max-w-4xl flex-col items-center gap-6 md:flex-row md:justify-center md:gap-14">
             {[
               { label: 'Interactive Adventures', id: '1:229', img: interactiveAdventuresImg },
@@ -368,7 +371,7 @@ export function LibellLanding() {
                 className={`flex flex-col items-center [animation-fill-mode:backwards] ${writersSectionVisible ? 'animate-fade-in-up-slow' : 'opacity-0'}`}
                 style={{ animationDelay: writersSectionVisible ? `${delayMs}ms` : undefined }}
               >
-                <div className="flex size-[220px] items-center justify-center overflow-hidden rounded-2xl bg-white/10 p-3">
+                <div className="flex size-[260px] items-center justify-center overflow-hidden rounded-2xl bg-white/10 p-3 md:size-[280px] lg:size-[300px]">
                   <img
                     alt=""
                     className="h-full w-full object-contain"
@@ -394,7 +397,7 @@ export function LibellLanding() {
                   className="size-12 object-contain opacity-90 [filter:brightness(0)_saturate(100%)_invert(75%)_sepia(57%)_saturate(2500%)_hue-rotate(166deg)]"
                   src={codeIcon}
                 />
-                <p className="mt-2 text-center text-base text-white/90">Code</p>
+                <p className="mt-2 text-center text-base text-white/90">Programming</p>
               </div>
               <div
                 aria-hidden
@@ -419,7 +422,7 @@ export function LibellLanding() {
                   src={requestIcon}
                 />
                 <p className="mt-2 text-center text-base text-white/90">
-                  Complicated Tools
+                  Complex Tools
                 </p>
               </div>
             </div>
@@ -431,26 +434,24 @@ export function LibellLanding() {
 
         {/* 3.1 Transition - Libell.us changes that */}
         <section
-          className="flex flex-col items-center justify-center bg-[#0f172a] pb-10 pt-0 md:pb-14 md:pt-0"
+          className="flex flex-col items-center justify-center bg-[#0f172a] px-6 pt-0 pb-16 md:pb-24"
           data-node-id="1:177"
         >
           <div className="mb-10 h-px w-full shadow-[0_1px_0_0_rgba(255,255,255,0.15),0_2px_8px_-2px_rgba(255,255,255,0.08)] md:mb-12" aria-hidden />
           <div
             ref={libellChangesRef}
-            className="mx-4 w-full max-w-2xl rounded-2xl bg-[#1e293b] px-8 py-10 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.7),0_16px_32px_-8px_rgba(0,0,0,0.5)] md:px-12 md:py-12"
+            className={`flex flex-col items-center justify-center gap-6 ${libellSectionVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
           >
-          <div className={`flex flex-row items-center justify-center gap-3 ${libellSectionVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-              <div className="flex size-14 items-center justify-center rounded-2xl bg-white ring-1 ring-white/30 transition-all duration-200 hover:scale-[1.05] hover:shadow-lg md:size-16 animate-soft-pulse">
-                <img
-                  alt="Libell.us"
-                  className="size-8 md:size-9"
-                  src={imgLogo}
-                />
-              </div>
-              <h2 className="text-base font-medium text-white md:text-lg">
-                <span className="text-white">Libell.us</span> changes that
-              </h2>
+            <div className="flex size-16 items-center justify-center rounded-2xl bg-white ring-1 ring-white/30 transition-all duration-200 hover:scale-[1.05] hover:shadow-lg md:size-20 animate-soft-pulse">
+              <img
+                alt="Libell.us"
+                className="size-9 md:size-10"
+                src={imgLogo}
+              />
             </div>
+            <h2 className="text-center text-3xl font-medium leading-tight text-white md:text-5xl md:leading-tight lg:text-6xl">
+              <span className="text-white">Libell.us</span> changes that
+            </h2>
           </div>
         </section>
 
@@ -495,21 +496,21 @@ export function LibellLanding() {
                 >
                   <i className={`fa-solid ${icon} text-white mb-4 text-2xl md:text-3xl drop-shadow-sm`} aria-hidden />
                   <h3 className="min-h-[2.75rem] text-lg font-medium text-white md:min-h-14 md:text-xl">{title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-black md:text-base">{description}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-black/80 md:text-base">{description}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* 3.2 From imagination to interactive stories */}
+        {/* 3.2 Turn imagination into interactive stories */}
         <section
           ref={imaginationSectionRef}
           className="bg-white px-6 py-16 md:px-12 md:py-24"
           data-node-id="1:184"
         >
-          <h2 className="text-center text-xl font-medium text-content md:text-2xl lg:text-3xl">
-            From imagination to interactive stories
+          <h2 className="text-center text-xl font-medium text-black md:text-2xl lg:text-3xl">
+            Turn imagination into interactive stories
           </h2>
           <div className="mx-auto mt-12 max-w-4xl space-y-16">
             {[
@@ -545,14 +546,14 @@ export function LibellLanding() {
                 style={{ animationDelay: imaginationSectionVisible ? `${delayMs}ms` : undefined }}
               >
                 <div className="flex flex-1 flex-col items-center space-y-4 text-center md:max-w-md md:items-start md:text-left">
-                  <h3 className="text-xl font-medium text-content md:text-2xl">{title}</h3>
-                  <p className="text-base text-content md:text-lg">
+                  <h3 className="text-xl font-medium text-black md:text-2xl">{title}</h3>
+                  <p className="text-base text-body-on-light md:text-lg">
                     {description}
                   </p>
                   <div className="flex w-full justify-center md:justify-start">
                     <button
                       type="button"
-                      className="rounded-2xl border-2 border-content px-6 py-3 text-base font-medium text-content transition-all duration-200 hover:scale-[1.03] hover:bg-content/10 hover:shadow-lg hover:text-black md:text-lg"
+                      className="rounded-2xl border-2 border-black px-6 py-3 text-base font-medium text-black transition-all duration-200 hover:scale-[1.03] hover:bg-black/10 hover:shadow-lg md:text-lg"
                     >
                       Learn More
                     </button>
@@ -645,10 +646,10 @@ export function LibellLanding() {
           className="bg-white px-6 py-16 md:px-12 md:py-24"
           data-node-id="54:212"
         >
-          <h2 className="text-center text-xl font-medium text-content md:text-2xl lg:text-3xl">
+          <h2 className="text-center text-xl font-medium text-black md:text-2xl lg:text-3xl">
             Explore stories created with Libell.us
           </h2>
-          <p className="mx-auto mt-6 max-w-4xl text-center text-base text-content md:text-lg lg:text-xl">
+          <p className="mx-auto mt-6 max-w-4xl text-center text-base text-body-on-light md:text-lg lg:text-xl">
             From fantasy adventures and children's books to sci-fi interactive stories.
           </p>
           <div
@@ -658,7 +659,7 @@ export function LibellLanding() {
               <button
                 type="button"
                 onClick={() => setCarouselIndex((i) => Math.max(0, i - 1))}
-                className="flex size-10 shrink-0 items-center justify-center rounded-full border-2 border-content/30 bg-white text-content transition-colors hover:border-content hover:bg-content hover:text-white disabled:opacity-40 md:size-12"
+                className="flex size-10 shrink-0 items-center justify-center rounded-full border-2 border-black/30 bg-white text-black transition-colors hover:border-black hover:bg-black hover:text-white disabled:opacity-40 md:size-12"
                 aria-label="Previous"
                 disabled={carouselIndex === 0}
               >
@@ -687,7 +688,7 @@ export function LibellLanding() {
               <button
                 type="button"
                 onClick={() => setCarouselIndex((i) => Math.min(CAROUSEL_IMAGES.length - 3, i + 1))}
-                className="flex size-10 shrink-0 items-center justify-center rounded-full border-2 border-content/30 bg-white text-content transition-colors hover:border-content hover:bg-content hover:text-white disabled:opacity-40 md:size-12"
+                className="flex size-10 shrink-0 items-center justify-center rounded-full border-2 border-black/30 bg-white text-black transition-colors hover:border-black hover:bg-black hover:text-white disabled:opacity-40 md:size-12"
                 aria-label="Next"
                 disabled={carouselIndex >= CAROUSEL_IMAGES.length - 3}
               >
@@ -702,7 +703,7 @@ export function LibellLanding() {
                   key={i}
                   type="button"
                   onClick={() => setCarouselIndex(i)}
-                  className={`size-2 rounded-full transition-colors md:size-2.5 ${carouselIndex === i ? 'bg-content' : 'bg-content/30'}`}
+                  className={`size-2 rounded-full transition-colors md:size-2.5 ${carouselIndex === i ? 'bg-black' : 'bg-black/30'}`}
                   aria-label={`Go to slide ${i + 1}`}
                 />
               ))}
@@ -711,7 +712,7 @@ export function LibellLanding() {
           <div className="mt-12 flex flex-wrap justify-center gap-4">
             <button
               type="button"
-              className="rounded-2xl border-2 border-content bg-white px-6 py-3 text-base font-medium text-content transition-all duration-200 hover:scale-[1.03] hover:bg-white hover:shadow-lg hover:text-black md:text-lg"
+              className="rounded-2xl border-2 border-black bg-white px-6 py-3 text-base font-medium text-black transition-all duration-200 hover:scale-[1.03] hover:bg-white hover:shadow-lg md:text-lg"
             >
               Read a Story
             </button>
@@ -764,7 +765,7 @@ export function LibellLanding() {
           data-node-id="join-beta"
         >
           <div className="mx-auto max-w-4xl text-center">
-            <p className="text-base text-white md:text-lg">
+            <p className="text-base text-white/90 md:text-lg">
               Back the project and join the beta.
               <br />
               Help shape what's next!
