@@ -506,10 +506,10 @@ export function LibellLanding() {
               ].map(({ title, description, icon }) => (
                 <div
                   key={title}
-                  className="group relative flex flex-col items-center rounded-2xl border border-white/30 bg-white/10 p-6 text-center backdrop-blur-sm transition-all duration-300 hover:border hover:border-white hover:bg-white/25 hover:shadow-[0_0_40px_rgba(255,255,255,0.25),0_0_24px_rgba(0,192,230,0.4)]"
+                  className="group relative flex flex-col items-center rounded-2xl border border-black/10 bg-white p-6 text-center backdrop-blur-sm transition-all duration-300 hover:border-black/20 hover:shadow-[0_0_40px_rgba(0,0,0,0.08),0_0_24px_rgba(0,192,230,0.15)]"
                 >
-                  <i className={`fa-solid ${icon} text-white mb-4 text-2xl md:text-3xl drop-shadow-sm`} aria-hidden />
-                  <h3 className="min-h-[2.75rem] text-lg font-medium text-white md:min-h-14 md:text-xl">{title}</h3>
+                  <i className={`fa-solid ${icon} text-[#00C0E6] mb-4 text-2xl md:text-3xl drop-shadow-sm`} aria-hidden />
+                  <h3 className="min-h-[2.75rem] text-lg font-medium text-black md:min-h-14 md:text-xl">{title}</h3>
                   <p className="mt-2 text-base leading-relaxed text-black/80 md:text-lg">{description}</p>
                 </div>
               ))}
@@ -523,7 +523,7 @@ export function LibellLanding() {
           className="bg-white px-4 py-16 md:px-12 md:py-24"
           data-node-id="1:184"
         >
-          <h2 className="text-center text-xl font-medium text-black md:text-2xl lg:text-3xl">
+          <h2 className="text-center text-2xl font-medium text-black md:text-3xl lg:text-4xl">
             Turn imagination into interactive stories
           </h2>
           <div className="mx-auto mt-12 max-w-4xl space-y-16">
