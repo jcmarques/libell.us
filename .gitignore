@@ -16,6 +16,9 @@ dist
 # MCP config (may contain secrets e.g. Figma token)
 .cursor/mcp.json
 
+# Cursor local tasks (not tracked)
+.cursor/website-tasks.md
+
 # Logs
 *.log
 npm-debug.log*

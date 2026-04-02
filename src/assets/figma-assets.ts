@@ -1,9 +1,11 @@
+import libellusLogo from './logo/libellusd.png';
+
 /**
  * Figma MCP asset URLs for Libell.us design.
  * Assets are served by Figma and may expire after 7 days.
+ * Logo is bundled from `src/assets/logo`.
  */
-export const imgLogo =
-  'https://www.figma.com/api/mcp/asset/e3a28e3f-763e-4301-8ba9-5c79e763c228';
+export const imgLogo = libellusLogo;
 export const imgVector =
   'https://www.figma.com/api/mcp/asset/bc147b79-1cec-43db-a2f6-f4089aec4bd7';
 export const imgVector1 =
