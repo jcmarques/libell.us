@@ -125,17 +125,19 @@ function FeatureCard({
   imageAlt: string;
 }) {
   return (
-    <article className="flex flex-col rounded-3xl border border-white/10 bg-[#12141a] p-6 shadow-lg md:p-8 lg:p-10">
+    <article className="flex flex-col rounded-3xl border border-white/10 bg-[#12141a] p-6 shadow-lg md:p-8 lg:py-10 lg:px-10 xl:px-14 2xl:px-16">
       <h2 className="mb-6 text-center text-xl font-semibold text-white md:text-2xl">{title}</h2>
-      <div className="flex flex-col items-stretch gap-6 md:flex-row md:items-center md:gap-8">
-        <div className="flex shrink-0 justify-center md:w-[48%]">
+      <div className="flex flex-col items-stretch gap-6">
+        <div className="flex w-full justify-center">
           <img
             src={imageSrc}
             alt={imageAlt}
-            className="max-h-[320px] w-full rounded-2xl object-contain object-center md:max-h-[360px]"
+            className="max-h-[280px] w-full max-w-lg rounded-2xl object-contain object-center sm:max-h-[300px] lg:max-h-[360px]"
           />
         </div>
-        <p className="flex-1 text-left text-base leading-relaxed text-white/80 md:text-lg">{body}</p>
+        <p className="my-0 mx-[25px] text-center text-sm leading-relaxed text-white/70 md:text-base">
+          {body}
+        </p>
       </div>
     </article>
   );
@@ -292,7 +294,7 @@ export function FeaturesPage() {
         </section>
 
         {/* Feature rows */}
-        <section className="bg-[#0a0a0a] px-6 py-14 md:px-10 md:py-16 lg:px-16 lg:py-20 xl:px-24">
+        <section className="bg-[#0a0a0a] px-6 py-14 md:px-10 md:py-16 lg:px-16 lg:py-20 xl:px-28 2xl:px-36">
           <div className="mx-auto flex max-w-6xl flex-col gap-12 md:gap-14 lg:gap-16">
             <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-10 xl:gap-12">
               <FeatureCard
