@@ -130,6 +130,9 @@ const UI_TEXT: Record<Language, Record<string, string>> = {
     builtForStoryCreators: 'Built for Story Creators',
     imaginationTitle: 'Turn imagination into interactive stories',
     learnMore: 'Learn More',
+    writingFeaturesTitle: 'Writing Features',
+    writingFeaturesDesc: 'With Libell.us, writing branching narratives is easier than ever. You can organize your chapters, manage character arcs, and track interactive choices locally in an intuitive way. Say goodbye to spreadsheets and complicated nodes!',
+    backToImage: 'Back to image',
     platformTitle: 'The Platform for Interactive Storytelling',
     platformSubtitle1: 'is a creative platform where creators',
     platformSubtitle2: 'can build interactive stories with:',
@@ -179,6 +182,9 @@ const UI_TEXT: Record<Language, Record<string, string>> = {
     builtForStoryCreators: 'Feito para criadores de histórias',
     imaginationTitle: 'Transforme imaginação em histórias interativas',
     learnMore: 'Saiba mais',
+    writingFeaturesTitle: 'Recursos de escrita',
+    writingFeaturesDesc: 'Com a Libell.us, escrever narrativas com ramificações fica mais fácil do que nunca. Você pode organizar capítulos, gerenciar arcos de personagens e acompanhar escolhas interativas localmente de forma intuitiva. Diga adeus às planilhas e aos nós complicados!',
+    backToImage: 'Voltar para a imagem',
     platformTitle: 'A plataforma para narrativa interativa',
     platformSubtitle1: 'é uma plataforma criativa onde criadores',
     platformSubtitle2: 'podem criar histórias interativas com:',
@@ -222,6 +228,7 @@ export function LibellLanding() {
   const imaginationSectionRef = useRef<HTMLElement>(null);
   const [imaginationSectionVisible, setImaginationSectionVisible] = useState(false);
   const [imaginationScrollDown, setImaginationScrollDown] = useState(true);
+  const [flippedImaginationCard, setFlippedImaginationCard] = useState<number | null>(null);
   const scrollPosRef = useRef({ y: 0, prevY: 0 });
   const exploreStoriesRef = useRef<HTMLElement>(null);
   const [exploreStoriesVisible, setExploreStoriesVisible] = useState(false);
@@ -677,7 +684,7 @@ export function LibellLanding() {
                   }`}
                 >
                   <i
-                    className={`fa-solid ${icon} mb-4 text-2xl text-transparent [-webkit-text-stroke:1.5px_#00C0E6] md:text-3xl`}
+                    className={`fa-solid ${icon} mb-4 text-2xl text-transparent [-webkit-text-stroke:2.25px_#00C0E6] md:text-3xl`}
                     aria-hidden
                   />
                   <h3 className="min-h-[2.75rem] text-lg font-medium text-black md:min-h-14 md:text-xl">{title}</h3>
@@ -726,6 +733,8 @@ export function LibellLanding() {
             ].flatMap(({ title, description, imageFirst, img }, index) => {
               const lastIndex = 2;
               const delayMs = imaginationScrollDown ? index * 150 : (lastIndex - index) * 150;
+              const isWritingCard = index === 0;
+              const isFlipped = flippedImaginationCard === index;
               const block = (
                 <div
                   key={title}
@@ -741,15 +750,42 @@ export function LibellLanding() {
                     <div className="flex w-full justify-center md:justify-start">
                       <button
                         type="button"
+                        onClick={() => {
+                          if (isWritingCard) {
+                            setFlippedImaginationCard((current) => (current === index ? null : index));
+                          }
+                        }}
                         className="rounded-2xl border-2 border-black px-6 py-3 text-base font-medium text-black transition-all duration-200 hover:scale-[1.03] hover:bg-black/10 hover:shadow-lg md:text-lg"
                       >
-                        {t.learnMore}
+                        {isWritingCard && isFlipped ? t.backToImage : t.learnMore}
                       </button>
                     </div>
                   </div>
                   <div className="flex w-full justify-center md:w-fit md:justify-start">
-                    <div className="flex w-full max-w-[calc(100vw-2rem)] aspect-[47/33] shrink-0 overflow-hidden rounded-2xl shadow-[0_30px_80px_rgba(0,0,0,0.2)] md:h-[400px] md:max-w-none md:w-[580px] md:aspect-auto">
-                      <img alt="" className="h-full w-full object-cover" src={img} />
+                    <div className="w-full [perspective:1200px] md:w-fit">
+                      <div
+                        className={`relative w-full max-w-[calc(100vw-2rem)] aspect-[47/33] shrink-0 rounded-2xl shadow-[0_30px_80px_rgba(0,0,0,0.2)] transition-transform duration-700 [transform-style:preserve-3d] md:h-[400px] md:max-w-none md:w-[580px] md:aspect-auto ${
+                          isWritingCard && isFlipped ? '[transform:rotateY(180deg)]' : ''
+                        }`}
+                      >
+                        <div className="absolute inset-0 overflow-hidden rounded-2xl [backface-visibility:hidden]">
+                          <img alt="" className="h-full w-full object-cover" src={img} />
+                        </div>
+                        {isWritingCard && (
+                          <button
+                            type="button"
+                            onClick={() => setFlippedImaginationCard(null)}
+                            className="absolute inset-0 flex items-center justify-center rounded-2xl bg-black px-10 text-center text-white [backface-visibility:hidden] [transform:rotateY(180deg)] md:px-16"
+                          >
+                            <div className="mx-auto max-w-[28rem]">
+                              <h4 className="text-2xl font-semibold md:text-3xl">{t.writingFeaturesTitle}</h4>
+                              <p className="mt-6 text-base leading-relaxed text-white/70 md:text-lg">
+                                {t.writingFeaturesDesc}
+                              </p>
+                            </div>
+                          </button>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
