@@ -8,8 +8,11 @@ import gameSettingIcon from '../assets/icons/game-setting.png';
 import requestIcon from '../assets/icons/request.png';
 import heroImage from '../assets/hero/hero.png';
 import interactiveAdventuresImg from '../assets/writers/interactive.jpg';
+import interactiveAdventuresColorImg from '../assets/writers/interactive-adventures-color.jpg';
 import visualNovelsImg from '../assets/writers/novels.jpg';
+import visualNovelsColorImg from '../assets/writers/visual-novels-color.jpg';
 import gameBooksImg from '../assets/writers/game.jpg';
+import gameBooksColorImg from '../assets/writers/game-books-color.jpg';
 import writeStoriesImg from '../assets/imagination/write-stories.png';
 import buildWorldsImg from '../assets/imagination/build-worlds.png';
 import publishImg from '../assets/imagination/publish.png';
@@ -373,7 +376,7 @@ export function LibellLanding() {
         >
           <div className="mx-auto flex h-20 min-h-[4rem] w-full max-w-6xl items-center justify-between px-4 py-3 sm:h-24 sm:px-6 lg:px-12">
             <div className="flex items-center gap-2 sm:gap-3">
-              <div className="flex size-12 items-center justify-center rounded-2xl bg-transparent ring-1 ring-white/40 sm:size-16 animate-soft-pulse">
+              <div className="flex size-12 items-center justify-center rounded-2xl bg-transparent sm:size-16">
                 <img
                   alt="Libell.us logomark"
                   className="size-10 object-contain sm:size-12"
@@ -519,23 +522,39 @@ export function LibellLanding() {
                 label: language === 'pt-BR' ? 'Aventuras interativas' : 'Interactive Adventures',
                 id: '1:229',
                 img: interactiveAdventuresImg,
+                colorImg: interactiveAdventuresColorImg,
               },
-              { label: language === 'pt-BR' ? 'Novelas visuais' : 'Visual Novels', id: '1:233', img: visualNovelsImg },
-              { label: language === 'pt-BR' ? 'Livros-jogo' : 'Game Books', id: '1:237', img: gameBooksImg },
-            ].map(({ label, id, img }, index) => {
+              {
+                label: language === 'pt-BR' ? 'Novelas visuais' : 'Visual Novels',
+                id: '1:233',
+                img: visualNovelsImg,
+                colorImg: visualNovelsColorImg,
+              },
+              {
+                label: language === 'pt-BR' ? 'Livros-jogo' : 'Game Books',
+                id: '1:237',
+                img: gameBooksImg,
+                colorImg: gameBooksColorImg,
+              },
+            ].map(({ label, id, img, colorImg }, index) => {
               const lastIndex = 2;
               const delayMs = writersScrollDown ? 150 + index * 150 : 150 + (lastIndex - index) * 150;
               return (
                 <li
                   key={id}
-                  className={`flex flex-col items-center [animation-fill-mode:backwards] ${writersSectionVisible ? 'animate-fade-in-up md:animate-fade-in-up-slow' : 'opacity-0'}`}
+                  className={`group flex flex-col items-center [animation-fill-mode:backwards] ${writersSectionVisible ? 'animate-fade-in-up md:animate-fade-in-up-slow' : 'opacity-0'}`}
                   style={{ animationDelay: writersSectionVisible ? `${delayMs}ms` : undefined }}
                 >
-                  <div className="flex size-[260px] items-center justify-center overflow-hidden rounded-2xl bg-white/10 p-3 md:size-[280px] lg:size-[300px]">
+                  <div className="relative flex size-[260px] items-center justify-center overflow-hidden rounded-2xl bg-white/10 p-3 md:size-[280px] lg:size-[300px]">
                     <img
-                      alt=""
-                      className="h-full w-full object-contain"
+                      alt={label}
+                      className="h-full w-full object-contain transition-opacity duration-300 group-hover:opacity-0"
                       src={img}
+                    />
+                    <img
+                      alt={label}
+                      className="pointer-events-none absolute inset-0 h-full w-full object-contain p-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                      src={colorImg}
                     />
                   </div>
                   <p className="mt-2 text-center text-base text-white">
@@ -602,10 +621,10 @@ export function LibellLanding() {
             ref={libellChangesRef}
             className={`flex flex-col items-center justify-center gap-6 ${libellSectionVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
           >
-            <div className="flex items-center justify-center transition-all duration-200 hover:scale-[1.05]">
+            <div className="flex size-20 items-center justify-center rounded-2xl bg-white p-3 md:size-24">
               <img
                 alt="Libell.us"
-                className="size-14 object-contain [filter:brightness(0)_invert(1)] md:size-16"
+                className="h-full w-full object-contain"
                 src={imgLogo}
               />
             </div>
@@ -627,7 +646,7 @@ export function LibellLanding() {
               {t.builtForStoryCreators}
             </h2>
             <div className="mx-auto mt-4 h-px w-16 bg-black/50 rounded-full" aria-hidden />
-            <div className="mx-auto mt-10 grid max-w-6xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mx-auto mt-10 grid max-w-6xl grid-cols-1 justify-items-center gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {[
                 {
                   title: language === 'pt-BR' ? 'Escritores' : 'Writers',
@@ -644,25 +663,23 @@ export function LibellLanding() {
                   icon: 'fa-gamepad',
                 },
                 {
-                  title: language === 'pt-BR' ? 'Educadores' : 'Educators',
-                  description: language === 'pt-BR'
-                    ? 'Crie experiências de aprendizagem interativas e simulações educacionais.'
-                    : 'Build interactive learning experiences and educational simulations.',
-                  icon: 'fa-graduation-cap',
-                },
-                {
                   title: language === 'pt-BR' ? 'Criadores de conteúdo' : 'Content Creators',
                   description: language === 'pt-BR'
                     ? 'Publique experiências de narrativa visualmente ricas.'
                     : 'Publish visually rich storytelling experiences.',
                   icon: 'fa-video',
                 },
-              ].map(({ title, description, icon }) => (
+              ].map(({ title, description, icon }, index) => (
                 <div
                   key={title}
-                  className="group relative flex flex-col items-center rounded-2xl border border-black/10 bg-white p-6 text-center backdrop-blur-sm transition-all duration-300 hover:border-black/20 hover:shadow-[0_0_40px_rgba(0,0,0,0.08),0_0_24px_rgba(0,192,230,0.15)]"
+                  className={`group relative flex w-full max-w-sm flex-col items-center rounded-2xl border border-black/10 bg-white p-6 text-center backdrop-blur-sm transition-all duration-300 hover:border-black/20 hover:shadow-[0_0_40px_rgba(0,0,0,0.08),0_0_24px_rgba(0,192,230,0.15)] ${
+                    index === 2 ? 'sm:col-span-2 sm:w-[calc(50%-1rem)] sm:justify-self-center lg:col-span-1 lg:w-full' : ''
+                  }`}
                 >
-                  <i className={`fa-solid ${icon} text-[#00C0E6] mb-4 text-2xl md:text-3xl drop-shadow-sm`} aria-hidden />
+                  <i
+                    className={`fa-solid ${icon} mb-4 text-2xl text-transparent [-webkit-text-stroke:1.5px_#00C0E6] md:text-3xl`}
+                    aria-hidden
+                  />
                   <h3 className="min-h-[2.75rem] text-lg font-medium text-black md:min-h-14 md:text-xl">{title}</h3>
                   <p className="mt-2 text-base leading-relaxed text-black/80 md:text-lg">{description}</p>
                 </div>
