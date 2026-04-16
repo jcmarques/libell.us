@@ -20,7 +20,6 @@ const FEATURES_UI: Record<
     login: string;
     closeMenu: string;
     openMenu: string;
-    footerDocs: string;
     footerContact: string;
     footerPrivacy: string;
     footerTerms: string;
@@ -54,11 +53,10 @@ const FEATURES_UI: Record<
     login: 'Login',
     closeMenu: 'Close menu',
     openMenu: 'Open menu',
-    footerDocs: 'Docs',
-    footerContact: 'Contact',
+    footerContact: 'Contact Us',
     footerPrivacy: 'Privacy',
     footerTerms: 'Terms',
-    footerCopyright: '©2025 Libell.us Publishing LLC. All Rights Reserved.',
+    footerCopyright: '©2025 Libell.us Publishing LLC · All Rights Reserved.',
     heroLine1: 'Empower your creativity with these features',
     heroIntro:
       'Visual tools, branching structure, characters and worlds, voice, and atmosphere—everything you need to author a story and deliver it on the web and on iOS and Android.',
@@ -112,11 +110,10 @@ const FEATURES_UI: Record<
     login: 'Entrar',
     closeMenu: 'Fechar menu',
     openMenu: 'Abrir menu',
-    footerDocs: 'Documentação',
-    footerContact: 'Contato',
+    footerContact: 'Fale conosco',
     footerPrivacy: 'Privacidade',
     footerTerms: 'Termos',
-    footerCopyright: '©2025 Libell.us Publishing LLC. All Rights Reserved.',
+    footerCopyright: '©2025 Libell.us Publishing LLC · All Rights Reserved.',
     heroLine1: 'Potencialize sua criatividade com estes recursos',
     heroIntro:
       'Ferramentas visuais, estrutura ramificada, personagens e mundos, voz e atmosfera—tudo para criar e publicar sua história na web e em apps para iOS e Android.',
@@ -184,7 +181,7 @@ function FeatureCard({
   imageAlt: string;
 }) {
   return (
-    <article className="flex flex-col rounded-3xl border border-white/10 bg-[#12141a] p-6 shadow-lg md:p-8 lg:py-10 lg:px-8 xl:px-12 2xl:px-14">
+    <article className="flex flex-col rounded-3xl border border-features-card-border/40 bg-features-card p-6 shadow-lg shadow-black/30 md:p-8 lg:py-10 lg:px-8 xl:px-12 2xl:px-14">
       <h2 className="mb-4 text-center text-lg font-semibold leading-snug text-white md:text-xl">{title}</h2>
       <div className="flex flex-col items-stretch gap-5">
         <div className="flex w-full justify-center">
@@ -194,10 +191,10 @@ function FeatureCard({
             className="max-h-[300px] w-full max-w-xl rounded-2xl object-contain object-center sm:max-h-[340px] lg:max-h-[400px]"
           />
         </div>
-        <p className="mx-auto max-w-md text-center text-sm font-medium leading-snug text-white/85 md:text-[15px]">
+        <p className="mx-auto max-w-md text-center text-sm font-medium leading-snug text-features-muted md:text-[15px]">
           {lead}
         </p>
-        <ul className="mx-auto max-w-md list-disc space-y-1.5 pl-5 text-left text-xs leading-relaxed text-white/70 marker:text-white/40 md:text-sm">
+        <ul className="mx-auto max-w-md list-disc space-y-1.5 pl-5 text-left text-xs leading-relaxed text-features-muted marker:text-features-accent-dim/50 md:text-sm">
           {bullets.map((item) => (
             <li key={item}>{item}</li>
           ))}
@@ -234,7 +231,7 @@ export function FeaturesPage() {
   const closeMobileMenu = () => setMobileMenuOpen(false);
 
   const languageSelectClassName =
-    'cursor-pointer rounded-lg border border-black/25 bg-transparent px-2 py-1 text-lg leading-none text-black outline-none transition-colors hover:bg-black/5 sm:text-xl lg:text-2xl';
+    'cursor-pointer rounded-lg border border-white/25 bg-white/5 px-2 py-1 text-lg leading-none text-white outline-none transition-colors hover:bg-white/10 sm:text-xl lg:text-2xl';
 
   const languageSelect = (id: string, wrapperClassName?: string) => (
     <div className={wrapperClassName}>
@@ -255,30 +252,34 @@ export function FeaturesPage() {
   );
 
   return (
-    <div className="min-h-screen bg-black font-sans text-white">
+    <div className="min-h-screen bg-features-bar font-sans text-white">
       <div className="w-full max-w-[2560px] mx-auto">
-        <header className="relative z-20 border-b border-[#00C0E6]/30 bg-[#00C0E6]">
+        <header className="relative z-20 border-b border-features-bar-border bg-features-bar">
           <div className="mx-auto flex h-20 min-h-[4rem] w-full max-w-6xl items-center justify-between px-4 py-3 sm:h-24 sm:px-6 md:px-12">
             <Link to="/" className="flex items-center gap-2 sm:gap-3" onClick={closeMobileMenu}>
               <div className="flex size-12 items-center justify-center rounded-2xl bg-transparent sm:size-16">
-                <img alt="Libell.us logomark" className="size-10 object-contain sm:size-12" src={imgLogo} />
+                <img
+                  alt="Libell.us logomark"
+                  className="size-10 object-contain brightness-0 invert sm:size-12"
+                  src={imgLogo}
+                />
               </div>
-              <span className="font-sans text-lg font-semibold text-black sm:text-xl lg:text-2xl">Libell.us</span>
+              <span className="font-sans text-lg font-semibold text-white sm:text-xl lg:text-2xl">Libell.us</span>
             </Link>
 
             <nav className="hidden items-center gap-3 sm:flex sm:gap-4 lg:gap-6">
-              <span className="text-sm font-medium text-black sm:text-base lg:text-lg" aria-current="page">
+              <span className="text-sm font-medium text-features-accent sm:text-base lg:text-lg" aria-current="page">
                 {t.features}
               </span>
-              <a href={homeHash('pricing')} className="text-sm text-black hover:text-black/80 sm:text-base lg:text-lg">
+              <a href={homeHash('pricing')} className="text-sm text-white/90 hover:text-white sm:text-base lg:text-lg">
                 {t.pricing}
               </a>
-              <a href={homeHash('about')} className="text-sm text-black hover:text-black/80 sm:text-base lg:text-lg">
+              <a href={homeHash('about')} className="text-sm text-white/90 hover:text-white sm:text-base lg:text-lg">
                 {t.about}
               </a>
               <button
                 type="button"
-                className="whitespace-nowrap rounded-2xl border-2 border-white bg-white px-4 py-2.5 text-sm font-medium text-black hover:bg-white sm:px-5 sm:py-2.5 sm:text-base lg:px-6 lg:py-3 lg:text-base"
+                className="whitespace-nowrap rounded-2xl border-2 border-features-accent/80 bg-features-accent px-4 py-2.5 text-sm font-medium text-features-bar hover:bg-features-accent-dim sm:px-5 sm:py-2.5 sm:text-base lg:px-6 lg:py-3 lg:text-base"
               >
                 {t.login}
               </button>
@@ -290,7 +291,7 @@ export function FeaturesPage() {
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen((open) => !open)}
-                className="flex size-10 flex-shrink-0 items-center justify-center rounded-lg text-black hover:bg-white/20"
+                className="flex size-10 flex-shrink-0 items-center justify-center rounded-lg text-white hover:bg-white/10"
                 aria-expanded={mobileMenuOpen}
                 aria-label={mobileMenuOpen ? t.closeMenu : t.openMenu}
               >
@@ -310,28 +311,28 @@ export function FeaturesPage() {
 
         {mobileMenuOpen && (
           <div
-            className="fixed left-0 right-0 top-20 z-50 border-b border-[#00C0E6]/30 bg-[#00C0E6] px-4 py-6 shadow-lg sm:hidden"
+            className="fixed left-0 right-0 top-20 z-50 border-b border-features-bar-border bg-features-bar px-4 py-6 shadow-lg sm:hidden"
             style={{ minHeight: 'calc(100vh - 5rem)' }}
           >
             <nav className="flex flex-col items-center gap-6 text-center">
-              <span className="w-full text-lg font-medium text-black">{t.features}</span>
+              <span className="w-full text-lg font-medium text-features-accent">{t.features}</span>
               <a
                 href={homeHash('pricing')}
-                className="w-full text-lg font-medium text-black hover:text-black/80"
+                className="w-full text-lg font-medium text-white hover:text-white/80"
                 onClick={closeMobileMenu}
               >
                 {t.pricing}
               </a>
               <a
                 href={homeHash('about')}
-                className="w-full text-lg font-medium text-black hover:text-black/80"
+                className="w-full text-lg font-medium text-white hover:text-white/80"
                 onClick={closeMobileMenu}
               >
                 {t.about}
               </a>
               <button
                 type="button"
-                className="w-full max-w-xs rounded-2xl border-2 border-white bg-white py-3 text-base font-medium text-black hover:bg-white"
+                className="w-full max-w-xs rounded-2xl border-2 border-features-accent/80 bg-features-accent py-3 text-base font-medium text-features-bar hover:bg-features-accent-dim"
                 onClick={closeMobileMenu}
               >
                 {t.login}
@@ -347,7 +348,7 @@ export function FeaturesPage() {
               <h1 className="text-2xl font-semibold leading-tight text-white md:text-3xl lg:text-4xl lg:leading-[1.15]">
                 {t.heroLine1}
               </h1>
-              <p className="mx-auto mt-3 max-w-lg text-sm leading-relaxed text-neutral-6 md:mx-0 md:text-base">
+              <p className="mx-auto mt-3 max-w-lg text-sm leading-relaxed text-features-muted md:mx-0 md:text-base">
                 {t.heroIntro}
               </p>
             </div>
@@ -366,7 +367,7 @@ export function FeaturesPage() {
         {/* Feature rows */}
         <section
           id="features-grid"
-          className="scroll-mt-24 bg-[#0a0a0a] px-6 py-12 md:px-10 md:py-14 lg:px-16 lg:py-16 xl:px-28 2xl:px-36"
+          className="scroll-mt-24 bg-features-bar px-6 py-12 md:px-10 md:py-14 lg:px-16 lg:py-16 xl:px-28 2xl:px-36"
         >
           <div className="mx-auto flex max-w-6xl flex-col gap-10 md:gap-12 lg:gap-14">
             <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-10 xl:gap-12">
@@ -422,33 +423,30 @@ export function FeaturesPage() {
           </div>
         </section>
 
-        <footer className="border-t border-[#00C0E6]/30 bg-[#00C0E6] px-6 py-8 md:px-12 md:py-10">
+        <footer className="border-t border-white/10 bg-black px-6 py-8 md:px-12 md:py-10">
           <div className="mx-auto flex max-w-4xl flex-col items-center gap-8 text-center">
             <Link to="/" className="flex items-center gap-2">
-              <img alt="" className="size-9 object-contain" src={imgLogo} />
-              <span className="text-xl font-bold text-black">Libell.us</span>
+              <img alt="" className="size-9 object-contain brightness-0 invert" src={imgLogo} />
+              <span className="text-xl font-bold text-white">Libell.us</span>
             </Link>
-            <nav className="flex flex-wrap justify-center gap-3 text-sm text-black md:gap-8 md:text-base">
-              <Link to="/features" className="transition-colors hover:text-black/80">
+            <nav className="flex flex-wrap justify-center gap-3 text-sm text-white/90 md:gap-8 md:text-base">
+              <Link to="/features" className="text-features-accent transition-colors hover:text-features-accent-dim">
                 {t.features}
               </Link>
-              <a href={homeHash('about')} className="transition-colors hover:text-black/80">
+              <a href={homeHash('about')} className="transition-colors hover:text-white">
                 {t.about}
               </a>
-              <a href="#docs" className="transition-colors hover:text-black/80">
-                {t.footerDocs}
-              </a>
-              <a href="#contact" className="transition-colors hover:text-black/80">
+              <a href={homeHash('contact')} className="transition-colors hover:text-white">
                 {t.footerContact}
               </a>
-              <a href="#privacy" className="transition-colors hover:text-black/80">
+              <a href={homeHash('privacy')} className="transition-colors hover:text-white">
                 {t.footerPrivacy}
               </a>
-              <a href="#terms" className="transition-colors hover:text-black/80">
+              <a href={homeHash('terms')} className="transition-colors hover:text-white">
                 {t.footerTerms}
               </a>
             </nav>
-            <p className="mx-auto max-w-xs font-sans text-xs font-normal leading-snug text-black sm:max-w-md md:text-sm">
+            <p className="mx-auto max-w-xs font-sans text-xs font-normal leading-snug text-features-muted sm:max-w-md md:text-sm">
               {t.footerCopyright}
             </p>
           </div>

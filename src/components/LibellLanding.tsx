@@ -157,11 +157,10 @@ const UI_TEXT: Record<Language, Record<string, string>> = {
     youtubeChannel: 'YouTube channel',
     ctaText1: 'Back the project and join the beta.',
     ctaText2: "Help shape what's next!",
-    footerDocs: 'Docs',
-    footerContact: 'Contact',
+    footerContact: 'Contact Us',
     footerPrivacy: 'Privacy',
     footerTerms: 'Terms',
-    footerCopyright: '©2025 Libell.us Publishing LLC. All Rights Reserved.',
+    footerCopyright: '©2025 Libell.us Publishing LLC · All Rights Reserved.',
   },
   'pt-BR': {
     features: 'Recursos',
@@ -216,11 +215,10 @@ const UI_TEXT: Record<Language, Record<string, string>> = {
     youtubeChannel: 'canal no YouTube',
     ctaText1: 'Apoie o projeto e entre no beta.',
     ctaText2: 'Ajude a construir o que vem a seguir!',
-    footerDocs: 'Documentação',
-    footerContact: 'Contato',
+    footerContact: 'Fale conosco',
     footerPrivacy: 'Privacidade',
     footerTerms: 'Termos',
-    footerCopyright: '©2025 Libell.us Publishing LLC. All Rights Reserved.',
+    footerCopyright: '©2025 Libell.us Publishing LLC · All Rights Reserved.',
   },
 };
 
@@ -237,9 +235,6 @@ export function LibellLanding() {
   const [libellSectionVisible, setLibellSectionVisible] = useState(false);
   const heroSectionRef = useRef<HTMLElement>(null);
   const [heroSectionVisible, setHeroSectionVisible] = useState(false);
-  const writersSectionRef = useRef<HTMLElement>(null);
-  const [writersSectionVisible, setWritersSectionVisible] = useState(false);
-  const [writersScrollDown, setWritersScrollDown] = useState(true);
   const imaginationSectionRef = useRef<HTMLElement>(null);
   const [imaginationSectionVisible, setImaginationSectionVisible] = useState(false);
   const [imaginationScrollDown, setImaginationScrollDown] = useState(true);
@@ -296,23 +291,6 @@ export function LibellLanding() {
   }, []);
 
   useEffect(() => {
-    const el = writersSectionRef.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          const { y, prevY } = scrollPosRef.current;
-          setWritersScrollDown(y >= prevY);
-        }
-        setWritersSectionVisible(entry.isIntersecting);
-      },
-      { threshold: 0.2 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
-  useEffect(() => {
     const handleScroll = () => {
       scrollPosRef.current.prevY = scrollPosRef.current.y;
       scrollPosRef.current.y = window.scrollY ?? window.pageYOffset;
@@ -361,7 +339,7 @@ export function LibellLanding() {
   }, [mobileMenuOpen]);
 
   const languageSelectClassName =
-    'cursor-pointer rounded-lg border border-black/25 bg-transparent px-2 py-1 text-lg leading-none text-black outline-none transition-colors hover:bg-black/5 sm:text-xl lg:text-2xl';
+    'cursor-pointer rounded-lg border border-white/25 bg-white/5 px-2 py-1 text-lg leading-none text-white outline-none transition-colors hover:bg-white/10 sm:text-xl lg:text-2xl';
 
   const languageSelect = (id: string, wrapperClassName?: string) => (
     <div className={wrapperClassName}>
@@ -382,11 +360,11 @@ export function LibellLanding() {
   );
 
   return (
-    <div className="flex w-full flex-col items-center bg-white font-sans" data-node-id="1:41">
+    <div className="flex w-full flex-col items-center bg-features-bar font-sans" data-node-id="1:41">
       <div className="w-full max-w-[2560px]">
         {/* 0. Navigation */}
         <header
-          className="relative border-b border-[#00C0E6]/30 bg-[#00C0E6]"
+          className="relative border-b border-features-bar-border bg-features-bar"
           data-node-id="1:258"
         >
           <div className="mx-auto flex h-20 min-h-[4rem] w-full max-w-6xl items-center justify-between px-4 py-3 sm:h-24 sm:px-6 md:px-12">
@@ -394,27 +372,27 @@ export function LibellLanding() {
               <div className="flex size-12 items-center justify-center rounded-2xl bg-transparent sm:size-16">
                 <img
                   alt="Libell.us logomark"
-                  className="size-10 object-contain sm:size-12"
+                  className="size-10 object-contain brightness-0 invert sm:size-12"
                   src={imgLogo}
                 />
               </div>
-              <span className="font-sans text-lg font-semibold text-black sm:text-xl lg:text-2xl">Libell.us</span>
+              <span className="font-sans text-lg font-semibold text-white sm:text-xl lg:text-2xl">Libell.us</span>
             </div>
 
             {/* Desktop nav */}
             <nav className="hidden items-center gap-3 sm:flex sm:gap-4 lg:gap-6">
-              <Link to="/features" className="text-sm text-black hover:text-black/80 sm:text-base lg:text-lg">
+              <Link to="/features" className="text-sm text-white/90 hover:text-white sm:text-base lg:text-lg">
                 {t.features}
               </Link>
-              <a href="#pricing" className="text-sm text-black hover:text-black/80 sm:text-base lg:text-lg">
+              <a href="#pricing" className="text-sm text-white/90 hover:text-white sm:text-base lg:text-lg">
                 {t.pricing}
               </a>
-              <a href="#about" className="text-sm text-black hover:text-black/80 sm:text-base lg:text-lg">
+              <a href="#about" className="text-sm text-white/90 hover:text-white sm:text-base lg:text-lg">
                 {t.about}
               </a>
               <button
                 type="button"
-                className="whitespace-nowrap rounded-2xl border-2 border-white bg-white px-4 py-2.5 text-sm font-medium text-black hover:bg-white sm:px-5 sm:py-2.5 sm:text-base lg:px-6 lg:py-3 lg:text-base"
+                className="whitespace-nowrap rounded-2xl border-2 border-features-accent/80 bg-features-accent px-4 py-2.5 text-sm font-medium text-features-bar hover:bg-features-accent-dim sm:px-5 sm:py-2.5 sm:text-base lg:px-6 lg:py-3 lg:text-base"
               >
                 {t.login}
               </button>
@@ -427,7 +405,7 @@ export function LibellLanding() {
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen((open) => !open)}
-                className="flex size-10 flex-shrink-0 items-center justify-center rounded-lg text-black hover:bg-white/20"
+                className="flex size-10 flex-shrink-0 items-center justify-center rounded-lg text-white hover:bg-white/10"
                 aria-expanded={mobileMenuOpen}
                 aria-label={mobileMenuOpen ? t.closeMenu : t.openMenu}
               >
@@ -448,34 +426,34 @@ export function LibellLanding() {
         {/* Mobile menu panel */}
         {mobileMenuOpen && (
           <div
-            className="fixed left-0 right-0 top-20 z-50 border-b border-[#00C0E6]/30 bg-[#00C0E6] px-4 py-6 shadow-lg sm:hidden"
+            className="fixed left-0 right-0 top-20 z-50 border-b border-features-bar-border bg-features-bar px-4 py-6 shadow-lg sm:hidden"
             style={{ minHeight: 'calc(100vh - 5rem)' }}
           >
             <nav className="flex flex-col items-center gap-6 text-center">
               <Link
                 to="/features"
-                className="w-full text-lg font-medium text-black hover:text-black/80"
+                className="w-full text-lg font-medium text-white hover:text-white/80"
                 onClick={closeMobileMenu}
               >
                 {t.features}
               </Link>
               <a
                 href="#pricing"
-                className="w-full text-lg font-medium text-black hover:text-black/80"
+                className="w-full text-lg font-medium text-white hover:text-white/80"
                 onClick={closeMobileMenu}
               >
                 {t.pricing}
               </a>
               <a
                 href="#about"
-                className="w-full text-lg font-medium text-black hover:text-black/80"
+                className="w-full text-lg font-medium text-white hover:text-white/80"
                 onClick={closeMobileMenu}
               >
                 {t.about}
               </a>
               <button
                 type="button"
-                className="w-full max-w-xs rounded-2xl border-2 border-white bg-white py-3 text-base font-medium text-black hover:bg-white"
+                className="w-full max-w-xs rounded-2xl border-2 border-features-accent/80 bg-features-accent py-3 text-base font-medium text-features-bar hover:bg-features-accent-dim"
                 onClick={closeMobileMenu}
               >
                 {t.login}
@@ -487,10 +465,10 @@ export function LibellLanding() {
         {/* 1. Hero */}
         <section
           ref={heroSectionRef}
-          className="relative bg-black py-16 md:py-24 lg:py-32"
+          className="relative bg-black px-4 py-16 sm:px-6 md:px-12 md:py-24 lg:py-32"
           data-node-id="1:243"
         >
-          <div className="mx-auto flex w-full max-w-6xl flex-col items-center px-4 sm:px-6 md:flex-row md:items-center md:justify-between md:gap-12 md:px-12">
+          <div className="mx-auto flex w-full max-w-6xl flex-col items-center md:flex-row md:items-center md:justify-between md:gap-12">
             <div className="w-full max-w-2xl flex-1 text-center lg:max-w-3xl md:text-left">
               <p className="text-sm text-neutral-6 md:text-base">
                 {t.heroEyebrow}
@@ -534,8 +512,7 @@ export function LibellLanding() {
 
         {/* 2. Writers want to create / Problem Section */}
         <section
-          ref={writersSectionRef}
-          className="overflow-x-hidden bg-[#0f0f0f] px-4 pb-10 pt-0 sm:px-6 md:px-12 md:pb-12 md:pt-0"
+          className="overflow-x-hidden bg-features-bar px-4 pb-10 pt-0 sm:px-6 md:px-12 md:pb-12 md:pt-0"
           data-node-id="1:208"
         >
           <div className="mb-14 h-px w-full shadow-[0_1px_0_0_rgba(255,255,255,0.15),0_2px_8px_-2px_rgba(255,255,255,0.08)] md:mb-16" aria-hidden />
@@ -565,17 +542,13 @@ export function LibellLanding() {
                 img: gameBooksImg,
                 colorImg: gameBooksColorImg,
               },
-            ].map(({ label, id, img, colorImg }, index) => {
-              const lastIndex = 2;
-              const delayMs = writersScrollDown ? 150 + index * 150 : 150 + (lastIndex - index) * 150;
-              return (
+            ].map(({ label, id, img, colorImg }, index) => (
                 <li
                   key={id}
-                  className={`group flex w-full flex-col items-center [animation-fill-mode:backwards] sm:items-stretch ${index === 2
-                      ? 'max-w-[280px] sm:col-span-2 sm:max-w-[calc((100%-1.25rem)/2)] sm:justify-self-center lg:col-span-1 lg:max-w-none'
-                      : 'max-w-[280px] sm:max-w-none'
-                    } ${writersSectionVisible ? 'animate-fade-in-up md:animate-fade-in-up-slow' : 'opacity-0'}`}
-                  style={{ animationDelay: writersSectionVisible ? `${delayMs}ms` : undefined }}
+                  className={`group flex w-full flex-col items-center sm:items-stretch ${index === 2
+                    ? 'max-w-[280px] sm:col-span-2 sm:max-w-[calc((100%-1.25rem)/2)] sm:justify-self-center lg:col-span-1 lg:max-w-none'
+                    : 'max-w-[280px] sm:max-w-none'
+                    }`}
                 >
                   <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-2xl bg-white/10 p-2 sm:p-2.5 md:p-3">
                     <img
@@ -593,8 +566,7 @@ export function LibellLanding() {
                     {label}
                   </p>
                 </li>
-              );
-            })}
+              ))}
           </ul>
 
           <div className="mx-auto mt-12 flex w-full max-w-3xl flex-col items-center justify-center gap-4 text-center">
@@ -605,7 +577,7 @@ export function LibellLanding() {
               <div className="flex w-36 flex-shrink-0 flex-col items-center">
                 <img
                   alt=""
-                  className="size-12 object-contain opacity-90 [filter:brightness(0)_saturate(100%)_invert(75%)_sepia(57%)_saturate(2500%)_hue-rotate(166deg)]"
+                  className="size-12 object-contain opacity-95 [filter:brightness(0)_saturate(100%)_invert(83%)_sepia(31%)_saturate(1167%)_hue-rotate(116deg)_brightness(97%)_contrast(92%)]"
                   src={codeIcon}
                 />
                 <p className="mt-2 text-center text-base text-white/90">{t.programming}</p>
@@ -617,7 +589,7 @@ export function LibellLanding() {
               <div className="flex w-36 flex-shrink-0 flex-col items-center">
                 <img
                   alt=""
-                  className="size-12 object-contain opacity-90 [filter:brightness(0)_saturate(100%)_invert(75%)_sepia(57%)_saturate(2500%)_hue-rotate(166deg)]"
+                  className="size-12 object-contain opacity-95 [filter:brightness(0)_saturate(100%)_invert(83%)_sepia(31%)_saturate(1167%)_hue-rotate(116deg)_brightness(97%)_contrast(92%)]"
                   src={gameSettingIcon}
                 />
                 <p className="mt-2 text-center text-base text-white/90">{t.gameEngines}</p>
@@ -629,7 +601,7 @@ export function LibellLanding() {
               <div className="flex w-36 flex-shrink-0 flex-col items-center">
                 <img
                   alt=""
-                  className="size-12 object-contain opacity-90 [filter:brightness(0)_saturate(100%)_invert(75%)_sepia(57%)_saturate(2500%)_hue-rotate(166deg)]"
+                  className="size-12 object-contain opacity-95 [filter:brightness(0)_saturate(100%)_invert(83%)_sepia(31%)_saturate(1167%)_hue-rotate(116deg)_brightness(97%)_contrast(92%)]"
                   src={requestIcon}
                 />
                 <p className="mt-2 text-center text-base text-white/90">
@@ -645,7 +617,7 @@ export function LibellLanding() {
 
         {/* 3.1 Transition - Libell.us changes that */}
         <section
-          className="flex flex-col items-center justify-center bg-[#0f172a] px-6 pt-0 pb-14 md:pb-16"
+          className="flex flex-col items-center justify-center bg-black px-6 pt-0 pb-14 md:pb-16"
           data-node-id="1:177"
         >
           <div className="mb-14 h-px w-full shadow-[0_1px_0_0_rgba(255,255,255,0.15),0_2px_8px_-2px_rgba(255,255,255,0.08)] md:mb-16" aria-hidden />
@@ -669,15 +641,14 @@ export function LibellLanding() {
         {/* Who it's for - Built for Story Creators */}
         <section
           id="about"
-          className="relative overflow-hidden bg-[#00C0E6] px-6 py-16 md:px-12 md:py-24"
+          className="relative overflow-hidden bg-features-ink px-6 py-16 md:px-12 md:py-24"
           data-node-id="who-its-for"
         >
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(0,192,230,0.2),transparent)] pointer-events-none" aria-hidden />
           <div className="relative">
-            <h2 className="text-center text-xl font-medium tracking-wide text-black md:text-2xl lg:text-3xl">
+            <h2 className="text-center text-xl font-medium tracking-wide text-white md:text-2xl lg:text-3xl">
               {t.builtForStoryCreators}
             </h2>
-            <div className="mx-auto mt-4 h-px w-16 bg-black/50 rounded-full" aria-hidden />
+            <div className="mx-auto mt-4 h-px w-16 rounded-full bg-white/25" aria-hidden />
             <div className="mx-auto mt-10 grid max-w-6xl grid-cols-1 justify-items-center gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {[
                 {
@@ -704,11 +675,11 @@ export function LibellLanding() {
               ].map(({ title, description, icon }, index) => (
                 <div
                   key={title}
-                  className={`group relative flex w-full max-w-sm flex-col items-center rounded-2xl border border-black/10 bg-white p-6 text-center backdrop-blur-sm transition-all duration-300 hover:border-black/20 hover:shadow-[0_0_40px_rgba(0,0,0,0.08),0_0_24px_rgba(0,192,230,0.15)] ${index === 2 ? 'sm:col-span-2 sm:w-[calc(50%-1rem)] sm:justify-self-center lg:col-span-1 lg:w-full' : ''
+                  className={`group relative flex w-full max-w-sm flex-col items-center rounded-2xl border border-black/10 bg-neutral-3 p-6 text-center backdrop-blur-sm transition-all duration-300 hover:border-black/20 hover:shadow-[0_0_40px_rgba(0,0,0,0.08),0_0_24px_rgba(45,212,191,0.2)] ${index === 2 ? 'sm:col-span-2 sm:w-[calc(50%-1rem)] sm:justify-self-center lg:col-span-1 lg:w-full' : ''
                     }`}
                 >
                   <i
-                    className={`fa-solid ${icon} mb-4 text-2xl text-transparent [-webkit-text-stroke:2.25px_#00C0E6] md:text-3xl`}
+                    className={`fa-solid ${icon} mb-4 text-2xl text-transparent [-webkit-text-stroke:2.25px_#525252] md:text-3xl`}
                     aria-hidden
                   />
                   <h3 className="min-h-[2.75rem] text-lg font-medium text-black md:min-h-14 md:text-xl">{title}</h3>
@@ -824,7 +795,7 @@ export function LibellLanding() {
         {/* 4. The Platform for Interactive Storytelling */}
         <section
           id="features"
-          className="relative overflow-hidden border-t border-b border-white/30 bg-[#0f0f0f] px-6 py-16 md:px-12 md:py-24"
+          className="relative overflow-hidden border-t border-b border-white/30 bg-features-bar px-6 py-16 md:px-12 md:py-24"
           data-node-id="1:71"
         >
           <h2 className="text-center text-2xl font-medium text-white md:text-3xl lg:text-4xl">
@@ -972,7 +943,7 @@ export function LibellLanding() {
 
         {/* Community / Future */}
         <section
-          className="relative overflow-hidden bg-[#0f0f0f] px-6 pb-px pt-0 md:px-12 md:pb-px md:pt-0"
+          className="relative overflow-hidden bg-features-bar px-6 pb-px pt-0 md:px-12 md:pb-px md:pt-0"
           data-node-id="community-future"
         >
           <div className="mb-16 h-px w-full shadow-[0_1px_0_0_rgba(255,255,255,0.15),0_2px_8px_-2px_rgba(255,255,255,0.08)] md:mb-24" aria-hidden />
@@ -1011,7 +982,7 @@ export function LibellLanding() {
 
         {/* Back the Kickstarter CTA */}
         <section
-          className="bg-[#0f172a] px-6 py-8 md:px-12 md:py-10 lg:px-24 lg:py-12"
+          className="bg-features-ink px-6 py-8 md:px-12 md:py-10 lg:px-24 lg:py-12"
           data-node-id="join-beta"
         >
           <div className="mx-auto max-w-4xl text-center">
@@ -1023,7 +994,7 @@ export function LibellLanding() {
             <div className="mt-6 flex justify-center">
               <a
                 href="#kickstarter"
-                className="inline-block rounded-2xl border-2 border-white bg-white px-6 py-3 text-base font-medium text-black transition-all duration-200 hover:scale-[1.03] hover:bg-white hover:shadow-lg md:text-lg"
+                className="inline-block rounded-2xl border-2 border-white bg-white px-4 py-2.5 text-sm font-medium text-black transition-all duration-200 hover:scale-[1.03] hover:bg-white hover:shadow-lg sm:px-6 sm:py-3 sm:text-base md:text-lg"
               >
                 {t.joinWaitlist}
               </a>
@@ -1033,25 +1004,26 @@ export function LibellLanding() {
 
         {/* Footer */}
         <footer
-          className="border-t border-[#00C0E6]/30 bg-[#00C0E6] px-6 py-8 md:px-12 md:py-10"
+          className="border-t border-white/10 bg-black px-6 py-8 md:px-12 md:py-10"
           data-node-id="1:43"
         >
           <div className="mx-auto flex max-w-4xl flex-col items-center gap-8 text-center">
             <div className="flex items-center gap-2">
-              <img alt="" className="size-9 object-contain" src={imgLogo} />
-              <span className="text-xl font-bold text-black">Libell.us</span>
+              <img alt="" className="size-9 object-contain brightness-0 invert" src={imgLogo} />
+              <span className="text-xl font-bold text-white">Libell.us</span>
             </div>
-            <nav className="flex flex-wrap justify-center gap-3 text-sm text-black md:gap-8 md:text-base">
-              <Link to="/features" className="transition-colors hover:text-black/80">
+            <nav className="flex flex-wrap justify-center gap-3 text-sm text-white/90 md:gap-8 md:text-base">
+              <Link to="/features" className="text-features-accent transition-colors hover:text-features-accent-dim">
                 {t.features}
               </Link>
-              <a href="#about" className="transition-colors hover:text-black/80">{t.about}</a>
-              <a href="#docs" className="transition-colors hover:text-black/80">{t.footerDocs}</a>
-              <a href="#contact" className="transition-colors hover:text-black/80">{t.footerContact}</a>
-              <a href="#privacy" className="transition-colors hover:text-black/80">{t.footerPrivacy}</a>
-              <a href="#terms" className="transition-colors hover:text-black/80">{t.footerTerms}</a>
+              <a href="#about" className="transition-colors hover:text-white">{t.about}</a>
+              <a href="#contact" className="transition-colors hover:text-white">{t.footerContact}</a>
+              <a href="#privacy" className="transition-colors hover:text-white">{t.footerPrivacy}</a>
+              <a href="#terms" className="transition-colors hover:text-white">{t.footerTerms}</a>
             </nav>
-            <p className="font-sans text-sm font-normal text-black">{t.footerCopyright}</p>
+            <p className="mx-auto max-w-xs font-sans text-xs font-normal leading-snug text-features-muted sm:max-w-md md:text-sm">
+              {t.footerCopyright}
+            </p>
           </div>
         </footer>
       </div>
