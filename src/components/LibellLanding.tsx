@@ -144,8 +144,6 @@ const UI_TEXT: Record<Language, Record<string, string>> = {
     platformSubtitle1: 'is a creative platform where creators',
     platformSubtitle2: 'can build interactive stories with:',
     platformFeaturesAria: 'Platform features',
-    seeHowWorks: 'See how Libell works',
-    backKickstarter: 'Back the Kickstarter',
     exploreStoriesTitle: 'Explore stories created with Libell.us',
     exploreStoriesSubtitle: "From fantasy adventures and children's books to sci-fi interactive stories.",
     previous: 'Previous',
@@ -202,8 +200,6 @@ const UI_TEXT: Record<Language, Record<string, string>> = {
     platformSubtitle1: 'é uma plataforma criativa onde criadores',
     platformSubtitle2: 'podem criar histórias interativas com:',
     platformFeaturesAria: 'Recursos da plataforma',
-    seeHowWorks: 'Veja como a Libell funciona',
-    backKickstarter: 'Apoie no Kickstarter',
     exploreStoriesTitle: 'Explore histórias criadas com a Libell.us',
     exploreStoriesSubtitle: 'De aventuras de fantasia e livros infantis a histórias interativas de ficção científica.',
     previous: 'Anterior',
@@ -845,20 +841,6 @@ export function LibellLanding() {
                 <p className="p-1.5 text-center text-xs text-white">{item.label[language]}</p>
               </div>
             ))}
-          </div>
-          <div className="mx-auto mt-10 flex flex-wrap justify-center gap-4">
-            <button
-              type="button"
-              className="rounded-2xl border border-white px-6 py-3 text-base font-medium text-white transition-all duration-200 hover:scale-[1.03] hover:bg-white/25 hover:shadow-md"
-            >
-              {t.seeHowWorks}
-            </button>
-            <button
-              type="button"
-              className="rounded-2xl border-2 border-white bg-white px-6 py-3 text-base font-medium text-black transition-all duration-200 hover:scale-[1.03] hover:bg-white hover:shadow-lg"
-            >
-              {t.backKickstarter}
-            </button>
           </div>
         </section>
 
