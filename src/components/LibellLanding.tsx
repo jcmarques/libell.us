@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   imgLogo,
   imgVuesaxBoldGallery,
@@ -117,7 +118,7 @@ const UI_TEXT: Record<Language, Record<string, string>> = {
     heroDesc2: 'or traditional books with',
     heroDesc3: 'visuals, sound and AI storytelling.',
     tryNow: 'Try It Now!',
-    joinWaitlist: 'Join the waitlist',
+    joinWaitlist: 'Join the Waitlist',
     heroNote: 'Your all-in-one platform. No code required.',
     writersTitle: 'Writers want to create:',
     writersSubtitle: 'Different formats of interactive storytelling.',
@@ -357,37 +358,25 @@ export function LibellLanding() {
     };
   }, [mobileMenuOpen]);
 
-  const navLinks = (
-    <>
-      <a href="#features" className="text-sm text-black hover:text-black/80 sm:text-base lg:text-lg" onClick={closeMobileMenu}>
-        {t.features}
-      </a>
-      <a href="#pricing" className="text-sm text-black hover:text-black/80 sm:text-base lg:text-lg" onClick={closeMobileMenu}>
-        {t.pricing}
-      </a>
-      <a href="#about" className="text-sm text-black hover:text-black/80 sm:text-base lg:text-lg" onClick={closeMobileMenu}>
-        {t.about}
-      </a>
-      <button
-        type="button"
-        className="whitespace-nowrap rounded-2xl border-2 border-white bg-white px-4 py-2.5 text-sm font-medium text-black hover:bg-white sm:px-5 sm:py-2.5 sm:text-base lg:px-6 lg:py-3 lg:text-base"
+  const languageSelectClassName =
+    'cursor-pointer rounded-lg border border-black/25 bg-transparent px-2 py-1 text-lg leading-none text-black outline-none transition-colors hover:bg-black/5 sm:text-xl lg:text-2xl';
+
+  const languageSelect = (id: string, wrapperClassName?: string) => (
+    <div className={wrapperClassName}>
+      <label className="sr-only" htmlFor={id}>
+        Language
+      </label>
+      <select
+        id={id}
+        value={language}
+        onChange={(event) => setLanguage(event.target.value as Language)}
+        className={languageSelectClassName}
+        aria-label="Language switcher"
       >
-        {t.login}
-      </button>
-      <div className="ml-1">
-        <label className="sr-only" htmlFor="language-select-desktop">Language</label>
-        <select
-          id="language-select-desktop"
-          value={language}
-          onChange={(event) => setLanguage(event.target.value as Language)}
-          className="rounded-lg border border-black/20 bg-transparent px-2 py-1 text-lg leading-none text-black outline-none transition-colors hover:bg-transparent sm:text-xl lg:text-2xl"
-          aria-label="Language switcher"
-        >
-          <option value="en-US">🇺🇸</option>
-          <option value="pt-BR">🇧🇷</option>
-        </select>
-      </div>
-    </>
+        <option value="en-US">🇺🇸</option>
+        <option value="pt-BR">🇧🇷</option>
+      </select>
+    </div>
   );
 
   return (
@@ -410,29 +399,47 @@ export function LibellLanding() {
               <span className="font-sans text-lg font-semibold text-black sm:text-xl lg:text-2xl">Libell.us</span>
             </div>
 
-            {/* Desktop nav - visible from sm and up, no hamburger on bigger screens */}
+            {/* Desktop nav */}
             <nav className="hidden items-center gap-3 sm:flex sm:gap-4 lg:gap-6">
-              {navLinks}
+              <Link to="/features" className="text-sm text-black hover:text-black/80 sm:text-base lg:text-lg">
+                {t.features}
+              </Link>
+              <a href="#pricing" className="text-sm text-black hover:text-black/80 sm:text-base lg:text-lg">
+                {t.pricing}
+              </a>
+              <a href="#about" className="text-sm text-black hover:text-black/80 sm:text-base lg:text-lg">
+                {t.about}
+              </a>
+              <button
+                type="button"
+                className="whitespace-nowrap rounded-2xl border-2 border-white bg-white px-4 py-2.5 text-sm font-medium text-black hover:bg-white sm:px-5 sm:py-2.5 sm:text-base lg:px-6 lg:py-3 lg:text-base"
+              >
+                {t.login}
+              </button>
+              {languageSelect('language-select-desktop', 'ml-1')}
             </nav>
 
-            {/* Mobile hamburger button - only on small screens */}
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen((open) => !open)}
-              className="flex size-10 flex-shrink-0 items-center justify-center rounded-lg text-black hover:bg-white/20 sm:hidden"
-              aria-expanded={mobileMenuOpen}
-              aria-label={mobileMenuOpen ? t.closeMenu : t.openMenu}
-            >
-              {mobileMenuOpen ? (
-                <svg className="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              ) : (
-                <svg className="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              )}
-            </button>
+            {/* Mobile: language in header + hamburger (language not in drawer) */}
+            <div className="flex items-center gap-2 sm:hidden">
+              {languageSelect('language-select-mobile-header')}
+              <button
+                type="button"
+                onClick={() => setMobileMenuOpen((open) => !open)}
+                className="flex size-10 flex-shrink-0 items-center justify-center rounded-lg text-black hover:bg-white/20"
+                aria-expanded={mobileMenuOpen}
+                aria-label={mobileMenuOpen ? t.closeMenu : t.openMenu}
+              >
+                {mobileMenuOpen ? (
+                  <svg className="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                ) : (
+                  <svg className="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                )}
+              </button>
+            </div>
           </div>
         </header>
 
@@ -442,39 +449,35 @@ export function LibellLanding() {
             className="fixed left-0 right-0 top-20 z-50 border-b border-[#00C0E6]/30 bg-[#00C0E6] px-4 py-6 shadow-lg sm:hidden"
             style={{ minHeight: 'calc(100vh - 5rem)' }}
           >
-            <nav className="flex flex-col gap-6">
-              <a href="#features" className="text-lg font-medium text-black hover:text-black/80" onClick={closeMobileMenu}>
+            <nav className="flex flex-col items-center gap-6 text-center">
+              <Link
+                to="/features"
+                className="w-full text-lg font-medium text-black hover:text-black/80"
+                onClick={closeMobileMenu}
+              >
                 {t.features}
-              </a>
-              <a href="#pricing" className="text-lg font-medium text-black hover:text-black/80" onClick={closeMobileMenu}>
+              </Link>
+              <a
+                href="#pricing"
+                className="w-full text-lg font-medium text-black hover:text-black/80"
+                onClick={closeMobileMenu}
+              >
                 {t.pricing}
               </a>
-              <a href="#about" className="text-lg font-medium text-black hover:text-black/80" onClick={closeMobileMenu}>
+              <a
+                href="#about"
+                className="w-full text-lg font-medium text-black hover:text-black/80"
+                onClick={closeMobileMenu}
+              >
                 {t.about}
               </a>
               <button
                 type="button"
-                className="w-full rounded-2xl border-2 border-white bg-white py-3 text-base font-medium text-black hover:bg-white"
+                className="w-full max-w-xs rounded-2xl border-2 border-white bg-white py-3 text-base font-medium text-black hover:bg-white"
                 onClick={closeMobileMenu}
               >
                 {t.login}
               </button>
-              <div className="flex items-center justify-center">
-                <label className="sr-only" htmlFor="language-select-mobile">Language</label>
-                <select
-                  id="language-select-mobile"
-                  value={language}
-                  onChange={(event) => {
-                    setLanguage(event.target.value as Language);
-                    closeMobileMenu();
-                  }}
-                  className="w-full max-w-xs rounded-lg border border-black/20 bg-white/90 px-3 py-2 text-base text-black outline-none transition-colors hover:bg-white"
-                  aria-label="Language switcher"
-                >
-                  <option value="en-US">🇺🇸</option>
-                  <option value="pt-BR">🇧🇷</option>
-                </select>
-              </div>
             </nav>
           </div>
         )}
@@ -530,7 +533,7 @@ export function LibellLanding() {
         {/* 2. Writers want to create / Problem Section */}
         <section
           ref={writersSectionRef}
-          className="bg-[#0f0f0f] px-6 pb-10 pt-0 md:px-12 md:pb-12 md:pt-0"
+          className="overflow-x-hidden bg-[#0f0f0f] px-4 pb-10 pt-0 sm:px-6 md:px-12 md:pb-12 md:pt-0"
           data-node-id="1:208"
         >
           <div className="mb-14 h-px w-full shadow-[0_1px_0_0_rgba(255,255,255,0.15),0_2px_8px_-2px_rgba(255,255,255,0.08)] md:mb-16" aria-hidden />
@@ -540,7 +543,7 @@ export function LibellLanding() {
           <p className="mx-auto mt-2 text-center text-base text-white/80 md:text-lg">
             {t.writersSubtitle}
           </p>
-          <ul className="mx-auto mt-8 flex max-w-4xl flex-col items-center gap-6 md:flex-row md:justify-center md:gap-14">
+          <ul className="mx-auto mt-8 grid w-full max-w-4xl grid-cols-1 place-items-center gap-5 sm:grid-cols-2 sm:place-items-stretch sm:gap-x-5 sm:gap-y-5 lg:grid-cols-3 lg:gap-6 xl:gap-7">
             {[
               {
                 label: language === 'pt-BR' ? 'Aventuras interativas' : 'Interactive Adventures',
@@ -566,10 +569,14 @@ export function LibellLanding() {
               return (
                 <li
                   key={id}
-                  className={`group flex flex-col items-center [animation-fill-mode:backwards] ${writersSectionVisible ? 'animate-fade-in-up md:animate-fade-in-up-slow' : 'opacity-0'}`}
+                  className={`group flex w-full flex-col items-center [animation-fill-mode:backwards] sm:items-stretch ${
+                    index === 2
+                      ? 'max-w-[280px] sm:col-span-2 sm:max-w-[calc((100%-1.25rem)/2)] sm:justify-self-center lg:col-span-1 lg:max-w-none'
+                      : 'max-w-[280px] sm:max-w-none'
+                  } ${writersSectionVisible ? 'animate-fade-in-up md:animate-fade-in-up-slow' : 'opacity-0'}`}
                   style={{ animationDelay: writersSectionVisible ? `${delayMs}ms` : undefined }}
                 >
-                  <div className="relative flex size-[260px] items-center justify-center overflow-hidden rounded-2xl bg-white/10 p-3 md:size-[280px] lg:size-[300px]">
+                  <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-2xl bg-white/10 p-2 sm:p-2.5 md:p-3">
                     <img
                       alt={label}
                       className="h-full w-full object-contain transition-opacity duration-300 group-hover:opacity-0"
@@ -581,7 +588,7 @@ export function LibellLanding() {
                       src={colorImg}
                     />
                   </div>
-                  <p className="mt-2 text-center text-base text-white">
+                  <p className="mt-1.5 max-w-full px-1 text-center text-sm text-white sm:mt-2 sm:text-base">
                     {label}
                   </p>
                 </li>
@@ -1017,9 +1024,9 @@ export function LibellLanding() {
             <div className="mt-6 flex justify-center">
               <a
                 href="#kickstarter"
-                className="inline-block rounded-2xl border-2 border-white bg-white px-6 py-3 text-base font-medium text-black transition-all duration-200 hover:scale-[1.03] hover:bg-white hover:shadow-lg md:text-lg animate-soft-pulse"
+                className="inline-block rounded-2xl border-2 border-white bg-white px-6 py-3 text-base font-medium text-black transition-all duration-200 hover:scale-[1.03] hover:bg-white hover:shadow-lg md:text-lg"
               >
-                {t.backKickstarter}
+                {t.joinWaitlist}
               </a>
             </div>
           </div>
@@ -1036,7 +1043,9 @@ export function LibellLanding() {
               <span className="text-xl font-bold text-black">Libell.us</span>
             </div>
             <nav className="flex flex-wrap justify-center gap-3 text-sm text-black md:gap-8 md:text-base">
-              <a href="#features" className="transition-colors hover:text-black/80">{t.features}</a>
+              <Link to="/features" className="transition-colors hover:text-black/80">
+                {t.features}
+              </Link>
               <a href="#about" className="transition-colors hover:text-black/80">{t.about}</a>
               <a href="#docs" className="transition-colors hover:text-black/80">{t.footerDocs}</a>
               <a href="#contact" className="transition-colors hover:text-black/80">{t.footerContact}</a>
