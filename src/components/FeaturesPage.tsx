@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { imgLogo } from '../assets/figma-assets';
 import heroFeature from '../assets/hero/hero.png';
-import booksGrid from '../assets/books/books-grid.png';
+import booksPng from '../assets/books/books.png';
 import mobileApps from '../assets/mobile/mobileApps.png';
 import writeStories from '../assets/imagination/write-stories.png';
 import buildWorlds from '../assets/imagination/build-worlds.png';
@@ -24,8 +24,15 @@ const FEATURES_UI: Record<
     footerContact: string;
     footerPrivacy: string;
     footerTerms: string;
-    heroTitle: string;
-    heroSubtitle: string;
+    footerCopyright: string;
+    heroEyebrow: string;
+    heroLine1: string;
+    heroDesc1: string;
+    heroDesc2: string;
+    heroDesc3: string;
+    heroNote: string;
+    tryNow: string;
+    joinWaitlist: string;
     authoringTitle: string;
     authoringBody: string;
     mobileTitle: string;
@@ -51,9 +58,15 @@ const FEATURES_UI: Record<
     footerContact: 'Contact',
     footerPrivacy: 'Privacy',
     footerTerms: 'Terms',
-    heroTitle: 'Empower your creativity',
-    heroSubtitle:
-      'With dozens of power tools, the only limit is your imagination.',
+    footerCopyright: '©2025 Libell.us Publishing LLC. All Rights Reserved.',
+    heroEyebrow: 'Interactive storytelling platform',
+    heroLine1: 'Empower your creativity',
+    heroDesc1: 'With dozens of power tools,',
+    heroDesc2: 'the only limit is',
+    heroDesc3: 'your imagination.',
+    heroNote: 'Your all-in-one platform. No code required.',
+    tryNow: 'Try It Now!',
+    joinWaitlist: 'Join the Waitlist',
     authoringTitle: 'Authoring Console',
     authoringBody:
       'We offer a feature rich authoring console to create your books with ease. From text and image generation tools, to ambiance and character personality settings, our console gives you the power to create visually rich and engaging stories.',
@@ -84,9 +97,15 @@ const FEATURES_UI: Record<
     footerContact: 'Contato',
     footerPrivacy: 'Privacidade',
     footerTerms: 'Termos',
-    heroTitle: 'Potencialize sua criatividade',
-    heroSubtitle:
-      'Com dezenas de ferramentas poderosas, o único limite é a sua imaginação.',
+    footerCopyright: '©2025 Libell.us Publishing LLC. All Rights Reserved.',
+    heroEyebrow: 'Plataforma de narrativa interativa',
+    heroLine1: 'Potencialize sua criatividade',
+    heroDesc1: 'Com dezenas de ferramentas poderosas,',
+    heroDesc2: 'o único limite é',
+    heroDesc3: 'a sua imaginação.',
+    heroNote: 'Sua plataforma completa. Sem código.',
+    tryNow: 'Experimente agora!',
+    joinWaitlist: 'Entrar na lista de espera',
     authoringTitle: 'Console de autoria',
     authoringBody:
       'Oferecemos um console de autoria completo para criar seus livros com facilidade. De geração de texto e imagens a ambientação e personalidade de personagens, você cria histórias visualmente ricas e envolventes.',
@@ -132,10 +151,10 @@ function FeatureCard({
           <img
             src={imageSrc}
             alt={imageAlt}
-            className="max-h-[280px] w-full max-w-lg rounded-2xl object-contain object-center sm:max-h-[300px] lg:max-h-[360px]"
+            className="max-h-[380px] w-full max-w-2xl rounded-2xl object-contain object-center sm:max-h-[440px] lg:max-h-[500px]"
           />
         </div>
-        <p className="my-0 mx-[25px] text-center text-sm leading-relaxed text-white/70 md:text-base">
+        <p className="my-0 mx-[25px] text-center text-sm leading-relaxed text-white/70 md:mx-[30px] md:text-base">
           {body}
         </p>
       </div>
@@ -150,11 +169,24 @@ export function FeaturesPage() {
     return saved === 'pt-BR' ? 'pt-BR' : 'en-US';
   });
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const heroSectionRef = useRef<HTMLElement>(null);
+  const [heroSectionVisible, setHeroSectionVisible] = useState(false);
   const t = FEATURES_UI[language];
 
   useEffect(() => {
     window.localStorage.setItem('libell-language', language);
   }, [language]);
+
+  useEffect(() => {
+    const el = heroSectionRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => setHeroSectionVisible(entry.isIntersecting),
+      { threshold: 0.2 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
 
   useEffect(() => {
     if (mobileMenuOpen) {
@@ -194,7 +226,7 @@ export function FeaturesPage() {
     <div className="min-h-screen bg-black font-sans text-white">
       <div className="w-full max-w-[2560px] mx-auto">
         <header className="relative z-20 border-b border-[#00C0E6]/30 bg-[#00C0E6]">
-          <div className="mx-auto flex h-20 min-h-[4rem] w-full max-w-6xl items-center justify-between px-4 py-3 sm:h-24 sm:px-6 lg:px-12">
+          <div className="mx-auto flex h-20 min-h-[4rem] w-full max-w-6xl items-center justify-between px-4 py-3 sm:h-24 sm:px-6 md:px-12">
             <Link to="/" className="flex items-center gap-2 sm:gap-3" onClick={closeMobileMenu}>
               <div className="flex size-12 items-center justify-center rounded-2xl bg-transparent sm:size-16">
                 <img alt="Libell.us logomark" className="size-10 object-contain sm:size-12" src={imgLogo} />
@@ -276,19 +308,52 @@ export function FeaturesPage() {
           </div>
         )}
 
-        {/* Hero */}
-        <section className="border-b border-white/5 bg-black px-6 py-16 md:px-10 md:py-20 lg:px-16 lg:py-24 xl:px-24">
-          <div className="mx-auto flex max-w-6xl flex-col items-center gap-12 lg:flex-row lg:items-center lg:justify-between lg:gap-16">
-            <div className="max-w-xl text-center lg:min-w-0 lg:flex-1 lg:text-left">
-              <h1 className="text-3xl font-semibold leading-tight text-white sm:text-4xl md:text-5xl">{t.heroTitle}</h1>
-              <p className="mt-5 text-lg text-white/80 md:text-xl">{t.heroSubtitle}</p>
+        {/* Hero — same layout pattern as main landing */}
+        <section
+          ref={heroSectionRef}
+          className="relative bg-black py-16 md:py-24 lg:py-32"
+        >
+          <div className="mx-auto flex w-full max-w-6xl flex-col items-center px-4 sm:px-6 md:flex-row md:items-center md:justify-between md:gap-12 md:px-12">
+            <div className="w-full max-w-2xl flex-1 text-center lg:max-w-3xl md:text-left">
+              <p className="text-sm text-neutral-6 md:text-base">{t.heroEyebrow}</p>
+              <h1 className="mt-3 text-3xl font-semibold leading-tight text-white md:text-4xl lg:text-5xl lg:leading-[1.2]">
+                {t.heroLine1}
+              </h1>
+              <p className="mx-auto mt-3 max-w-xl text-base text-neutral-6 md:mx-0 md:text-lg">
+                {t.heroDesc1}
+                <br className="md:hidden" />
+                {' '}
+                {t.heroDesc2}
+                <br className="md:hidden" />
+                {' '}
+                {t.heroDesc3}
+              </p>
+              <div className="mt-6 flex flex-nowrap justify-center gap-3 md:justify-start">
+                <button
+                  type="button"
+                  className="shrink-0 rounded-2xl border-2 border-white bg-white px-4 py-2.5 text-sm font-medium text-black transition-all duration-200 hover:scale-[1.03] hover:bg-white hover:shadow-lg sm:px-6 sm:py-3 sm:text-base"
+                >
+                  {t.tryNow}
+                </button>
+                <button
+                  type="button"
+                  className="shrink-0 rounded-2xl border-2 border-white bg-transparent px-4 py-2.5 text-sm text-white transition-all duration-200 hover:scale-[1.03] hover:bg-white/25 hover:shadow-md sm:px-6 sm:py-3 sm:text-base"
+                >
+                  {t.joinWaitlist}
+                </button>
+              </div>
+              <p className="mt-2 text-sm text-neutral-6 md:mt-4 md:text-base">{t.heroNote}</p>
             </div>
-            <div className="w-full max-w-2xl shrink-0 lg:max-w-[min(100%,560px)] lg:flex-1">
-              <img
-                src={heroFeature}
-                alt=""
-                className="h-auto w-full object-contain"
-              />
+            <div
+              className={`mt-8 flex flex-1 items-center justify-center self-center md:mt-0 md:max-w-[1008px] lg:max-w-[1344px] [animation-fill-mode:backwards] ${heroSectionVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+            >
+              <div className="flex w-full max-w-full items-center justify-center overflow-hidden rounded-2xl md:max-w-[1008px] lg:max-w-[1344px]">
+                <img
+                  alt="Libell.us platform features"
+                  className="w-full object-contain mix-blend-screen"
+                  src={heroFeature}
+                />
+              </div>
             </div>
           </div>
         </section>
@@ -300,7 +365,7 @@ export function FeaturesPage() {
               <FeatureCard
                 title={t.authoringTitle}
                 body={t.authoringBody}
-                imageSrc={booksGrid}
+                imageSrc={booksPng}
                 imageAlt=""
               />
               <FeatureCard
@@ -369,7 +434,7 @@ export function FeaturesPage() {
                 {t.footerTerms}
               </a>
             </nav>
-            <p className="text-sm text-black">©{new Date().getFullYear()} Libell.us</p>
+            <p className="font-sans text-sm font-normal text-black">{t.footerCopyright}</p>
           </div>
         </footer>
       </div>

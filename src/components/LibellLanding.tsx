@@ -161,6 +161,7 @@ const UI_TEXT: Record<Language, Record<string, string>> = {
     footerContact: 'Contact',
     footerPrivacy: 'Privacy',
     footerTerms: 'Terms',
+    footerCopyright: '©2025 Libell.us Publishing LLC. All Rights Reserved.',
   },
   'pt-BR': {
     features: 'Recursos',
@@ -219,6 +220,7 @@ const UI_TEXT: Record<Language, Record<string, string>> = {
     footerContact: 'Contato',
     footerPrivacy: 'Privacidade',
     footerTerms: 'Termos',
+    footerCopyright: '©2025 Libell.us Publishing LLC. All Rights Reserved.',
   },
 };
 
@@ -387,7 +389,7 @@ export function LibellLanding() {
           className="relative border-b border-[#00C0E6]/30 bg-[#00C0E6]"
           data-node-id="1:258"
         >
-          <div className="mx-auto flex h-20 min-h-[4rem] w-full max-w-6xl items-center justify-between px-4 py-3 sm:h-24 sm:px-6 lg:px-12">
+          <div className="mx-auto flex h-20 min-h-[4rem] w-full max-w-6xl items-center justify-between px-4 py-3 sm:h-24 sm:px-6 md:px-12">
             <div className="flex items-center gap-2 sm:gap-3">
               <div className="flex size-12 items-center justify-center rounded-2xl bg-transparent sm:size-16">
                 <img
@@ -488,7 +490,7 @@ export function LibellLanding() {
           className="relative bg-black py-16 md:py-24 lg:py-32"
           data-node-id="1:243"
         >
-          <div className="mx-auto flex w-full max-w-6xl flex-col items-center px-4 md:flex-row md:items-center md:justify-between md:gap-12 md:px-6 lg:px-12">
+          <div className="mx-auto flex w-full max-w-6xl flex-col items-center px-4 sm:px-6 md:flex-row md:items-center md:justify-between md:gap-12 md:px-12">
             <div className="w-full max-w-2xl flex-1 text-center lg:max-w-3xl md:text-left">
               <p className="text-sm text-neutral-6 md:text-base">
                 {t.heroEyebrow}
@@ -569,11 +571,10 @@ export function LibellLanding() {
               return (
                 <li
                   key={id}
-                  className={`group flex w-full flex-col items-center [animation-fill-mode:backwards] sm:items-stretch ${
-                    index === 2
+                  className={`group flex w-full flex-col items-center [animation-fill-mode:backwards] sm:items-stretch ${index === 2
                       ? 'max-w-[280px] sm:col-span-2 sm:max-w-[calc((100%-1.25rem)/2)] sm:justify-self-center lg:col-span-1 lg:max-w-none'
                       : 'max-w-[280px] sm:max-w-none'
-                  } ${writersSectionVisible ? 'animate-fade-in-up md:animate-fade-in-up-slow' : 'opacity-0'}`}
+                    } ${writersSectionVisible ? 'animate-fade-in-up md:animate-fade-in-up-slow' : 'opacity-0'}`}
                   style={{ animationDelay: writersSectionVisible ? `${delayMs}ms` : undefined }}
                 >
                   <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-2xl bg-white/10 p-2 sm:p-2.5 md:p-3">
@@ -703,9 +704,8 @@ export function LibellLanding() {
               ].map(({ title, description, icon }, index) => (
                 <div
                   key={title}
-                  className={`group relative flex w-full max-w-sm flex-col items-center rounded-2xl border border-black/10 bg-white p-6 text-center backdrop-blur-sm transition-all duration-300 hover:border-black/20 hover:shadow-[0_0_40px_rgba(0,0,0,0.08),0_0_24px_rgba(0,192,230,0.15)] ${
-                    index === 2 ? 'sm:col-span-2 sm:w-[calc(50%-1rem)] sm:justify-self-center lg:col-span-1 lg:w-full' : ''
-                  }`}
+                  className={`group relative flex w-full max-w-sm flex-col items-center rounded-2xl border border-black/10 bg-white p-6 text-center backdrop-blur-sm transition-all duration-300 hover:border-black/20 hover:shadow-[0_0_40px_rgba(0,0,0,0.08),0_0_24px_rgba(0,192,230,0.15)] ${index === 2 ? 'sm:col-span-2 sm:w-[calc(50%-1rem)] sm:justify-self-center lg:col-span-1 lg:w-full' : ''
+                    }`}
                 >
                   <i
                     className={`fa-solid ${icon} mb-4 text-2xl text-transparent [-webkit-text-stroke:2.25px_#00C0E6] md:text-3xl`}
@@ -784,9 +784,8 @@ export function LibellLanding() {
                   <div className="flex w-full justify-center lg:w-fit lg:justify-start">
                     <div className="w-full [perspective:1200px] lg:w-fit">
                       <div
-                        className={`relative w-full max-w-[calc(100vw-2rem)] aspect-[47/33] shrink-0 rounded-2xl shadow-[0_30px_80px_rgba(0,0,0,0.2)] transition-transform duration-700 [transform-style:preserve-3d] lg:h-[400px] lg:max-w-none lg:w-[580px] lg:aspect-auto ${
-                          isFlipped ? '[transform:rotateY(180deg)]' : ''
-                        }`}
+                        className={`relative w-full max-w-[calc(100vw-2rem)] aspect-[47/33] shrink-0 rounded-2xl shadow-[0_30px_80px_rgba(0,0,0,0.2)] transition-transform duration-700 [transform-style:preserve-3d] lg:h-[400px] lg:max-w-none lg:w-[580px] lg:aspect-auto ${isFlipped ? '[transform:rotateY(180deg)]' : ''
+                          }`}
                       >
                         <div className="absolute inset-0 overflow-hidden rounded-2xl [backface-visibility:hidden]">
                           <img alt="" className="h-full w-full object-cover" src={img} />
@@ -1052,9 +1051,7 @@ export function LibellLanding() {
               <a href="#privacy" className="transition-colors hover:text-black/80">{t.footerPrivacy}</a>
               <a href="#terms" className="transition-colors hover:text-black/80">{t.footerTerms}</a>
             </nav>
-            <p className="text-sm text-black">
-              ©{new Date().getFullYear()} Libell.us
-            </p>
+            <p className="font-sans text-sm font-normal text-black">{t.footerCopyright}</p>
           </div>
         </footer>
       </div>
