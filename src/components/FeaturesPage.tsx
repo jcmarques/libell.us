@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { imgLogo } from '../assets/figma-assets';
-import heroFeature from '../assets/hero/hero.png';
 import booksPng from '../assets/books/books.png';
+import heroFeatures from '../assets/hero/hero-features.png';
 import mobileApps from '../assets/mobile/mobileApps.png';
 import writeStories from '../assets/imagination/write-stories.png';
 import buildWorlds from '../assets/imagination/build-worlds.png';
@@ -25,26 +25,26 @@ const FEATURES_UI: Record<
     footerPrivacy: string;
     footerTerms: string;
     footerCopyright: string;
-    heroEyebrow: string;
     heroLine1: string;
-    heroDesc1: string;
-    heroDesc2: string;
-    heroDesc3: string;
-    heroNote: string;
-    tryNow: string;
-    joinWaitlist: string;
+    heroIntro: string;
     authoringTitle: string;
-    authoringBody: string;
+    authoringLead: string;
+    authoringBullets: string[];
     mobileTitle: string;
-    mobileBody: string;
+    mobileLead: string;
+    mobileBullets: string[];
     styleTitle: string;
-    styleBody: string;
+    styleLead: string;
+    styleBullets: string[];
     charactersTitle: string;
-    charactersBody: string;
+    charactersLead: string;
+    charactersBullets: string[];
     voiceTitle: string;
-    voiceBody: string;
+    voiceLead: string;
+    voiceBullets: string[];
     shadersTitle: string;
-    shadersBody: string;
+    shadersLead: string;
+    shadersBullets: string[];
   }
 > = {
   'en-US': {
@@ -59,32 +59,51 @@ const FEATURES_UI: Record<
     footerPrivacy: 'Privacy',
     footerTerms: 'Terms',
     footerCopyright: '©2025 Libell.us Publishing LLC. All Rights Reserved.',
-    heroEyebrow: 'Interactive storytelling platform',
-    heroLine1: 'Empower your creativity',
-    heroDesc1: 'With dozens of power tools,',
-    heroDesc2: 'the only limit is',
-    heroDesc3: 'your imagination.',
-    heroNote: 'Your all-in-one platform. No code required.',
-    tryNow: 'Try It Now!',
-    joinWaitlist: 'Join the Waitlist',
-    authoringTitle: 'Authoring Console',
-    authoringBody:
-      'We offer a feature rich authoring console to create your books with ease. From text and image generation tools, to ambiance and character personality settings, our console gives you the power to create visually rich and engaging stories.',
-    mobileTitle: 'Free Mobile Apps',
-    mobileBody:
-      'Libell.us comes with free mobile apps for iOS and Android, allowing you to share your creations with friends and the world. Our apps are designed to provide an immersive reading experience, bringing your stories to life with stunning visuals and interactive features.',
-    styleTitle: 'Books with Style',
-    styleBody:
-      "With over 300,000 visual styles to choose from, you can create books that are truly unique and visually stunning. Whether you're looking for a classic look or something more modern and edgy, our extensive library of styles has got you covered.",
-    charactersTitle: 'Characters, Locations & Timelines',
-    charactersBody:
-      'Enrich your story with detailed character personalities, immersive location ambiances, and intricate timelines. Our tools allow you to create complex characters with unique traits and personalities, vivid locations with rich ambiances, and detailed timelines that add depth and complexity to your story.',
-    voiceTitle: 'Voice Narration',
-    voiceBody:
-      'Hearing is believing! Experience your story like never before with our advanced AI-driven voice narration. Choose from a variety of professional-grade voices to bring your characters and narrative to life, creating an immersive experience for your readers.',
-    shadersTitle: 'Shaders & Ambientation',
-    shadersBody:
-      "Don't read a story, experience it! Our advanced shader-powered effects and ambiance settings allow you to create visually rich and immersive environments that bring your story to life. From dynamic lighting and weather effects, to customizable color palettes and visual filters, our tools give you the power to create a truly unique and engaging reading experience.",
+    heroLine1: 'Empower your creativity with these features',
+    heroIntro:
+      'Visual tools, branching structure, characters and worlds, voice, and atmosphere—everything you need to author a story and deliver it on the web and on iOS and Android.',
+    authoringTitle: 'Authoring console',
+    authoringLead: 'One workspace to draft branching stories and static books—without leaving the browser.',
+    authoringBullets: [
+      'Guided flows for text, images, and layout',
+      'Ambiance and character traits tied to scenes',
+      'Local organization: chapters, beats, and revisions in one place',
+    ],
+    mobileTitle: 'Reader apps (iOS & Android)',
+    mobileLead: 'Ship to phones so readers tap through your story instead of only reading on the web.',
+    mobileBullets: [
+      'Share links or catalog listings from the same project',
+      'Touch-first navigation for choices and panels',
+      'Keeps visuals and audio in sync with your authored build',
+    ],
+    styleTitle: 'Visual styles',
+    styleLead: 'Pick a look early so every page stays consistent—huge preset library, zero manual CSS.',
+    styleBullets: [
+      'Hundreds of thousands of presets (filters, frames, palettes)',
+      'Swap styles without rebuilding structure',
+      'Preview before you lock a book-wide theme',
+    ],
+    charactersTitle: 'Characters, locations & timelines',
+    charactersLead: 'Story data lives next to prose: who, where, and when—so choices stay coherent.',
+    charactersBullets: [
+      'Character sheets with traits that surface in branches',
+      'Location ambiance cards you can reuse',
+      'Timelines that show how events order across paths',
+    ],
+    voiceTitle: 'Voice narration',
+    voiceLead: 'Attach narration per scene or line—listeners get a guided read, not a wall of text.',
+    voiceBullets: [
+      'AI and curated voice options',
+      'Match voice to character where it helps clarity',
+      'Export paths that include audio for apps and web',
+    ],
+    shadersTitle: 'Shaders & ambiance',
+    shadersLead: 'Post-style atmosphere: light, weather, and color grades that react to the moment.',
+    shadersBullets: [
+      'Shader stacks for mood without custom code',
+      'Weather and lighting presets you can blend',
+      'Filters tuned for readability, not just spectacle',
+    ],
   },
   'pt-BR': {
     features: 'Recursos',
@@ -98,32 +117,51 @@ const FEATURES_UI: Record<
     footerPrivacy: 'Privacidade',
     footerTerms: 'Termos',
     footerCopyright: '©2025 Libell.us Publishing LLC. All Rights Reserved.',
-    heroEyebrow: 'Plataforma de narrativa interativa',
-    heroLine1: 'Potencialize sua criatividade',
-    heroDesc1: 'Com dezenas de ferramentas poderosas,',
-    heroDesc2: 'o único limite é',
-    heroDesc3: 'a sua imaginação.',
-    heroNote: 'Sua plataforma completa. Sem código.',
-    tryNow: 'Experimente agora!',
-    joinWaitlist: 'Entrar na lista de espera',
+    heroLine1: 'Potencialize sua criatividade com estes recursos',
+    heroIntro:
+      'Ferramentas visuais, estrutura ramificada, personagens e mundos, voz e atmosfera—tudo para criar e publicar sua história na web e em apps para iOS e Android.',
     authoringTitle: 'Console de autoria',
-    authoringBody:
-      'Oferecemos um console de autoria completo para criar seus livros com facilidade. De geração de texto e imagens a ambientação e personalidade de personagens, você cria histórias visualmente ricas e envolventes.',
-    mobileTitle: 'Apps móveis gratuitos',
-    mobileBody:
-      'A Libell.us inclui apps gratuitos para iOS e Android para compartilhar suas criações com amigos e o mundo. Uma leitura imersiva com visuais e interação de alto nível.',
-    styleTitle: 'Livros com estilo',
-    styleBody:
-      'Com centenas de milhares de estilos visuais, crie livros únicos e impressionantes — do clássico ao moderno — com nossa biblioteca extensa.',
+    authoringLead: 'Um só lugar para rascunhar histórias ramificadas e livros lineares—sem sair do navegador.',
+    authoringBullets: [
+      'Fluxos guiados para texto, imagens e layout',
+      'Ambiente e traços de personagem ligados às cenas',
+      'Organização local: capítulos, ritmos e revisões no mesmo lugar',
+    ],
+    mobileTitle: 'Apps de leitura (iOS e Android)',
+    mobileLead: 'Leve a história ao celular para o leitor tocar nas escolhas, não só ler no site.',
+    mobileBullets: [
+      'Compartilhe links ou catálogo a partir do mesmo projeto',
+      'Navegação pensada para toque em painéis e escolhas',
+      'Mantém visuais e áudio alinhados ao que você publicou',
+    ],
+    styleTitle: 'Estilos visuais',
+    styleLead: 'Escolha um visual cedo para manter todas as páginas coerentes—biblioteca enorme, sem CSS manual.',
+    styleBullets: [
+      'Centenas de milhares de presets (filtros, molduras, paletas)',
+      'Troque estilo sem reconstruir a estrutura',
+      'Pré-visualize antes de fixar o tema do livro',
+    ],
     charactersTitle: 'Personagens, locais e linhas do tempo',
-    charactersBody:
-      'Enriqueça sua história com personalidades de personagens, ambientes imersivos e linhas do tempo detalhadas que dão profundidade à narrativa.',
+    charactersLead: 'Dados da história ao lado do texto: quem, onde e quando—para ramificações consistentes.',
+    charactersBullets: [
+      'Fichas de personagem com traços que aparecem nos ramos',
+      'Cartões de ambiente de local reutilizáveis',
+      'Linhas do tempo que ordenam eventos entre caminhos',
+    ],
     voiceTitle: 'Narração por voz',
-    voiceBody:
-      'Ouvir é acreditar! Narração com IA e vozes profissionais para dar vida aos personagens e à narrativa.',
+    voiceLead: 'Associe voz por cena ou fala—quem ouve ganha leitura guiada, não só blocos de texto.',
+    voiceBullets: [
+      'Opções de voz com IA e curadoria',
+      'Combine voz ao personagem quando ajudar a clareza',
+      'Fluxos de exportação com áudio para apps e web',
+    ],
     shadersTitle: 'Shaders e ambientação',
-    shadersBody:
-      'Não apenas leia — vivencie. Efeitos com shaders, iluminação, clima e filtros para ambientes verdadeiramente imersivos.',
+    shadersLead: 'Atmosfera pós-estilo: luz, clima e grades de cor que acompanham o momento.',
+    shadersBullets: [
+      'Pilhas de shader para clima sem código próprio',
+      'Presets de clima e luz que você pode misturar',
+      'Filtros pensados para leitura, não só efeito',
+    ],
   },
 };
 
@@ -134,29 +172,36 @@ function homeHash(hash: string) {
 
 function FeatureCard({
   title,
-  body,
+  lead,
+  bullets,
   imageSrc,
   imageAlt,
 }: {
   title: string;
-  body: string;
+  lead: string;
+  bullets: string[];
   imageSrc: string;
   imageAlt: string;
 }) {
   return (
-    <article className="flex flex-col rounded-3xl border border-white/10 bg-[#12141a] p-6 shadow-lg md:p-8 lg:py-10 lg:px-10 xl:px-14 2xl:px-16">
-      <h2 className="mb-6 text-center text-xl font-semibold text-white md:text-2xl">{title}</h2>
-      <div className="flex flex-col items-stretch gap-6">
+    <article className="flex flex-col rounded-3xl border border-white/10 bg-[#12141a] p-6 shadow-lg md:p-8 lg:py-10 lg:px-8 xl:px-12 2xl:px-14">
+      <h2 className="mb-4 text-center text-lg font-semibold leading-snug text-white md:text-xl">{title}</h2>
+      <div className="flex flex-col items-stretch gap-5">
         <div className="flex w-full justify-center">
           <img
             src={imageSrc}
             alt={imageAlt}
-            className="max-h-[380px] w-full max-w-2xl rounded-2xl object-contain object-center sm:max-h-[440px] lg:max-h-[500px]"
+            className="max-h-[300px] w-full max-w-xl rounded-2xl object-contain object-center sm:max-h-[340px] lg:max-h-[400px]"
           />
         </div>
-        <p className="my-0 mx-[25px] text-center text-sm leading-relaxed text-white/70 md:mx-[30px] md:text-base">
-          {body}
+        <p className="mx-auto max-w-md text-center text-sm font-medium leading-snug text-white/85 md:text-[15px]">
+          {lead}
         </p>
+        <ul className="mx-auto max-w-md list-disc space-y-1.5 pl-5 text-left text-xs leading-relaxed text-white/70 marker:text-white/40 md:text-sm">
+          {bullets.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
       </div>
     </article>
   );
@@ -169,24 +214,11 @@ export function FeaturesPage() {
     return saved === 'pt-BR' ? 'pt-BR' : 'en-US';
   });
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const heroSectionRef = useRef<HTMLElement>(null);
-  const [heroSectionVisible, setHeroSectionVisible] = useState(false);
   const t = FEATURES_UI[language];
 
   useEffect(() => {
     window.localStorage.setItem('libell-language', language);
   }, [language]);
-
-  useEffect(() => {
-    const el = heroSectionRef.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => setHeroSectionVisible(entry.isIntersecting),
-      { threshold: 0.2 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
 
   useEffect(() => {
     if (mobileMenuOpen) {
@@ -308,50 +340,23 @@ export function FeaturesPage() {
           </div>
         )}
 
-        {/* Hero — same layout pattern as main landing */}
-        <section
-          ref={heroSectionRef}
-          className="relative bg-black py-16 md:py-24 lg:py-32"
-        >
-          <div className="mx-auto flex w-full max-w-6xl flex-col items-center px-4 sm:px-6 md:flex-row md:items-center md:justify-between md:gap-12 md:px-12">
-            <div className="w-full max-w-2xl flex-1 text-center lg:max-w-3xl md:text-left">
-              <p className="text-sm text-neutral-6 md:text-base">{t.heroEyebrow}</p>
-              <h1 className="mt-3 text-3xl font-semibold leading-tight text-white md:text-4xl lg:text-5xl lg:leading-[1.2]">
+        {/* Hero — scoped to /features (not a repeat of the homepage hero) */}
+        <section className="relative bg-black py-14 md:py-20 lg:py-24">
+          <div className="mx-auto flex w-full max-w-6xl flex-col items-center px-4 sm:px-6 md:flex-row md:items-center md:justify-between md:gap-10 md:px-12 lg:gap-14">
+            <div className="w-full max-w-xl flex-1 text-center md:max-w-lg md:text-left lg:max-w-xl">
+              <h1 className="text-2xl font-semibold leading-tight text-white md:text-3xl lg:text-4xl lg:leading-[1.15]">
                 {t.heroLine1}
               </h1>
-              <p className="mx-auto mt-3 max-w-xl text-base text-neutral-6 md:mx-0 md:text-lg">
-                {t.heroDesc1}
-                <br className="md:hidden" />
-                {' '}
-                {t.heroDesc2}
-                <br className="md:hidden" />
-                {' '}
-                {t.heroDesc3}
+              <p className="mx-auto mt-3 max-w-lg text-sm leading-relaxed text-neutral-6 md:mx-0 md:text-base">
+                {t.heroIntro}
               </p>
-              <div className="mt-6 flex flex-nowrap justify-center gap-3 md:justify-start">
-                <button
-                  type="button"
-                  className="shrink-0 rounded-2xl border-2 border-white bg-white px-4 py-2.5 text-sm font-medium text-black transition-all duration-200 hover:scale-[1.03] hover:bg-white hover:shadow-lg sm:px-6 sm:py-3 sm:text-base"
-                >
-                  {t.tryNow}
-                </button>
-                <button
-                  type="button"
-                  className="shrink-0 rounded-2xl border-2 border-white bg-transparent px-4 py-2.5 text-sm text-white transition-all duration-200 hover:scale-[1.03] hover:bg-white/25 hover:shadow-md sm:px-6 sm:py-3 sm:text-base"
-                >
-                  {t.joinWaitlist}
-                </button>
-              </div>
-              <p className="mt-2 text-sm text-neutral-6 md:mt-4 md:text-base">{t.heroNote}</p>
             </div>
-            <div
-              className={`mt-8 flex flex-1 items-center justify-center self-center md:mt-0 md:max-w-[1008px] lg:max-w-[1344px] [animation-fill-mode:backwards] ${heroSectionVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
-            >
+            <div className="mt-8 flex w-full flex-1 items-center justify-center self-center md:mt-0 md:max-w-[min(100%,1008px)] lg:max-w-[min(100%,1344px)]">
               <div className="flex w-full max-w-full items-center justify-center overflow-hidden rounded-2xl md:max-w-[1008px] lg:max-w-[1344px]">
                 <img
-                  alt="Libell.us platform features"
-                  className="w-full object-contain mix-blend-screen"
-                  src={heroFeature}
+                  alt=""
+                  className="w-full object-contain"
+                  src={heroFeatures}
                 />
               </div>
             </div>
@@ -359,18 +364,23 @@ export function FeaturesPage() {
         </section>
 
         {/* Feature rows */}
-        <section className="bg-[#0a0a0a] px-6 py-14 md:px-10 md:py-16 lg:px-16 lg:py-20 xl:px-28 2xl:px-36">
-          <div className="mx-auto flex max-w-6xl flex-col gap-12 md:gap-14 lg:gap-16">
+        <section
+          id="features-grid"
+          className="scroll-mt-24 bg-[#0a0a0a] px-6 py-12 md:px-10 md:py-14 lg:px-16 lg:py-16 xl:px-28 2xl:px-36"
+        >
+          <div className="mx-auto flex max-w-6xl flex-col gap-10 md:gap-12 lg:gap-14">
             <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-10 xl:gap-12">
               <FeatureCard
                 title={t.authoringTitle}
-                body={t.authoringBody}
+                lead={t.authoringLead}
+                bullets={t.authoringBullets}
                 imageSrc={booksPng}
                 imageAlt=""
               />
               <FeatureCard
                 title={t.mobileTitle}
-                body={t.mobileBody}
+                lead={t.mobileLead}
+                bullets={t.mobileBullets}
                 imageSrc={mobileApps}
                 imageAlt=""
               />
@@ -379,13 +389,15 @@ export function FeaturesPage() {
             <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-10 xl:gap-12">
               <FeatureCard
                 title={t.styleTitle}
-                body={t.styleBody}
+                lead={t.styleLead}
+                bullets={t.styleBullets}
                 imageSrc={writeStories}
                 imageAlt=""
               />
               <FeatureCard
                 title={t.charactersTitle}
-                body={t.charactersBody}
+                lead={t.charactersLead}
+                bullets={t.charactersBullets}
                 imageSrc={buildWorlds}
                 imageAlt=""
               />
@@ -394,13 +406,15 @@ export function FeaturesPage() {
             <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-10 xl:gap-12">
               <FeatureCard
                 title={t.voiceTitle}
-                body={t.voiceBody}
+                lead={t.voiceLead}
+                bullets={t.voiceBullets}
                 imageSrc={voiceNarrationImg}
                 imageAlt=""
               />
               <FeatureCard
                 title={t.shadersTitle}
-                body={t.shadersBody}
+                lead={t.shadersLead}
+                bullets={t.shadersBullets}
                 imageSrc={shadersImg}
                 imageAlt=""
               />
@@ -434,7 +448,9 @@ export function FeaturesPage() {
                 {t.footerTerms}
               </a>
             </nav>
-            <p className="font-sans text-sm font-normal text-black">{t.footerCopyright}</p>
+            <p className="mx-auto max-w-xs font-sans text-xs font-normal leading-snug text-black sm:max-w-md md:text-sm">
+              {t.footerCopyright}
+            </p>
           </div>
         </footer>
       </div>
