@@ -132,6 +132,12 @@ const UI_TEXT: Record<Language, Record<string, string>> = {
     learnMore: 'Learn More',
     writingFeaturesTitle: 'Writing Features',
     writingFeaturesDesc: 'With Libell.us, writing branching narratives is easier than ever. You can organize your chapters, manage character arcs, and track interactive choices locally in an intuitive way. Say goodbye to spreadsheets and complicated nodes!',
+    worldBuildingTitle: 'World Building Tools',
+    worldBuildingDesc:
+      'Structure your lore using locations, items, characters, and events. Our interactive timeline helps you see how everything intertwines, making sure your readers experience a deeply immersive universe.',
+    publishingTitle: 'One-Click Publishing',
+    publishingDesc:
+      'Export your interactive stories into beautifully formatted, ready-to-play web formats. Seamlessly share with your audience or monetize your creations directly without touching a single line of backend code.',
     backToImage: 'Back to image',
     platformTitle: 'The Platform for Interactive Storytelling',
     platformSubtitle1: 'is a creative platform where creators',
@@ -184,6 +190,12 @@ const UI_TEXT: Record<Language, Record<string, string>> = {
     learnMore: 'Saiba mais',
     writingFeaturesTitle: 'Recursos de escrita',
     writingFeaturesDesc: 'Com a Libell.us, escrever narrativas com ramificações fica mais fácil do que nunca. Você pode organizar capítulos, gerenciar arcos de personagens e acompanhar escolhas interativas localmente de forma intuitiva. Diga adeus às planilhas e aos nós complicados!',
+    worldBuildingTitle: 'Ferramentas de construção de mundos',
+    worldBuildingDesc:
+      'Organize sua lenda com locais, itens, personagens e eventos. Nossa linha do tempo interativa mostra como tudo se conecta, para que seus leitores vivam um universo verdadeiramente imersivo.',
+    publishingTitle: 'Publicação em um clique',
+    publishingDesc:
+      'Exporte suas histórias interativas para formatos web prontos para jogar. Compartilhe com o público ou monetize sem escrever uma linha de código de backend.',
     backToImage: 'Voltar para a imagem',
     platformTitle: 'A plataforma para narrativa interativa',
     platformSubtitle1: 'é uma plataforma criativa onde criadores',
@@ -235,6 +247,11 @@ export function LibellLanding() {
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [carouselVisibleCount, setCarouselVisibleCount] = useState(3);
   const t = UI_TEXT[language];
+  const imaginationFlipBack = [
+    { title: t.writingFeaturesTitle, desc: t.writingFeaturesDesc },
+    { title: t.worldBuildingTitle, desc: t.worldBuildingDesc },
+    { title: t.publishingTitle, desc: t.publishingDesc },
+  ] as const;
 
   useEffect(() => {
     window.localStorage.setItem('libell-language', language);
@@ -733,54 +750,50 @@ export function LibellLanding() {
             ].flatMap(({ title, description, imageFirst, img }, index) => {
               const lastIndex = 2;
               const delayMs = imaginationScrollDown ? index * 150 : (lastIndex - index) * 150;
-              const isWritingCard = index === 0;
               const isFlipped = flippedImaginationCard === index;
+              const flipBack = imaginationFlipBack[index];
               const block = (
                 <div
                   key={title}
-                  className={`flex flex-col items-center gap-6 md:flex-row md:items-center md:justify-center md:gap-10 [animation-fill-mode:backwards] ${imageFirst ? 'md:flex-row-reverse' : ''
+                  className={`flex flex-col items-center gap-6 lg:flex-row lg:items-center lg:justify-center lg:gap-10 [animation-fill-mode:backwards] ${imageFirst ? 'lg:flex-row-reverse' : ''
                     } ${imaginationSectionVisible ? 'animate-fade-in-up md:animate-fade-in-up-slow' : 'opacity-0'}`}
                   style={{ animationDelay: imaginationSectionVisible ? `${delayMs}ms` : undefined }}
                 >
-                  <div className="flex flex-1 flex-col items-center space-y-4 text-center md:max-w-md md:items-start md:text-left">
+                  <div className="mx-auto flex w-full max-w-md flex-1 flex-col items-center space-y-4 pb-6 text-center lg:mx-0 lg:items-start lg:pb-0 lg:text-left">
                     <h3 className="text-xl font-medium text-black md:text-2xl">{title}</h3>
                     <p className="text-base text-body-on-light md:text-lg">
                       {description}
                     </p>
-                    <div className="flex w-full justify-center md:justify-start">
+                    <div className="flex w-full justify-center lg:justify-start">
                       <button
                         type="button"
-                        onClick={() => {
-                          if (isWritingCard) {
-                            setFlippedImaginationCard((current) => (current === index ? null : index));
-                          }
-                        }}
+                        onClick={() => setFlippedImaginationCard((current) => (current === index ? null : index))}
                         className="rounded-2xl border-2 border-black px-6 py-3 text-base font-medium text-black transition-all duration-200 hover:scale-[1.03] hover:bg-black/10 hover:shadow-lg md:text-lg"
                       >
-                        {isWritingCard && isFlipped ? t.backToImage : t.learnMore}
+                        {isFlipped ? t.backToImage : t.learnMore}
                       </button>
                     </div>
                   </div>
-                  <div className="flex w-full justify-center md:w-fit md:justify-start">
-                    <div className="w-full [perspective:1200px] md:w-fit">
+                  <div className="flex w-full justify-center lg:w-fit lg:justify-start">
+                    <div className="w-full [perspective:1200px] lg:w-fit">
                       <div
-                        className={`relative w-full max-w-[calc(100vw-2rem)] aspect-[47/33] shrink-0 rounded-2xl shadow-[0_30px_80px_rgba(0,0,0,0.2)] transition-transform duration-700 [transform-style:preserve-3d] md:h-[400px] md:max-w-none md:w-[580px] md:aspect-auto ${
-                          isWritingCard && isFlipped ? '[transform:rotateY(180deg)]' : ''
+                        className={`relative w-full max-w-[calc(100vw-2rem)] aspect-[47/33] shrink-0 rounded-2xl shadow-[0_30px_80px_rgba(0,0,0,0.2)] transition-transform duration-700 [transform-style:preserve-3d] lg:h-[400px] lg:max-w-none lg:w-[580px] lg:aspect-auto ${
+                          isFlipped ? '[transform:rotateY(180deg)]' : ''
                         }`}
                       >
                         <div className="absolute inset-0 overflow-hidden rounded-2xl [backface-visibility:hidden]">
                           <img alt="" className="h-full w-full object-cover" src={img} />
                         </div>
-                        {isWritingCard && (
+                        {flipBack && (
                           <button
                             type="button"
                             onClick={() => setFlippedImaginationCard(null)}
                             className="absolute inset-0 flex items-center justify-center rounded-2xl bg-black px-10 text-center text-white [backface-visibility:hidden] [transform:rotateY(180deg)] md:px-16"
                           >
                             <div className="mx-auto max-w-[28rem]">
-                              <h4 className="text-2xl font-semibold md:text-3xl">{t.writingFeaturesTitle}</h4>
+                              <h4 className="text-2xl font-semibold md:text-3xl">{flipBack.title}</h4>
                               <p className="mt-6 text-base leading-relaxed text-white/70 md:text-lg">
-                                {t.writingFeaturesDesc}
+                                {flipBack.desc}
                               </p>
                             </div>
                           </button>
