@@ -29,76 +29,184 @@ import mangaMountains from '../assets/mobile/mangaMountains.png';
 import woodRain from '../assets/mobile/woodRain.png';
 import pixelRain from '../assets/mobile/pixelRain.png';
 
+type Language = 'en-US' | 'pt-BR';
+
 const PLATFORM_TABS = [
-  { id: 'story-editor', label: 'Story Editor' },
-  { id: 'visual-styles', label: 'Visual Styles' },
-  { id: 'ai-narration', label: 'AI Narration' },
-  { id: 'sound-effects', label: 'Sound Effects' },
+  { id: 'story-editor', label: { 'en-US': 'Story Editor', 'pt-BR': 'Editor de Histórias' } },
+  { id: 'visual-styles', label: { 'en-US': 'Visual Styles', 'pt-BR': 'Estilos Visuais' } },
+  { id: 'ai-narration', label: { 'en-US': 'AI Narration', 'pt-BR': 'Narração por IA' } },
+  { id: 'sound-effects', label: { 'en-US': 'Sound Effects', 'pt-BR': 'Efeitos Sonoros' } },
 ] as const;
 
-const PLATFORM_TAB_CONTENT: Record<(typeof PLATFORM_TABS)[number]['id'], { label: string }[]> = {
+const PLATFORM_TAB_CONTENT: Record<(typeof PLATFORM_TABS)[number]['id'], { label: Record<Language, string> }[]> = {
   'story-editor': [
-    { label: 'Branches' },
-    { label: 'Choices' },
-    { label: 'Variables' },
-    { label: 'Conditions' },
-    { label: 'Scenes' },
-    { label: 'Chapters' },
-    { label: 'Notes' },
-    { label: 'Export' },
+    { label: { 'en-US': 'Branches', 'pt-BR': 'Ramificacoes' } },
+    { label: { 'en-US': 'Choices', 'pt-BR': 'Escolhas' } },
+    { label: { 'en-US': 'Variables', 'pt-BR': 'Variáveis' } },
+    { label: { 'en-US': 'Conditions', 'pt-BR': 'Condições' } },
+    { label: { 'en-US': 'Scenes', 'pt-BR': 'Cenas' } },
+    { label: { 'en-US': 'Chapters', 'pt-BR': 'Capítulos' } },
+    { label: { 'en-US': 'Notes', 'pt-BR': 'Notas' } },
+    { label: { 'en-US': 'Export', 'pt-BR': 'Exportar' } },
   ],
   'visual-styles': [
-    { label: 'Themes' },
-    { label: 'Fonts' },
-    { label: 'Layouts' },
-    { label: 'Colors' },
-    { label: 'Backgrounds' },
-    { label: 'Cards' },
-    { label: 'Animations' },
-    { label: 'Preview' },
+    { label: { 'en-US': 'Themes', 'pt-BR': 'Temas' } },
+    { label: { 'en-US': 'Fonts', 'pt-BR': 'Fontes' } },
+    { label: { 'en-US': 'Layouts', 'pt-BR': 'Layouts' } },
+    { label: { 'en-US': 'Colors', 'pt-BR': 'Cores' } },
+    { label: { 'en-US': 'Backgrounds', 'pt-BR': 'Fundos' } },
+    { label: { 'en-US': 'Cards', 'pt-BR': 'Cartões' } },
+    { label: { 'en-US': 'Animations', 'pt-BR': 'Animações' } },
+    { label: { 'en-US': 'Preview', 'pt-BR': 'Preview' } },
   ],
   'ai-narration': [
-    { label: 'Voices' },
-    { label: 'Pace' },
-    { label: 'Emotion' },
-    { label: 'Languages' },
-    { label: 'Pause' },
-    { label: 'Highlight' },
-    { label: 'Sync' },
-    { label: 'Settings' },
+    { label: { 'en-US': 'Voices', 'pt-BR': 'Vozes' } },
+    { label: { 'en-US': 'Pace', 'pt-BR': 'Ritmo' } },
+    { label: { 'en-US': 'Emotion', 'pt-BR': 'Emoção' } },
+    { label: { 'en-US': 'Languages', 'pt-BR': 'Idiomas' } },
+    { label: { 'en-US': 'Pause', 'pt-BR': 'Pausa' } },
+    { label: { 'en-US': 'Highlight', 'pt-BR': 'Destaque' } },
+    { label: { 'en-US': 'Sync', 'pt-BR': 'Sincronia' } },
+    { label: { 'en-US': 'Settings', 'pt-BR': 'Configurações' } },
   ],
   'sound-effects': [
-    { label: 'Ambience' },
-    { label: 'SFX' },
-    { label: 'Music' },
-    { label: 'Volume' },
-    { label: 'Fade' },
-    { label: 'Loop' },
-    { label: 'Triggers' },
-    { label: 'Library' },
+    { label: { 'en-US': 'Ambience', 'pt-BR': 'Ambiência' } },
+    { label: { 'en-US': 'SFX', 'pt-BR': 'SFX' } },
+    { label: { 'en-US': 'Music', 'pt-BR': 'Musica' } },
+    { label: { 'en-US': 'Volume', 'pt-BR': 'Volume' } },
+    { label: { 'en-US': 'Fade', 'pt-BR': 'Fade' } },
+    { label: { 'en-US': 'Loop', 'pt-BR': 'Loop' } },
+    { label: { 'en-US': 'Triggers', 'pt-BR': 'Gatilhos' } },
+    { label: { 'en-US': 'Library', 'pt-BR': 'Biblioteca' } },
   ],
 };
 
 const CAROUSEL_IMAGES = [
-  { src: inkRain, alt: 'Rainy and windy day in the city' },
-  { src: pixelSwamp, alt: 'Foggy swamp with dense vegetation' },
-  { src: cartoonSwamp, alt: 'Foggy swamp with dense vegetation' },
-  { src: pixelMountains, alt: 'Snow in the mountains' },
-  { src: cartoonRain, alt: 'Rainy and windy day in the city' },
-  { src: woodMountains, alt: 'Snow in the mountains' },
-  { src: cartoonMountains, alt: 'Snow in the mountains' },
-  { src: inkSwamp, alt: 'Foggy swamp with dense vegetation' },
-  { src: woodSwamp, alt: 'Foggy swamp with dense vegetation' },
-  { src: mangaRain, alt: 'Rainy and windy day in the city' },
-  { src: mangaSwamp, alt: 'Foggy swamp with dense vegetation' },
-  { src: inkMountains, alt: 'Snow in the mountains' },
-  { src: mangaMountains, alt: 'Snow in the mountains' },
-  { src: woodRain, alt: 'Rainy and windy day in the city' },
-  { src: pixelRain, alt: 'Rainy and windy day in the city' },
+  { src: inkRain, alt: { 'en-US': 'Rainy and windy day in the city', 'pt-BR': 'Dia chuvoso e ventoso na cidade' } },
+  { src: pixelSwamp, alt: { 'en-US': 'Foggy swamp with dense vegetation', 'pt-BR': 'Pântano com neblina e vegetação densa' } },
+  { src: cartoonSwamp, alt: { 'en-US': 'Foggy swamp with dense vegetation', 'pt-BR': 'Pântano com neblina e vegetação densa' } },
+  { src: pixelMountains, alt: { 'en-US': 'Snow in the mountains', 'pt-BR': 'Neve nas montanhas' } },
+  { src: cartoonRain, alt: { 'en-US': 'Rainy and windy day in the city', 'pt-BR': 'Dia chuvoso e ventoso na cidade' } },
+  { src: woodMountains, alt: { 'en-US': 'Snow in the mountains', 'pt-BR': 'Neve nas montanhas' } },
+  { src: cartoonMountains, alt: { 'en-US': 'Snow in the mountains', 'pt-BR': 'Neve nas montanhas' } },
+  { src: inkSwamp, alt: { 'en-US': 'Foggy swamp with dense vegetation', 'pt-BR': 'Pântano com neblina e vegetação densa' } },
+  { src: woodSwamp, alt: { 'en-US': 'Foggy swamp with dense vegetation', 'pt-BR': 'Pântano com neblina e vegetação densa' } },
+  { src: mangaRain, alt: { 'en-US': 'Rainy and windy day in the city', 'pt-BR': 'Dia chuvoso e ventoso na cidade' } },
+  { src: mangaSwamp, alt: { 'en-US': 'Foggy swamp with dense vegetation', 'pt-BR': 'Pântano com neblina e vegetação densa' } },
+  { src: inkMountains, alt: { 'en-US': 'Snow in the mountains', 'pt-BR': 'Neve nas montanhas' } },
+  { src: mangaMountains, alt: { 'en-US': 'Snow in the mountains', 'pt-BR': 'Neve nas montanhas' } },
+  { src: woodRain, alt: { 'en-US': 'Rainy and windy day in the city', 'pt-BR': 'Dia chuvoso e ventoso na cidade' } },
+  { src: pixelRain, alt: { 'en-US': 'Rainy and windy day in the city', 'pt-BR': 'Dia chuvoso e ventoso na cidade' } },
 ];
+
+const UI_TEXT: Record<Language, Record<string, string>> = {
+  'en-US': {
+    features: 'Features',
+    pricing: 'Pricing',
+    about: 'About',
+    login: 'Login',
+    closeMenu: 'Close menu',
+    openMenu: 'Open menu',
+    heroEyebrow: 'Interactive storytelling platform',
+    heroLine1: 'Build stories.',
+    heroLine2: 'Skip the code.',
+    heroDesc1: 'Build branching adventures',
+    heroDesc2: 'or traditional books with',
+    heroDesc3: 'visuals, sound and AI storytelling.',
+    tryNow: 'Try It Now!',
+    joinWaitlist: 'Join the waitlist',
+    heroNote: 'Your all-in-one platform. No code required.',
+    writersTitle: 'Writers want to create:',
+    writersSubtitle: 'Different formats of interactive storytelling.',
+    requiresTitle: 'But that often requires:',
+    programming: 'Programming',
+    gameEngines: 'Game Engines',
+    complexTools: 'Complex Tools',
+    learnBeforeStory: 'That is a lot to learn before you can tell your story.',
+    changesThat: 'changes that',
+    builtForStoryCreators: 'Built for Story Creators',
+    imaginationTitle: 'Turn imagination into interactive stories',
+    learnMore: 'Learn More',
+    platformTitle: 'The Platform for Interactive Storytelling',
+    platformSubtitle1: 'is a creative platform where creators',
+    platformSubtitle2: 'can build interactive stories with:',
+    platformFeaturesAria: 'Platform features',
+    seeHowWorks: 'See how Libell works',
+    backKickstarter: 'Back the Kickstarter',
+    exploreStoriesTitle: 'Explore stories created with Libell.us',
+    exploreStoriesSubtitle: "From fantasy adventures and children's books to sci-fi interactive stories.",
+    previous: 'Previous',
+    next: 'Next',
+    readStory: 'Read a Story',
+    communityTitle: 'Join the Next Generation of Storytelling',
+    communityDesc1: 'We are building a platform for immersive, interactive stories.',
+    communityDesc2: 'To see the platform in action, check out our',
+    youtubeChannel: 'YouTube channel',
+    ctaText1: 'Back the project and join the beta.',
+    ctaText2: "Help shape what's next!",
+    footerDocs: 'Docs',
+    footerContact: 'Contact',
+    footerPrivacy: 'Privacy',
+    footerTerms: 'Terms',
+  },
+  'pt-BR': {
+    features: 'Recursos',
+    pricing: 'Preços',
+    about: 'Sobre',
+    login: 'Entrar',
+    closeMenu: 'Fechar menu',
+    openMenu: 'Abrir menu',
+    heroEyebrow: 'Plataforma de narrativa interativa',
+    heroLine1: 'Crie histórias.',
+    heroLine2: 'Sem programar.',
+    heroDesc1: 'Crie aventuras com ramificações',
+    heroDesc2: 'ou livros tradicionais com',
+    heroDesc3: 'visuais, som e narrativa com IA.',
+    tryNow: 'Experimente agora!',
+    joinWaitlist: 'Entrar na lista de espera',
+    heroNote: 'Sua plataforma completa. Sem código.',
+    writersTitle: 'Escritores querem criar:',
+    writersSubtitle: 'Diferentes formatos de narrativa interativa.',
+    requiresTitle: 'Mas isso geralmente exige:',
+    programming: 'Programação',
+    gameEngines: 'Motores de jogo',
+    complexTools: 'Ferramentas complexas',
+    learnBeforeStory: 'Ha muito para aprender antes de contar sua historia.',
+    changesThat: 'muda isso',
+    builtForStoryCreators: 'Feito para criadores de histórias',
+    imaginationTitle: 'Transforme imaginação em histórias interativas',
+    learnMore: 'Saiba mais',
+    platformTitle: 'A plataforma para narrativa interativa',
+    platformSubtitle1: 'é uma plataforma criativa onde criadores',
+    platformSubtitle2: 'podem criar histórias interativas com:',
+    platformFeaturesAria: 'Recursos da plataforma',
+    seeHowWorks: 'Veja como a Libell funciona',
+    backKickstarter: 'Apoie no Kickstarter',
+    exploreStoriesTitle: 'Explore histórias criadas com a Libell.us',
+    exploreStoriesSubtitle: 'De aventuras de fantasia e livros infantis a histórias interativas de ficção científica.',
+    previous: 'Anterior',
+    next: 'Próximo',
+    readStory: 'Ler uma história',
+    communityTitle: 'Junte-se à próxima geração da narrativa',
+    communityDesc1: 'Estamos construindo uma plataforma para histórias imersivas e interativas.',
+    communityDesc2: 'Para ver a plataforma em ação, confira nosso',
+    youtubeChannel: 'canal no YouTube',
+    ctaText1: 'Apoie o projeto e entre no beta.',
+    ctaText2: 'Ajude a construir o que vem a seguir!',
+    footerDocs: 'Documentação',
+    footerContact: 'Contato',
+    footerPrivacy: 'Privacidade',
+    footerTerms: 'Termos',
+  },
+};
 
 export function LibellLanding() {
   const [activePlatformTab, setActivePlatformTab] = useState<(typeof PLATFORM_TABS)[number]['id']>('story-editor');
+  const [language, setLanguage] = useState<Language>(() => {
+    if (typeof window === 'undefined') return 'en-US';
+    const savedLanguage = window.localStorage.getItem('libell-language');
+    return savedLanguage === 'pt-BR' ? 'pt-BR' : 'en-US';
+  });
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const closeMobileMenu = () => setMobileMenuOpen(false);
   const libellChangesRef = useRef<HTMLDivElement>(null);
@@ -116,6 +224,11 @@ export function LibellLanding() {
   const [exploreStoriesVisible, setExploreStoriesVisible] = useState(false);
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [carouselVisibleCount, setCarouselVisibleCount] = useState(3);
+  const t = UI_TEXT[language];
+
+  useEffect(() => {
+    window.localStorage.setItem('libell-language', language);
+  }, [language]);
 
   useEffect(() => {
     const mq = window.matchMedia('(max-width: 767px)');
@@ -220,20 +333,33 @@ export function LibellLanding() {
   const navLinks = (
     <>
       <a href="#features" className="text-sm text-black hover:text-black/80 sm:text-base lg:text-lg" onClick={closeMobileMenu}>
-        Features
+        {t.features}
       </a>
       <a href="#pricing" className="text-sm text-black hover:text-black/80 sm:text-base lg:text-lg" onClick={closeMobileMenu}>
-        Pricing
+        {t.pricing}
       </a>
       <a href="#about" className="text-sm text-black hover:text-black/80 sm:text-base lg:text-lg" onClick={closeMobileMenu}>
-        About
+        {t.about}
       </a>
       <button
         type="button"
         className="whitespace-nowrap rounded-2xl border-2 border-white bg-white px-4 py-2.5 text-sm font-medium text-black hover:bg-white sm:px-5 sm:py-2.5 sm:text-base lg:px-6 lg:py-3 lg:text-base"
       >
-        Login
+        {t.login}
       </button>
+      <div className="ml-1">
+        <label className="sr-only" htmlFor="language-select-desktop">Language</label>
+        <select
+          id="language-select-desktop"
+          value={language}
+          onChange={(event) => setLanguage(event.target.value as Language)}
+          className="rounded-lg border border-black/20 bg-transparent px-2 py-1 text-lg leading-none text-black outline-none transition-colors hover:bg-transparent sm:text-xl lg:text-2xl"
+          aria-label="Language switcher"
+        >
+          <option value="en-US">🇺🇸</option>
+          <option value="pt-BR">🇧🇷</option>
+        </select>
+      </div>
     </>
   );
 
@@ -268,7 +394,7 @@ export function LibellLanding() {
               onClick={() => setMobileMenuOpen((open) => !open)}
               className="flex size-10 flex-shrink-0 items-center justify-center rounded-lg text-black hover:bg-white/20 sm:hidden"
               aria-expanded={mobileMenuOpen}
-              aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-label={mobileMenuOpen ? t.closeMenu : t.openMenu}
             >
               {mobileMenuOpen ? (
                 <svg className="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -291,21 +417,37 @@ export function LibellLanding() {
           >
             <nav className="flex flex-col gap-6">
               <a href="#features" className="text-lg font-medium text-black hover:text-black/80" onClick={closeMobileMenu}>
-                Features
+                {t.features}
               </a>
               <a href="#pricing" className="text-lg font-medium text-black hover:text-black/80" onClick={closeMobileMenu}>
-                Pricing
+                {t.pricing}
               </a>
               <a href="#about" className="text-lg font-medium text-black hover:text-black/80" onClick={closeMobileMenu}>
-                About
+                {t.about}
               </a>
               <button
                 type="button"
                 className="w-full rounded-2xl border-2 border-white bg-white py-3 text-base font-medium text-black hover:bg-white"
                 onClick={closeMobileMenu}
               >
-                Login
+                {t.login}
               </button>
+              <div className="flex items-center justify-center">
+                <label className="sr-only" htmlFor="language-select-mobile">Language</label>
+                <select
+                  id="language-select-mobile"
+                  value={language}
+                  onChange={(event) => {
+                    setLanguage(event.target.value as Language);
+                    closeMobileMenu();
+                  }}
+                  className="w-full max-w-xs rounded-lg border border-black/20 bg-white/90 px-3 py-2 text-base text-black outline-none transition-colors hover:bg-white"
+                  aria-label="Language switcher"
+                >
+                  <option value="en-US">🇺🇸</option>
+                  <option value="pt-BR">🇧🇷</option>
+                </select>
+              </div>
             </nav>
           </div>
         )}
@@ -319,35 +461,35 @@ export function LibellLanding() {
           <div className="mx-auto flex w-full max-w-6xl flex-col items-center px-4 md:flex-row md:items-center md:justify-between md:gap-12 md:px-6 lg:px-12">
             <div className="w-full max-w-2xl flex-1 text-center lg:max-w-3xl md:text-left">
               <p className="text-sm text-neutral-6 md:text-base">
-                Interactive storytelling platform
+                {t.heroEyebrow}
               </p>
               <h1 className="mt-3 text-3xl font-semibold leading-tight text-white md:text-4xl lg:text-5xl lg:leading-[1.2]">
-                Build stories.<br />
-                Skip the code.
+                {t.heroLine1}<br />
+                {t.heroLine2}
               </h1>
               <p className="mx-auto mt-3 max-w-xl text-base text-neutral-6 md:mx-0 md:text-lg">
-                Build branching adventures
+                {t.heroDesc1}
                 <br className="md:hidden" />
-                {' '}or traditional books{'\u00a0'}with
+                {' '}{t.heroDesc2}
                 <br className="md:hidden" />
-                {' '}visuals, sound and AI storytelling.
+                {' '}{t.heroDesc3}
               </p>
               <div className="mt-6 flex flex-nowrap justify-center gap-3 md:justify-start">
                 <button
                   type="button"
                   className="shrink-0 rounded-2xl border-2 border-white bg-white px-4 py-2.5 text-sm font-medium text-black transition-all duration-200 hover:scale-[1.03] hover:bg-white hover:shadow-lg sm:px-6 sm:py-3 sm:text-base"
                 >
-                  Try It Now!
+                  {t.tryNow}
                 </button>
                 <button
                   type="button"
                   className="shrink-0 rounded-2xl border-2 border-white bg-transparent px-4 py-2.5 text-sm text-white transition-all duration-200 hover:scale-[1.03] hover:bg-white/25 hover:shadow-md sm:px-6 sm:py-3 sm:text-base"
                 >
-                  Join the waitlist
+                  {t.joinWaitlist}
                 </button>
               </div>
               <p className="mt-2 text-sm text-neutral-6 md:mt-4 md:text-base">
-                Your all-in-one platform. No code required.
+                {t.heroNote}
               </p>
             </div>
             <div className={`mt-8 flex flex-1 items-center justify-center self-center md:mt-0 md:max-w-[1008px] lg:max-w-[1344px] [animation-fill-mode:backwards] ${heroSectionVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
@@ -366,16 +508,20 @@ export function LibellLanding() {
         >
           <div className="mb-14 h-px w-full shadow-[0_1px_0_0_rgba(255,255,255,0.15),0_2px_8px_-2px_rgba(255,255,255,0.08)] md:mb-16" aria-hidden />
           <h2 className="text-center text-xl font-medium text-white md:text-2xl">
-            Writers want to create:
+            {t.writersTitle}
           </h2>
           <p className="mx-auto mt-2 text-center text-base text-white/80 md:text-lg">
-            Different formats of interactive storytelling.
+            {t.writersSubtitle}
           </p>
           <ul className="mx-auto mt-8 flex max-w-4xl flex-col items-center gap-6 md:flex-row md:justify-center md:gap-14">
             {[
-              { label: 'Interactive Adventures', id: '1:229', img: interactiveAdventuresImg },
-              { label: 'Visual Novels', id: '1:233', img: visualNovelsImg },
-              { label: 'Game Books', id: '1:237', img: gameBooksImg },
+              {
+                label: language === 'pt-BR' ? 'Aventuras interativas' : 'Interactive Adventures',
+                id: '1:229',
+                img: interactiveAdventuresImg,
+              },
+              { label: language === 'pt-BR' ? 'Novelas visuais' : 'Visual Novels', id: '1:233', img: visualNovelsImg },
+              { label: language === 'pt-BR' ? 'Livros-jogo' : 'Game Books', id: '1:237', img: gameBooksImg },
             ].map(({ label, id, img }, index) => {
               const lastIndex = 2;
               const delayMs = writersScrollDown ? 150 + index * 150 : 150 + (lastIndex - index) * 150;
@@ -402,7 +548,7 @@ export function LibellLanding() {
 
           <div className="mx-auto mt-12 flex w-full max-w-3xl flex-col items-center justify-center gap-4 text-center">
             <h2 className="text-xl font-medium text-white md:text-2xl">
-              But that often requires:
+              {t.requiresTitle}
             </h2>
             <div className="mt-10 flex w-full flex-col items-center justify-center gap-4 md:mt-12 md:flex-row md:items-end md:justify-center md:gap-10">
               <div className="flex w-36 flex-shrink-0 flex-col items-center">
@@ -411,7 +557,7 @@ export function LibellLanding() {
                   className="size-12 object-contain opacity-90 [filter:brightness(0)_saturate(100%)_invert(75%)_sepia(57%)_saturate(2500%)_hue-rotate(166deg)]"
                   src={codeIcon}
                 />
-                <p className="mt-2 text-center text-base text-white/90">Programming</p>
+                <p className="mt-2 text-center text-base text-white/90">{t.programming}</p>
               </div>
               <div
                 aria-hidden
@@ -423,7 +569,7 @@ export function LibellLanding() {
                   className="size-12 object-contain opacity-90 [filter:brightness(0)_saturate(100%)_invert(75%)_sepia(57%)_saturate(2500%)_hue-rotate(166deg)]"
                   src={gameSettingIcon}
                 />
-                <p className="mt-2 text-center text-base text-white/90">Game Engines</p>
+                <p className="mt-2 text-center text-base text-white/90">{t.gameEngines}</p>
               </div>
               <div
                 aria-hidden
@@ -436,13 +582,13 @@ export function LibellLanding() {
                   src={requestIcon}
                 />
                 <p className="mt-2 text-center text-base text-white/90">
-                  Complex Tools
+                  {t.complexTools}
                 </p>
               </div>
             </div>
           </div>
           <p className="mx-auto mt-10 max-w-2xl py-4 text-center text-base text-white/90 md:mt-12 md:text-lg">
-            That’s a lot to learn before you can tell your story.
+            {t.learnBeforeStory}
           </p>
         </section>
 
@@ -456,15 +602,15 @@ export function LibellLanding() {
             ref={libellChangesRef}
             className={`flex flex-col items-center justify-center gap-6 ${libellSectionVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
           >
-            <div className="flex size-16 items-center justify-center rounded-2xl bg-white ring-1 ring-white/30 transition-all duration-200 hover:scale-[1.05] hover:shadow-lg md:size-20 animate-soft-pulse">
+            <div className="flex items-center justify-center transition-all duration-200 hover:scale-[1.05]">
               <img
                 alt="Libell.us"
-                className="size-9 md:size-10"
+                className="size-14 object-contain [filter:brightness(0)_invert(1)] md:size-16"
                 src={imgLogo}
               />
             </div>
             <h2 className="text-center text-2xl font-medium leading-tight text-white md:text-4xl md:leading-tight lg:text-5xl">
-              <span className="text-white">Libell.us</span> changes that
+              <span className="text-white">Libell.us</span> {t.changesThat}
             </h2>
           </div>
         </section>
@@ -478,29 +624,37 @@ export function LibellLanding() {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(0,192,230,0.2),transparent)] pointer-events-none" aria-hidden />
           <div className="relative">
             <h2 className="text-center text-xl font-medium tracking-wide text-black md:text-2xl lg:text-3xl">
-              Built for Story Creators
+              {t.builtForStoryCreators}
             </h2>
             <div className="mx-auto mt-4 h-px w-16 bg-black/50 rounded-full" aria-hidden />
             <div className="mx-auto mt-10 grid max-w-6xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
               {[
                 {
-                  title: 'Writers',
-                  description: 'Create interactive novels and immersive narrative worlds.',
+                  title: language === 'pt-BR' ? 'Escritores' : 'Writers',
+                  description: language === 'pt-BR'
+                    ? 'Crie romances interativos e mundos narrativos imersivos.'
+                    : 'Create interactive novels and immersive narrative worlds.',
                   icon: 'fa-pen-fancy',
                 },
                 {
-                  title: 'Game Designers',
-                  description: 'Prototype branching narratives and interactive storytelling systems.',
+                  title: language === 'pt-BR' ? 'Designers de jogos' : 'Game Designers',
+                  description: language === 'pt-BR'
+                    ? 'Prototipe narrativas ramificadas e sistemas de narrativa interativa.'
+                    : 'Prototype branching narratives and interactive storytelling systems.',
                   icon: 'fa-gamepad',
                 },
                 {
-                  title: 'Educators',
-                  description: 'Build interactive learning experiences and educational simulations.',
+                  title: language === 'pt-BR' ? 'Educadores' : 'Educators',
+                  description: language === 'pt-BR'
+                    ? 'Crie experiências de aprendizagem interativas e simulações educacionais.'
+                    : 'Build interactive learning experiences and educational simulations.',
                   icon: 'fa-graduation-cap',
                 },
                 {
-                  title: 'Content Creators',
-                  description: 'Publish visually rich storytelling experiences.',
+                  title: language === 'pt-BR' ? 'Criadores de conteúdo' : 'Content Creators',
+                  description: language === 'pt-BR'
+                    ? 'Publique experiências de narrativa visualmente ricas.'
+                    : 'Publish visually rich storytelling experiences.',
                   icon: 'fa-video',
                 },
               ].map(({ title, description, icon }) => (
@@ -524,28 +678,31 @@ export function LibellLanding() {
           data-node-id="1:184"
         >
           <h2 className="text-center text-2xl font-medium text-black md:text-3xl lg:text-4xl">
-            Turn imagination into interactive stories
+            {t.imaginationTitle}
           </h2>
           <div className="mx-auto mt-12 max-w-4xl space-y-16">
             {[
               {
-                title: 'Write Stories',
-                description:
-                  'Start with an idea and write your story using an intuitive editor designed for interactive storytelling.',
+                title: language === 'pt-BR' ? 'Escreva histórias' : 'Write Stories',
+                description: language === 'pt-BR'
+                  ? 'Comece com uma ideia e escreva sua história em um editor intuitivo para narrativas interativas.'
+                  : 'Start with an idea and write your story using an intuitive editor designed for interactive storytelling.',
                 imageFirst: false,
                 img: writeStoriesImg,
               },
               {
-                title: 'Build Worlds',
-                description:
-                  "Create characters, locations, and branching paths that shape your story's universe.",
+                title: language === 'pt-BR' ? 'Construa mundos' : 'Build Worlds',
+                description: language === 'pt-BR'
+                  ? 'Crie personagens, locais e caminhos ramificados que moldam o universo da sua história.'
+                  : "Create characters, locations, and branching paths that shape your story's universe.",
                 imageFirst: true,
                 img: buildWorldsImg,
               },
               {
-                title: 'Publish Interactive Books',
-                description:
-                  'Turn your story into an interactive experience readers can explore.',
+                title: language === 'pt-BR' ? 'Publique livros interativos' : 'Publish Interactive Books',
+                description: language === 'pt-BR'
+                  ? 'Transforme sua história em uma experiência interativa que leitores podem explorar.'
+                  : 'Turn your story into an interactive experience readers can explore.',
                 imageFirst: false,
                 img: publishImg,
               },
@@ -569,7 +726,7 @@ export function LibellLanding() {
                         type="button"
                         className="rounded-2xl border-2 border-black px-6 py-3 text-base font-medium text-black transition-all duration-200 hover:scale-[1.03] hover:bg-black/10 hover:shadow-lg md:text-lg"
                       >
-                        Learn More
+                        {t.learnMore}
                       </button>
                     </div>
                   </div>
@@ -599,16 +756,16 @@ export function LibellLanding() {
           data-node-id="1:71"
         >
           <h2 className="text-center text-2xl font-medium text-white md:text-3xl lg:text-4xl">
-            The Platform for Interactive Storytelling
+            {t.platformTitle}
           </h2>
           <p className="mx-auto mt-6 max-w-4xl text-center text-base text-white/70 md:text-lg lg:text-xl">
-            <span className="font-semibold text-white/90">Libell.us</span> is a creative platform where creators{' '}
+            <span className="font-semibold text-white/90">Libell.us</span> {t.platformSubtitle1}{' '}
             <br className="hidden md:block" />
-            can build interactive stories with:
+            {t.platformSubtitle2}
           </p>
           <div className="relative mx-auto mt-8 max-w-3xl">
             <div
-              aria-label="Platform features"
+              aria-label={t.platformFeaturesAria}
               className="flex flex-wrap justify-center gap-4 border-b-2 border-white/30 pb-3 md:gap-6 md:pb-4"
               role="tablist"
             >
@@ -624,13 +781,13 @@ export function LibellLanding() {
                     : 'border-transparent text-white/70 hover:text-white'
                     }`}
                 >
-                  {tab.label}
+                  {tab.label[language]}
                 </button>
               ))}
             </div>
           </div>
           <div
-            aria-label={`Content for ${PLATFORM_TABS.find((t) => t.id === activePlatformTab)?.label ?? activePlatformTab}`}
+            aria-label={`Content for ${PLATFORM_TABS.find((tab) => tab.id === activePlatformTab)?.label[language] ?? activePlatformTab}`}
             className="mx-auto mt-8 flex max-w-sm flex-wrap justify-center gap-2 sm:max-w-md sm:gap-3 md:max-w-3xl md:grid md:grid-cols-4 md:gap-4"
             role="tabpanel"
           >
@@ -642,7 +799,7 @@ export function LibellLanding() {
                 <div className="flex min-h-0 flex-1 items-center justify-center p-2">
                   <img alt="" className="max-h-10 max-w-10 object-contain" src={imgVuesaxBoldGallery} />
                 </div>
-                <p className="p-1.5 text-center text-xs text-white">{item.label}</p>
+                <p className="p-1.5 text-center text-xs text-white">{item.label[language]}</p>
               </div>
             ))}
           </div>
@@ -651,13 +808,13 @@ export function LibellLanding() {
               type="button"
               className="rounded-2xl border border-white px-6 py-3 text-base font-medium text-white transition-all duration-200 hover:scale-[1.03] hover:bg-white/25 hover:shadow-md"
             >
-              See how Libell works
+              {t.seeHowWorks}
             </button>
             <button
               type="button"
               className="rounded-2xl border-2 border-white bg-white px-6 py-3 text-base font-medium text-black transition-all duration-200 hover:scale-[1.03] hover:bg-white hover:shadow-lg"
             >
-              Back the Kickstarter
+              {t.backKickstarter}
             </button>
           </div>
         </section>
@@ -669,10 +826,10 @@ export function LibellLanding() {
           data-node-id="54:212"
         >
           <h2 className="text-center text-xl font-medium text-black md:text-2xl lg:text-3xl">
-            Explore stories created with Libell.us
+            {t.exploreStoriesTitle}
           </h2>
           <p className="mx-auto mt-6 max-w-4xl text-center text-base text-body-on-light md:text-lg lg:text-xl">
-            From fantasy adventures and children's books to sci-fi interactive stories.
+            {t.exploreStoriesSubtitle}
           </p>
           <div
             className={`mx-auto mt-12 max-w-6xl [animation-fill-mode:backwards] ${exploreStoriesVisible ? 'animate-fade-in-up md:animate-fade-in-up-slow' : 'opacity-0'}`}
@@ -682,7 +839,7 @@ export function LibellLanding() {
                 type="button"
                 onClick={() => setCarouselIndex((i) => Math.max(0, i - 1))}
                 className="flex size-10 shrink-0 items-center justify-center rounded-full border-2 border-black/30 bg-white text-black transition-colors hover:border-black hover:bg-black hover:text-white disabled:opacity-40 md:size-12"
-                aria-label="Previous"
+                aria-label={t.previous}
                 disabled={carouselIndex === 0}
               >
                 <svg className="size-5 md:size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -698,7 +855,7 @@ export function LibellLanding() {
                     <div key={idx} className="flex min-w-0 flex-1 basis-0 justify-center">
                       <div className="overflow-hidden rounded-xl bg-white">
                         <img
-                          alt={item.alt}
+                          alt={item.alt[language]}
                           className="aspect-[9/16] w-full max-w-[240px] object-contain md:max-w-[240px]"
                           src={item.src}
                         />
@@ -711,7 +868,7 @@ export function LibellLanding() {
                 type="button"
                 onClick={() => setCarouselIndex((i) => Math.min(CAROUSEL_IMAGES.length - carouselVisibleCount, i + 1))}
                 className="flex size-10 shrink-0 items-center justify-center rounded-full border-2 border-black/30 bg-white text-black transition-colors hover:border-black hover:bg-black hover:text-white disabled:opacity-40 md:size-12"
-                aria-label="Next"
+                aria-label={t.next}
                 disabled={carouselIndex >= CAROUSEL_IMAGES.length - carouselVisibleCount}
               >
                 <svg className="size-5 md:size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -736,7 +893,7 @@ export function LibellLanding() {
               type="button"
               className="rounded-2xl border-2 border-black bg-white px-6 py-3 text-base font-medium text-black transition-all duration-200 hover:scale-[1.03] hover:bg-white hover:shadow-lg md:text-lg"
             >
-              Read a Story
+              {t.readStory}
             </button>
           </div>
         </section>
@@ -749,19 +906,19 @@ export function LibellLanding() {
           <div className="mb-16 h-px w-full shadow-[0_1px_0_0_rgba(255,255,255,0.15),0_2px_8px_-2px_rgba(255,255,255,0.08)] md:mb-24" aria-hidden />
           <div className="relative mx-auto max-w-4xl text-center">
             <h2 className="text-xl font-medium text-white md:text-2xl lg:text-3xl">
-              Join the Next Generation of Storytelling
+              {t.communityTitle}
             </h2>
             <p className="mx-auto mt-6 max-w-2xl text-base text-white/70 md:text-lg">
-              We’re building a platform for immersive, interactive stories.
+              {t.communityDesc1}
               <br className="hidden sm:block lg:hidden" />
-              {' '}To see the platform in action, check out our{' '}
+              {' '}{t.communityDesc2}{' '}
               <a
                 href="https://www.youtube.com/watch?v=TRqNSkkrD8o"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-medium text-white underline transition-colors hover:text-white/80"
               >
-                YouTube channel
+                {t.youtubeChannel}
               </a>
               !
             </p>
@@ -787,16 +944,16 @@ export function LibellLanding() {
         >
           <div className="mx-auto max-w-4xl text-center">
             <p className="text-base text-white/90 md:text-lg">
-              Back the project and join the beta.
+              {t.ctaText1}
               <br />
-              Help shape what's next!
+              {t.ctaText2}
             </p>
             <div className="mt-6 flex justify-center">
               <a
                 href="#kickstarter"
                 className="inline-block rounded-2xl border-2 border-white bg-white px-6 py-3 text-base font-medium text-black transition-all duration-200 hover:scale-[1.03] hover:bg-white hover:shadow-lg md:text-lg animate-soft-pulse"
               >
-                Back the Kickstarter
+                {t.backKickstarter}
               </a>
             </div>
           </div>
@@ -813,12 +970,12 @@ export function LibellLanding() {
               <span className="text-xl font-bold text-black">Libell.us</span>
             </div>
             <nav className="flex flex-wrap justify-center gap-3 text-sm text-black md:gap-8 md:text-base">
-              <a href="#features" className="transition-colors hover:text-black/80">Features</a>
-              <a href="#about" className="transition-colors hover:text-black/80">About</a>
-              <a href="#docs" className="transition-colors hover:text-black/80">Docs</a>
-              <a href="#contact" className="transition-colors hover:text-black/80">Contact</a>
-              <a href="#privacy" className="transition-colors hover:text-black/80">Privacy</a>
-              <a href="#terms" className="transition-colors hover:text-black/80">Terms</a>
+              <a href="#features" className="transition-colors hover:text-black/80">{t.features}</a>
+              <a href="#about" className="transition-colors hover:text-black/80">{t.about}</a>
+              <a href="#docs" className="transition-colors hover:text-black/80">{t.footerDocs}</a>
+              <a href="#contact" className="transition-colors hover:text-black/80">{t.footerContact}</a>
+              <a href="#privacy" className="transition-colors hover:text-black/80">{t.footerPrivacy}</a>
+              <a href="#terms" className="transition-colors hover:text-black/80">{t.footerTerms}</a>
             </nav>
             <p className="text-sm text-black">
               ©{new Date().getFullYear()} Libell.us
