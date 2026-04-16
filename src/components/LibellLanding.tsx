@@ -222,17 +222,17 @@ export function LibellLanding() {
       <a href="#features" className="text-sm text-black hover:text-black/80 sm:text-base lg:text-lg" onClick={closeMobileMenu}>
         Features
       </a>
+      <a href="#pricing" className="text-sm text-black hover:text-black/80 sm:text-base lg:text-lg" onClick={closeMobileMenu}>
+        Pricing
+      </a>
       <a href="#about" className="text-sm text-black hover:text-black/80 sm:text-base lg:text-lg" onClick={closeMobileMenu}>
         About
-      </a>
-      <a href="#login" className="text-sm text-black hover:text-black/80 sm:text-base lg:text-lg" onClick={closeMobileMenu}>
-        Login
       </a>
       <button
         type="button"
         className="whitespace-nowrap rounded-2xl border-2 border-white bg-white px-4 py-2.5 text-sm font-medium text-black hover:bg-white sm:px-5 sm:py-2.5 sm:text-base lg:px-6 lg:py-3 lg:text-base"
       >
-        Back the Kickstarter
+        Login
       </button>
     </>
   );
@@ -293,18 +293,18 @@ export function LibellLanding() {
               <a href="#features" className="text-lg font-medium text-black hover:text-black/80" onClick={closeMobileMenu}>
                 Features
               </a>
+              <a href="#pricing" className="text-lg font-medium text-black hover:text-black/80" onClick={closeMobileMenu}>
+                Pricing
+              </a>
               <a href="#about" className="text-lg font-medium text-black hover:text-black/80" onClick={closeMobileMenu}>
                 About
-              </a>
-              <a href="#login" className="text-lg font-medium text-black hover:text-black/80" onClick={closeMobileMenu}>
-                Login
               </a>
               <button
                 type="button"
                 className="w-full rounded-2xl border-2 border-white bg-white py-3 text-base font-medium text-black hover:bg-white"
                 onClick={closeMobileMenu}
               >
-                Back the Kickstarter
+                Login
               </button>
             </nav>
           </div>
@@ -337,7 +337,7 @@ export function LibellLanding() {
                   type="button"
                   className="shrink-0 rounded-2xl border-2 border-white bg-white px-4 py-2.5 text-sm font-medium text-black transition-all duration-200 hover:scale-[1.03] hover:bg-white hover:shadow-lg sm:px-6 sm:py-3 sm:text-base"
                 >
-                  Back the Kickstarter
+                  Try It Now!
                 </button>
                 <button
                   type="button"
