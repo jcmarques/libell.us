@@ -21,11 +21,7 @@ function DocHeading() {
       >
         Privacy Notice v1.0
       </h1>
-      <div
-        className="mx-auto mt-4 h-px w-14 shrink-0 rounded-full bg-features-card-border/60"
-        aria-hidden
-      />
-      <p className="mt-4 text-center text-base font-medium leading-snug text-features-muted md:text-lg">
+      <p className="mt-8 text-center text-base font-medium leading-snug text-features-muted md:text-lg">
         Effective Date: April 13, 2026
       </p>
     </div>

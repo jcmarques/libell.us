@@ -319,11 +319,7 @@ export function PricingPage() {
                     {p.heroHead2}
                   </span>
                 </h1>
-                <div
-                  className="mx-auto mt-4 h-px w-14 shrink-0 rounded-full bg-white/25 md:mx-0"
-                  aria-hidden
-                />
-                <p className="mt-3 w-full max-w-[450px] text-center text-base text-features-muted md:max-w-[300px] md:text-left md:text-lg min-[900px]:max-w-[450px] lg:mt-2.5 lg:leading-snug xl:mt-2">
+                <p className="mt-7 w-full max-w-[450px] text-center text-base text-features-muted md:max-w-[300px] md:text-left md:text-lg min-[900px]:max-w-[450px] lg:mt-6 lg:leading-snug xl:mt-5">
                   {p.heroIntro}
                 </p>
                 <div className="mt-6 flex flex-nowrap justify-center gap-3 md:justify-start">

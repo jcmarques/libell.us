@@ -197,7 +197,7 @@ export function TeamMemberFlipCard({
           {sectionTitle}
         </h2>
         <div
-          className="mx-auto mt-4 h-px w-16 rounded-full bg-white/20 lg:mx-0"
+          className="mx-auto mt-4 h-px w-16 shrink-0 rounded-full bg-white/20 lg:mx-0"
           aria-hidden
         />
         <h3 className={`mt-8 text-2xl font-semibold md:text-3xl ${FEATURES_TEAL_FILTER}`}>{name}</h3>
@@ -381,12 +381,11 @@ export function AboutPage() {
         <main>
           <section className="relative bg-black px-4 py-16 text-white sm:px-6 md:px-12 md:pb-24 md:pt-12 lg:pb-[100px] lg:pt-14">
             <div className="mx-auto flex w-full max-w-6xl flex-col items-stretch gap-10 md:flex-row md:items-center md:gap-12 lg:gap-16">
-              <div className="flex min-w-0 flex-1 flex-col items-start text-left">
-                <h1 className="text-3xl font-semibold leading-tight tracking-tight text-white md:text-4xl lg:text-5xl lg:leading-[1.2]">
+              <div className="flex min-w-0 flex-1 flex-col items-center text-center md:items-start md:text-left">
+                <h1 className="w-full text-3xl font-semibold leading-tight tracking-tight text-white md:text-4xl lg:text-5xl lg:leading-[1.2]">
                   {c.introTitle}
                 </h1>
-                <div className="mt-4 h-px w-14 shrink-0 rounded-full bg-white/25" aria-hidden />
-                <p className="max-w-xl text-base leading-relaxed text-features-muted md:text-lg lg:leading-snug">
+                <p className="mt-6 w-full max-w-xl text-base leading-relaxed text-features-muted md:text-lg lg:leading-snug">
                   {c.introBody}
                 </p>
               </div>
@@ -428,7 +427,7 @@ export function AboutPage() {
                     {c.storyTitle}
                   </h2>
                   <div
-                    className="mx-auto mt-4 h-px w-16 rounded-full bg-black/15 lg:mx-0"
+                    className="mx-auto mt-4 h-px w-16 shrink-0 rounded-full bg-black/15 lg:mx-0"
                     aria-hidden
                   />
                   <h3 className="mt-8 text-center text-2xl font-semibold text-features-bar md:text-3xl lg:text-left">
@@ -476,8 +475,7 @@ export function AboutPage() {
               >
                 {c.cardsTitle}
               </h2>
-              <div className="mx-auto mt-4 h-px w-16 rounded-full bg-white/25" aria-hidden />
-              <div className="mx-auto mt-10 grid grid-cols-1 justify-items-center gap-8 sm:grid-cols-2">
+              <div className="mx-auto mt-14 grid grid-cols-1 justify-items-center gap-8 sm:grid-cols-2">
                 <AboutInfoCard
                   title={c.saintTitle}
                   body={c.saintBody}

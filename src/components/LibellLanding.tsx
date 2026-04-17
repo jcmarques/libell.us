@@ -414,11 +414,7 @@ export function LibellLanding() {
                 {t.heroLine1}<br />
                 {t.heroLine2}
               </h1>
-              <div
-                className="mx-auto mt-4 h-px w-14 shrink-0 rounded-full bg-white/25 md:mx-0"
-                aria-hidden
-              />
-              <p className="mx-auto mt-3 max-w-[400px] text-base text-neutral-6 md:mx-0 md:text-lg">
+              <p className="mx-auto mt-7 max-w-[400px] text-base text-neutral-6 md:mx-0 md:text-lg">
                 {t.heroDesc1}
                 <br className="md:hidden" />
                 {' '}{t.heroDesc2}
@@ -590,8 +586,7 @@ export function LibellLanding() {
             <h2 className="text-center text-xl font-medium tracking-wide text-white md:text-2xl lg:text-3xl">
               {t.builtForStoryCreators}
             </h2>
-            <div className="mx-auto mt-4 h-px w-16 rounded-full bg-white/25" aria-hidden />
-            <div className="mx-auto mt-10 grid max-w-6xl grid-cols-1 justify-items-center gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mx-auto mt-14 grid max-w-6xl grid-cols-1 justify-items-center gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {[
                 {
                   title: language === 'pt-BR' ? 'Escritores' : 'Writers',
