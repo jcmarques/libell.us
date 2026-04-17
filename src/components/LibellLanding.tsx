@@ -360,10 +360,10 @@ export function LibellLanding() {
       <div className="w-full max-w-[2560px]">
         {/* 0. Navigation */}
         <header
-          className="relative border-b border-features-bar-border bg-features-bar"
+          className="relative border-b border-features-bar-border bg-features-bar px-4 sm:px-6 md:px-12"
           data-node-id="1:258"
         >
-          <div className="mx-auto flex h-20 min-h-[4rem] w-full max-w-6xl items-center justify-between px-4 py-3 sm:h-24 sm:px-6 md:px-12">
+          <div className="mx-auto flex h-20 min-h-[4rem] w-full max-w-6xl items-center justify-between py-3 sm:h-24">
             <div className="flex items-center gap-2 sm:gap-3">
               <div className="flex size-12 items-center justify-center rounded-2xl bg-transparent sm:size-16">
                 <img
@@ -539,30 +539,30 @@ export function LibellLanding() {
                 colorImg: gameBooksColorImg,
               },
             ].map(({ label, id, img, colorImg }, index) => (
-                <li
-                  key={id}
-                  className={`group flex w-full flex-col items-center sm:items-stretch ${index === 2
-                    ? 'max-w-[280px] sm:col-span-2 sm:max-w-[calc((100%-1.25rem)/2)] sm:justify-self-center lg:col-span-1 lg:max-w-none'
-                    : 'max-w-[280px] sm:max-w-none'
-                    }`}
-                >
-                  <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-2xl bg-white/10 p-2 sm:p-2.5 md:p-3">
-                    <img
-                      alt={label}
-                      className="h-full w-full object-contain transition-opacity duration-300 group-hover:opacity-0"
-                      src={img}
-                    />
-                    <img
-                      alt={label}
-                      className="pointer-events-none absolute inset-0 h-full w-full object-contain p-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                      src={colorImg}
-                    />
-                  </div>
-                  <p className="mt-1.5 max-w-full px-1 text-center text-sm text-white sm:mt-2 sm:text-base">
-                    {label}
-                  </p>
-                </li>
-              ))}
+              <li
+                key={id}
+                className={`group flex w-full flex-col items-center sm:items-stretch ${index === 2
+                  ? 'max-w-[280px] sm:col-span-2 sm:max-w-[calc((100%-1.25rem)/2)] sm:justify-self-center lg:col-span-1 lg:max-w-none'
+                  : 'max-w-[280px] sm:max-w-none'
+                  }`}
+              >
+                <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-2xl bg-white/10 p-2 sm:p-2.5 md:p-3">
+                  <img
+                    alt={label}
+                    className="h-full w-full object-contain transition-opacity duration-300 group-hover:opacity-0"
+                    src={img}
+                  />
+                  <img
+                    alt={label}
+                    className="pointer-events-none absolute inset-0 h-full w-full object-contain p-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                    src={colorImg}
+                  />
+                </div>
+                <p className="mt-1.5 max-w-full px-1 text-center text-sm text-white sm:mt-2 sm:text-base">
+                  {label}
+                </p>
+              </li>
+            ))}
           </ul>
 
           <div className="mx-auto mt-12 flex w-full max-w-3xl flex-col items-center justify-center gap-4 text-center">
@@ -994,14 +994,12 @@ export function LibellLanding() {
               <img alt="" className="size-9 object-contain brightness-0 invert" src={imgLogo} />
               <span className="text-xl font-bold text-white">Libell.us</span>
             </div>
-            <nav className="flex flex-wrap justify-center gap-3 text-sm text-white/90 md:gap-8 md:text-base">
-              <Link to="/features" className="text-features-accent transition-colors hover:text-features-accent-dim">
-                {t.features}
-              </Link>
-              <a href="#about" className="transition-colors hover:text-white">{t.about}</a>
-              <a href="#contact" className="transition-colors hover:text-white">{t.footerContact}</a>
-              <a href="#privacy" className="transition-colors hover:text-white">{t.footerPrivacy}</a>
-              <a href="#terms" className="transition-colors hover:text-white">{t.footerTerms}</a>
+            <nav className="flex flex-wrap justify-center gap-3 text-sm md:gap-8 md:text-base">
+              <Link to="/features">{t.features}</Link>
+              <a href="#about">{t.about}</a>
+              <a href="#contact">{t.footerContact}</a>
+              <a href="#privacy">{t.footerPrivacy}</a>
+              <a href="#terms">{t.footerTerms}</a>
             </nav>
             <p className="mx-auto max-w-xs font-sans text-xs font-normal leading-snug text-features-muted sm:max-w-md md:text-sm">
               {t.footerCopyright}

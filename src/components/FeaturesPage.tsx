@@ -429,22 +429,18 @@ export function FeaturesPage() {
               <img alt="" className="size-9 object-contain brightness-0 invert" src={imgLogo} />
               <span className="text-xl font-bold text-white">Libell.us</span>
             </Link>
-            <nav className="flex flex-wrap justify-center gap-3 text-sm text-white/90 md:gap-8 md:text-base">
-              <Link to="/features" className="text-features-accent transition-colors hover:text-features-accent-dim">
+            <nav className="flex flex-wrap justify-center gap-3 text-sm md:gap-8 md:text-base">
+              <Link
+                to="/features"
+                aria-current="page"
+                className="font-medium !text-features-accent transition-colors hover:!text-features-accent-dim text-sm sm:text-base lg:text-lg"
+              >
                 {t.features}
               </Link>
-              <a href={homeHash('about')} className="transition-colors hover:text-white">
-                {t.about}
-              </a>
-              <a href={homeHash('contact')} className="transition-colors hover:text-white">
-                {t.footerContact}
-              </a>
-              <a href={homeHash('privacy')} className="transition-colors hover:text-white">
-                {t.footerPrivacy}
-              </a>
-              <a href={homeHash('terms')} className="transition-colors hover:text-white">
-                {t.footerTerms}
-              </a>
+              <a href={homeHash('about')}>{t.about}</a>
+              <a href={homeHash('contact')}>{t.footerContact}</a>
+              <a href={homeHash('privacy')}>{t.footerPrivacy}</a>
+              <a href={homeHash('terms')}>{t.footerTerms}</a>
             </nav>
             <p className="mx-auto max-w-xs font-sans text-xs font-normal leading-snug text-features-muted sm:max-w-md md:text-sm">
               {t.footerCopyright}

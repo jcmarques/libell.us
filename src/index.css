@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Footer link row: force neutral white (React Router <Link> renders <a>; avoids accent bleed) */
+footer nav a,
+footer nav a:visited {
+  color: rgba(255, 255, 255, 0.9) !important;
+  text-decoration: none !important;
+}
+footer nav a:hover {
+  color: rgb(255, 255, 255) !important;
+}
