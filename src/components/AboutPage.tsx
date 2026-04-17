@@ -318,12 +318,12 @@ export function AboutPage() {
               <span className="text-sm font-medium text-features-accent sm:text-base lg:text-lg" aria-current="page">
                 {t.about}
               </span>
-              <button
-                type="button"
+              <Link
+                to="/login"
                 className="whitespace-nowrap rounded-2xl border-2 border-features-accent/80 bg-features-accent px-4 py-2.5 text-sm font-medium text-features-bar hover:bg-features-accent-dim sm:px-5 sm:py-2.5 sm:text-base lg:px-6 lg:py-3 lg:text-base"
               >
                 {t.login}
-              </button>
+              </Link>
               {languageSelect('about-language-desktop', 'ml-1')}
             </nav>
 
@@ -371,20 +371,20 @@ export function AboutPage() {
                 {t.pricing}
               </Link>
               <span className="w-full text-lg font-medium text-features-accent">{t.about}</span>
-              <button
-                type="button"
-                className="w-full max-w-xs rounded-2xl border-2 border-features-accent/80 bg-features-accent py-3 text-base font-medium text-features-bar hover:bg-features-accent-dim"
+              <Link
+                to="/login"
+                className="w-full max-w-xs rounded-2xl border-2 border-features-accent/80 bg-features-accent py-3 text-center text-base font-medium text-features-bar hover:bg-features-accent-dim"
                 onClick={closeMobileMenu}
               >
                 {t.login}
-              </button>
+              </Link>
             </nav>
           </div>
         )}
 
         <main>
-          <section className="relative bg-black px-6 py-16 text-white md:px-10 md:pb-24 md:pt-12 lg:px-16 lg:pb-[100px] lg:pt-14 xl:px-28 2xl:px-36">
-            <div className="mx-auto flex w-full max-w-7xl flex-col items-stretch gap-10 md:flex-row md:items-center md:gap-12 lg:gap-16">
+          <section className="relative bg-black px-4 py-16 text-white sm:px-6 md:px-12 md:pb-24 md:pt-12 lg:pb-[100px] lg:pt-14">
+            <div className="mx-auto flex w-full max-w-6xl flex-col items-stretch gap-10 px-[5px] md:flex-row md:items-center md:gap-12 lg:gap-16">
               <div className="flex min-w-0 flex-1 flex-col items-center text-center md:items-start md:text-left">
                 <h1 className="w-full text-3xl font-semibold leading-tight tracking-tight text-white md:text-4xl lg:text-5xl lg:leading-[1.2]">
                   {c.introTitle}

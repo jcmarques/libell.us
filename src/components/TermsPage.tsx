@@ -130,12 +130,12 @@ export function TermsPage() {
               <Link to="/about" className="text-sm text-white/90 hover:text-white sm:text-base lg:text-lg">
                 {t.about}
               </Link>
-              <button
-                type="button"
+              <Link
+                to="/login"
                 className="whitespace-nowrap rounded-2xl border-2 border-features-accent/80 bg-features-accent px-4 py-2.5 text-sm font-medium text-features-bar hover:bg-features-accent-dim sm:px-5 sm:py-2.5 sm:text-base lg:px-6 lg:py-3 lg:text-base"
               >
                 {t.login}
-              </button>
+              </Link>
               {languageSelect('terms-language-desktop', 'ml-1')}
             </nav>
 
@@ -189,13 +189,13 @@ export function TermsPage() {
               >
                 {t.about}
               </Link>
-              <button
-                type="button"
-                className="w-full max-w-xs rounded-2xl border-2 border-features-accent/80 bg-features-accent py-3 text-base font-medium text-features-bar hover:bg-features-accent-dim"
+              <Link
+                to="/login"
+                className="w-full max-w-xs rounded-2xl border-2 border-features-accent/80 bg-features-accent py-3 text-center text-base font-medium text-features-bar hover:bg-features-accent-dim"
                 onClick={closeMobileMenu}
               >
                 {t.login}
-              </button>
+              </Link>
             </nav>
           </div>
         )}
