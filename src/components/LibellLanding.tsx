@@ -4,9 +4,6 @@ import {
   imgLogo,
   imgVuesaxBoldGallery,
 } from '../assets/figma-assets';
-import codeIcon from '../assets/icons/code.png';
-import gameSettingIcon from '../assets/icons/game-setting.png';
-import requestIcon from '../assets/icons/request.png';
 import heroImage from '../assets/hero/hero.png';
 import interactiveAdventuresImg from '../assets/writers/interactive.jpg';
 import interactiveAdventuresColorImg from '../assets/writers/interactive-adventures-color.jpg';
@@ -18,7 +15,7 @@ import writeStoriesImg from '../assets/imagination/write-stories.png';
 import buildWorldsImg from '../assets/imagination/build-worlds.png';
 import publishImg from '../assets/imagination/publish.png';
 
-/** Teal tint matching problem-section PNG icons (code, game-setting, request). */
+/** Teal tint for Font Awesome solid icons (same treatment as problem / about rows). */
 const FEATURES_TEAL_FILTER =
   'opacity-95 [filter:brightness(0)_saturate(100%)_invert(83%)_sepia(31%)_saturate(1167%)_hue-rotate(116deg)_brightness(97%)_contrast(92%)]';
 
@@ -504,10 +501,9 @@ export function LibellLanding() {
             </h2>
             <div className="mt-10 flex w-full max-w-full flex-row items-end justify-center gap-2 sm:gap-4 md:mt-12 md:gap-10">
               <div className="flex min-w-0 flex-1 basis-0 flex-col items-center">
-                <img
-                  alt=""
-                  className={`size-9 object-contain sm:size-10 md:size-12 ${FEATURES_TEAL_FILTER}`}
-                  src={codeIcon}
+                <i
+                  className={`fa-solid fa-code text-3xl leading-none text-black sm:text-[2.125rem] md:text-4xl ${FEATURES_TEAL_FILTER}`}
+                  aria-hidden
                 />
                 <p className="mt-1.5 max-w-full px-0.5 text-center text-[11px] leading-snug text-white/90 sm:mt-2 sm:text-xs md:text-base">
                   {t.programming}
@@ -518,10 +514,9 @@ export function LibellLanding() {
                 className="h-px w-6 flex-shrink-0 self-center bg-white/30 sm:w-10 md:w-16"
               />
               <div className="flex min-w-0 flex-1 basis-0 flex-col items-center">
-                <img
-                  alt=""
-                  className={`size-9 object-contain sm:size-10 md:size-12 ${FEATURES_TEAL_FILTER}`}
-                  src={gameSettingIcon}
+                <i
+                  className={`fa-solid fa-gears text-3xl leading-none text-black sm:text-[2.125rem] md:text-4xl ${FEATURES_TEAL_FILTER}`}
+                  aria-hidden
                 />
                 <p className="mt-1.5 max-w-full px-0.5 text-center text-[11px] leading-snug text-white/90 sm:mt-2 sm:text-xs md:text-base">
                   {t.gameEngines}
@@ -532,10 +527,9 @@ export function LibellLanding() {
                 className="h-px w-6 flex-shrink-0 self-center bg-white/30 sm:w-10 md:w-16"
               />
               <div className="flex min-w-0 flex-1 basis-0 flex-col items-center">
-                <img
-                  alt=""
-                  className={`size-9 object-contain sm:size-10 md:size-12 ${FEATURES_TEAL_FILTER}`}
-                  src={requestIcon}
+                <i
+                  className={`fa-solid fa-screwdriver-wrench text-3xl leading-none text-black sm:text-[2.125rem] md:text-4xl ${FEATURES_TEAL_FILTER}`}
+                  aria-hidden
                 />
                 <p className="mt-1.5 max-w-full px-0.5 text-center text-[11px] leading-snug text-white/90 sm:mt-2 sm:text-xs md:text-base">
                   {t.complexTools}
@@ -757,11 +751,18 @@ export function LibellLanding() {
                   aria-selected={activePlatformTab === tab.id}
                   onClick={() => setActivePlatformTab(tab.id)}
                   className={`relative -mb-[2px] border-b-2 pb-3 pt-1 text-base font-medium transition-colors md:pb-4 md:text-lg ${activePlatformTab === tab.id
-                    ? 'border-white text-white'
+                    ? 'border-features-accent'
                     : 'border-transparent text-white/70 hover:text-white'
                     }`}
                 >
-                  {tab.label[language]}
+                  {/* Filter on inner span only — filter on the button would repaint the border and hide the underline */}
+                  <span
+                    className={
+                      activePlatformTab === tab.id ? `text-black ${FEATURES_TEAL_FILTER}` : undefined
+                    }
+                  >
+                    {tab.label[language]}
+                  </span>
                 </button>
               ))}
             </div>
