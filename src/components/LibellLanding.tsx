@@ -26,56 +26,110 @@ const PLATFORM_TABS = [
   { id: 'sound-effects', label: { 'en-US': 'Sound Effects', 'pt-BR': 'Efeitos Sonoros' } },
 ] as const;
 
-const PLATFORM_TAB_CONTENT: Record<(typeof PLATFORM_TABS)[number]['id'], { label: Record<Language, string> }[]> = {
+type PlatformTabItem = {
+  label: Record<Language, string>;
+  /** Font Awesome 6 solid (filled) icon, e.g. `fa-code-branch` */
+  icon?: string;
+};
+
+const PLATFORM_TAB_CONTENT: Record<(typeof PLATFORM_TABS)[number]['id'], PlatformTabItem[]> = {
   'ambience-fx': [
-    { label: { 'en-US': 'Ambience', 'pt-BR': 'Ambiência' } },
-    { label: { 'en-US': 'SFX', 'pt-BR': 'SFX' } },
-    { label: { 'en-US': 'Music', 'pt-BR': 'Música' } },
-    { label: { 'en-US': 'Volume', 'pt-BR': 'Volume' } },
-    { label: { 'en-US': 'Fade', 'pt-BR': 'Fade' } },
-    { label: { 'en-US': 'Loop', 'pt-BR': 'Loop' } },
-    { label: { 'en-US': 'Spatial', 'pt-BR': 'Espacial' } },
-    { label: { 'en-US': 'Mixing', 'pt-BR': 'Mixagem' } },
+    { label: { 'en-US': 'Rain', 'pt-BR': 'Chuva' }, icon: 'fa-cloud-rain' },
+    { label: { 'en-US': 'Snow', 'pt-BR': 'Neve' }, icon: 'fa-snowflake' },
+    { label: { 'en-US': 'Fog', 'pt-BR': 'Neblina' }, icon: 'fa-smog' },
+    { label: { 'en-US': 'Ashfall', 'pt-BR': 'Cinzas vulcânicas' }, icon: 'fa-volcano' },
+    { label: { 'en-US': 'Aurora', 'pt-BR': 'Aurora' }, icon: 'fa-wand-magic-sparkles' },
+    { label: { 'en-US': 'Sandstorm', 'pt-BR': 'Tempestade de areia' }, icon: 'fa-wind' },
+    { label: { 'en-US': 'Fire', 'pt-BR': 'Fogo' }, icon: 'fa-fire-flame-curved' },
+    { label: { 'en-US': 'Heatwave', 'pt-BR': 'Onda de calor' }, icon: 'fa-sun' },
   ],
   'story-editor': [
-    { label: { 'en-US': 'Branches', 'pt-BR': 'Ramificacoes' } },
-    { label: { 'en-US': 'Choices', 'pt-BR': 'Escolhas' } },
-    { label: { 'en-US': 'Variables', 'pt-BR': 'Variáveis' } },
-    { label: { 'en-US': 'Conditions', 'pt-BR': 'Condições' } },
-    { label: { 'en-US': 'Scenes', 'pt-BR': 'Cenas' } },
-    { label: { 'en-US': 'Chapters', 'pt-BR': 'Capítulos' } },
-    { label: { 'en-US': 'Notes', 'pt-BR': 'Notas' } },
-    { label: { 'en-US': 'Export', 'pt-BR': 'Exportar' } },
+    {
+      label: { 'en-US': 'Branches', 'pt-BR': 'Ramificações' },
+      icon: 'fa-code-branch',
+    },
+    {
+      label: { 'en-US': 'Choices', 'pt-BR': 'Escolhas' },
+      icon: 'fa-list-check',
+    },
+    {
+      label: { 'en-US': 'Inventory', 'pt-BR': 'Inventário' },
+      icon: 'fa-boxes-stacked',
+    },
+    {
+      label: { 'en-US': 'Characters', 'pt-BR': 'Personagens' },
+      icon: 'fa-users',
+    },
+    {
+      label: { 'en-US': 'Locations', 'pt-BR': 'Locais' },
+      icon: 'fa-map-location-dot',
+    },
+    {
+      label: { 'en-US': 'Timelines', 'pt-BR': 'Linhas do tempo' },
+      icon: 'fa-chart-gantt',
+    },
+    {
+      label: { 'en-US': 'Narration', 'pt-BR': 'Narração' },
+      icon: 'fa-microphone-lines',
+    },
+    {
+      label: { 'en-US': 'Printing', 'pt-BR': 'Impressão' },
+      icon: 'fa-print',
+    },
   ],
   'visual-styles': [
-    { label: { 'en-US': 'Themes', 'pt-BR': 'Temas' } },
-    { label: { 'en-US': 'Fonts', 'pt-BR': 'Fontes' } },
-    { label: { 'en-US': 'Layouts', 'pt-BR': 'Layouts' } },
-    { label: { 'en-US': 'Colors', 'pt-BR': 'Cores' } },
-    { label: { 'en-US': 'Backgrounds', 'pt-BR': 'Fundos' } },
-    { label: { 'en-US': 'Cards', 'pt-BR': 'Cartões' } },
-    { label: { 'en-US': 'Animations', 'pt-BR': 'Animações' } },
-    { label: { 'en-US': 'Preview', 'pt-BR': 'Preview' } },
+    {
+      label: { 'en-US': 'Age of Steam', 'pt-BR': 'Era do vapor' },
+      icon: 'fa-train',
+    },
+    {
+      label: { 'en-US': 'Bleak Expanse', 'pt-BR': 'Extensão desolada' },
+      icon: 'fa-mountain-sun',
+    },
+    {
+      label: { 'en-US': 'Celestial Brush', 'pt-BR': 'Pincel celestial' },
+      icon: 'fa-paintbrush',
+    },
+    {
+      label: { 'en-US': 'Fantasy Engraving', 'pt-BR': 'Gravura fantástica' },
+      icon: 'fa-pen-nib',
+    },
+    {
+      label: { 'en-US': 'Classic Storybook', 'pt-BR': 'Livro de histórias clássico' },
+      icon: 'fa-book-open',
+    },
+    {
+      label: { 'en-US': 'Cozy Isometric', 'pt-BR': 'Isométrico aconchegante' },
+      icon: 'fa-cubes',
+    },
+    {
+      label: { 'en-US': 'Grimdark Ink', 'pt-BR': 'Tinta grimdark' },
+      icon: 'fa-skull',
+    },
+    {
+      label: { 'en-US': 'Gritty Sci-Fi', 'pt-BR': 'Sci-Fi visceral' },
+      icon: 'fa-rocket',
+    },
   ],
   'human-like-narration': [
-    { label: { 'en-US': 'Voices', 'pt-BR': 'Vozes' } },
-    { label: { 'en-US': 'Pace', 'pt-BR': 'Ritmo' } },
-    { label: { 'en-US': 'Emotion', 'pt-BR': 'Emoção' } },
-    { label: { 'en-US': 'Languages', 'pt-BR': 'Idiomas' } },
-    { label: { 'en-US': 'Pause', 'pt-BR': 'Pausa' } },
-    { label: { 'en-US': 'Highlight', 'pt-BR': 'Destaque' } },
-    { label: { 'en-US': 'Sync', 'pt-BR': 'Sincronia' } },
-    { label: { 'en-US': 'Settings', 'pt-BR': 'Configurações' } },
+    { label: { 'en-US': 'Casual-K (en-US)', 'pt-BR': 'Casual-K (en-US)' }, icon: 'fa-microphone-lines' },
+    { label: { 'en-US': 'Journey-D (en-US)', 'pt-BR': 'Journey-D (en-US)' }, icon: 'fa-microphone-lines' },
+    { label: { 'en-US': 'Journey-F (en-US)', 'pt-BR': 'Journey-F (en-US)' }, icon: 'fa-microphone-lines' },
+    { label: { 'en-US': 'Journey-O (en-US)', 'pt-BR': 'Journey-O (en-US)' }, icon: 'fa-microphone-lines' },
+    { label: { 'en-US': 'Neural2-A (en-US)', 'pt-BR': 'Neural2-A (en-US)' }, icon: 'fa-microphone-lines' },
+    { label: { 'en-US': 'Neural2-C (en-US)', 'pt-BR': 'Neural2-C (en-US)' }, icon: 'fa-microphone-lines' },
+    { label: { 'en-US': 'Neural2-D (en-US)', 'pt-BR': 'Neural2-D (en-US)' }, icon: 'fa-microphone-lines' },
+    { label: { 'en-US': 'Neural2-E (en-US)', 'pt-BR': 'Neural2-E (en-US)' }, icon: 'fa-microphone-lines' },
   ],
   'sound-effects': [
-    { label: { 'en-US': 'Footsteps (dry)', 'pt-BR': 'Passos (seco)' } },
-    { label: { 'en-US': 'Whoosh pass-by', 'pt-BR': 'Whoosh ao passar' } },
-    { label: { 'en-US': 'Thunder crack', 'pt-BR': 'Trovão seco' } },
-    { label: { 'en-US': 'Rain loop bed', 'pt-BR': 'Loop de chuva' } },
-    { label: { 'en-US': 'UI soft click', 'pt-BR': 'Clique suave UI' } },
-    { label: { 'en-US': 'Heartbeat bed', 'pt-BR': 'Batimento (loop)' } },
-    { label: { 'en-US': 'Bell tower', 'pt-BR': 'Sino distante' } },
-    { label: { 'en-US': 'Door creak', 'pt-BR': 'Ranger de porta' } },
+    { label: { 'en-US': 'Blizzard', 'pt-BR': 'Nevasca' }, icon: 'fa-snowflake' },
+    { label: { 'en-US': 'Bonfire', 'pt-BR': 'Fogueira' }, icon: 'fa-fire-flame-curved' },
+    { label: { 'en-US': 'Cave', 'pt-BR': 'Caverna' }, icon: 'fa-dungeon' },
+    { label: { 'en-US': 'Earthquake', 'pt-BR': 'Terremoto' }, icon: 'fa-house-crack' },
+    { label: { 'en-US': 'Hurricane', 'pt-BR': 'Furacão' }, icon: 'fa-hurricane' },
+    { label: { 'en-US': 'Industry', 'pt-BR': 'Indústria' }, icon: 'fa-industry' },
+    { label: { 'en-US': 'Wilderness', 'pt-BR': 'Natureza selvagem' }, icon: 'fa-tree' },
+    { label: { 'en-US': 'Rain', 'pt-BR': 'Chuva' }, icon: 'fa-cloud-rain' },
   ],
 };
 
@@ -772,7 +826,10 @@ export function LibellLanding() {
                 className="flex aspect-square w-full max-w-[110px] flex-col overflow-hidden rounded-xl border border-white/20 bg-white/10 backdrop-blur-sm sm:max-w-[130px] md:max-w-[180px]"
               >
                 <div className="flex min-h-0 flex-1 items-center justify-center p-2">
-                  <i className="fa-solid fa-image text-2xl text-white/85" aria-hidden />
+                  <i
+                    className={`fa-solid ${item.icon ?? 'fa-image'} text-3xl text-white/85 sm:text-4xl md:text-5xl`}
+                    aria-hidden
+                  />
                 </div>
                 <p className="p-1.5 text-center text-xs text-white">{item.label[language]}</p>
               </div>
