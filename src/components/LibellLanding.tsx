@@ -414,7 +414,7 @@ export function LibellLanding() {
                 {t.heroLine1}<br />
                 {t.heroLine2}
               </h1>
-              <p className="mx-auto mt-3 max-w-xl text-base text-neutral-6 md:mx-0 md:text-lg">
+              <p className="mx-auto mt-3 max-w-[400px] text-base text-neutral-6 md:mx-0 md:text-lg">
                 {t.heroDesc1}
                 <br className="md:hidden" />
                 {' '}{t.heroDesc2}
