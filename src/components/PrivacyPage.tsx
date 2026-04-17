@@ -123,7 +123,6 @@ export function PrivacyPage() {
                 {t.login}
               </Link>
               <LanguageSelectControl
-                variant="desktop"
                 id="privacy-language-desktop"
                 language={language}
                 onLanguageChange={setLanguage}
@@ -133,7 +132,6 @@ export function PrivacyPage() {
 
             <div className="flex items-center gap-2 sm:hidden">
               <LanguageSelectControl
-                variant="mobile"
                 id="privacy-language-mobile-header"
                 language={language}
                 onLanguageChange={setLanguage}

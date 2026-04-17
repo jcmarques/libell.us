@@ -230,7 +230,6 @@ export function PricingPage() {
                 {t.login}
               </Link>
               <LanguageSelectControl
-                variant="desktop"
                 id="pricing-language-desktop"
                 language={language}
                 onLanguageChange={setLanguage}
@@ -240,7 +239,6 @@ export function PricingPage() {
 
             <div className="flex items-center gap-2 sm:hidden">
               <LanguageSelectControl
-                variant="mobile"
                 id="pricing-language-mobile-header"
                 language={language}
                 onLanguageChange={setLanguage}

@@ -115,7 +115,6 @@ export function BetaWaitlistPage() {
                 {t.login}
               </Link>
               <LanguageSelectControl
-                variant="desktop"
                 id="beta-language-desktop"
                 language={language}
                 onLanguageChange={setLanguage}
@@ -125,7 +124,6 @@ export function BetaWaitlistPage() {
 
             <div className="flex items-center gap-2 sm:hidden">
               <LanguageSelectControl
-                variant="mobile"
                 id="beta-language-mobile-header"
                 language={language}
                 onLanguageChange={setLanguage}

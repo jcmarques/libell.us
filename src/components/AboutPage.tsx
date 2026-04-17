@@ -305,7 +305,6 @@ export function AboutPage() {
                 {t.login}
               </Link>
               <LanguageSelectControl
-                variant="desktop"
                 id="about-language-desktop"
                 language={language}
                 onLanguageChange={setLanguage}
@@ -315,7 +314,6 @@ export function AboutPage() {
 
             <div className="flex items-center gap-2 sm:hidden">
               <LanguageSelectControl
-                variant="mobile"
                 id="about-language-mobile-header"
                 language={language}
                 onLanguageChange={setLanguage}

@@ -366,7 +366,6 @@ export function LibellLanding() {
                 {t.login}
               </Link>
               <LanguageSelectControl
-                variant="desktop"
                 id="language-select-desktop"
                 language={language}
                 onLanguageChange={setLanguage}
@@ -377,7 +376,6 @@ export function LibellLanding() {
             {/* Mobile: language in header + hamburger (language not in drawer) */}
             <div className="flex items-center gap-2 sm:hidden">
               <LanguageSelectControl
-                variant="mobile"
                 id="language-select-mobile-header"
                 language={language}
                 onLanguageChange={setLanguage}
