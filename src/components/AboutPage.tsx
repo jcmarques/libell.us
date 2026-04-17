@@ -1,7 +1,7 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { imgLogo } from '../assets/brand-assets';
-import aboutHeroImg from '../assets/hero/hero-about.jpg';
+import aboutHeroImg from '../assets/hero/hero-about.png';
 import creator1 from '../assets/about/creator1.jpg';
 import creator1Flip from '../assets/about/creator1-flip.jpg';
 import aboutLibellImg from '../assets/about/about-libell.png';
