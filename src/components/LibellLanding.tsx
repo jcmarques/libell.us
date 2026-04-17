@@ -535,11 +535,11 @@ export function LibellLanding() {
               <li
                 key={id}
                 className={`group flex w-full flex-col items-center sm:items-stretch ${index === 2
-                  ? 'max-w-[360px] sm:col-span-2 sm:max-w-[calc((100%-1.5rem)/2)] sm:justify-self-center lg:col-span-1 lg:max-w-none'
-                  : 'max-w-[360px] sm:max-w-none'
+                  ? 'max-w-[332px] sm:col-span-2 sm:max-w-[calc((100%-1.5rem)/2)] sm:justify-self-center lg:col-span-1 lg:max-w-none'
+                  : 'max-w-[332px] sm:max-w-none'
                   }`}
               >
-                <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-2xl bg-white/10 p-1.5 sm:p-2 md:p-2.5">
+                <div className="relative mx-auto flex aspect-square w-[93%] max-w-[308px] items-center justify-center overflow-hidden rounded-2xl bg-white/10 p-2 sm:max-w-none sm:w-[94%] sm:p-2.5 md:p-3">
                   <img
                     alt={label}
                     className="h-full w-full object-contain transition-opacity duration-300 group-hover:opacity-0"
@@ -547,7 +547,7 @@ export function LibellLanding() {
                   />
                   <img
                     alt={label}
-                    className="pointer-events-none absolute inset-0 h-full w-full object-contain p-2.5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 sm:p-3"
+                    className="pointer-events-none absolute inset-0 h-full w-full object-contain p-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100 sm:p-3.5 md:p-4"
                     src={colorImg}
                   />
                 </div>

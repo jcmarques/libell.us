@@ -104,7 +104,7 @@ export function LanguageSelectControl({
               </p>
               <div
                 role="listbox"
-                className="mx-auto flex w-full max-w-[240px] flex-col gap-1 rounded-xl border border-white/15 bg-white/[0.06] p-1 sm:max-w-none"
+                className="mx-auto flex w-full max-w-[240px] flex-col gap-1 p-0 sm:max-w-none"
               >
                 <button
                   type="button"
