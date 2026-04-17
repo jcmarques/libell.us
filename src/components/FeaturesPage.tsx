@@ -10,12 +10,12 @@ import voiceNarrationImg from '../assets/imagination/publish.png';
 import shadersImg from '../assets/mobile/pixelMountains.png';
 
 /** Same teal tint as about / problem row titles on LibellLanding. */
-const FEATURES_TEAL_FILTER =
+export const FEATURES_TEAL_FILTER =
   'opacity-95 [filter:brightness(0)_saturate(100%)_invert(83%)_sepia(31%)_saturate(1167%)_hue-rotate(116deg)_brightness(97%)_contrast(92%)]';
 
-type Language = 'en-US' | 'pt-BR';
+export type Language = 'en-US' | 'pt-BR';
 
-const FEATURES_UI: Record<
+export const FEATURES_UI: Record<
   Language,
   {
     features: string;
@@ -178,7 +178,7 @@ const FEATURES_UI: Record<
   },
 };
 
-function homeHash(hash: string) {
+export function homeHash(hash: string) {
   const base = import.meta.env.BASE_URL.replace(/\/$/, '') || '';
   return `${base}/#${hash}`;
 }
@@ -364,7 +364,7 @@ export function FeaturesPage() {
         )}
 
         {/* Hero — scoped to /features (not a repeat of the homepage hero) */}
-        <section className="relative bg-black px-4 py-16 sm:px-6 md:px-12 md:py-24 lg:py-32">
+        <section className="relative bg-black px-4 py-16 sm:px-6 md:px-12 md:pb-24 md:pt-12 lg:pb-32 lg:pt-14">
           <div className="mx-auto flex w-full max-w-6xl flex-col items-center md:flex-row md:items-center md:justify-between md:gap-12">
             <div className="flex w-full max-w-xl flex-1 flex-col items-center md:max-w-lg md:items-start lg:max-w-xl">
               <div className="mx-auto flex w-full max-w-sm flex-col items-stretch md:mx-0 md:w-fit md:max-w-full">
@@ -384,7 +384,7 @@ export function FeaturesPage() {
                     {t.heroHead3}
                   </span>
                 </h1>
-                <p className="mt-3 w-full max-w-[450px] text-center text-base text-features-muted md:text-left md:text-lg lg:mt-2.5 lg:leading-snug xl:mt-2">
+                <p className="mt-3 w-full max-w-[450px] text-center text-base text-features-muted md:max-w-[300px] md:text-left md:text-lg min-[900px]:max-w-[450px] lg:mt-2.5 lg:leading-snug xl:mt-2">
                   {t.heroIntro}
                 </p>
               </div>
@@ -476,8 +476,8 @@ export function FeaturesPage() {
               </Link>
               <a href={homeHash('about')}>{t.about}</a>
               <a href={homeHash('contact')}>{t.footerContact}</a>
-              <a href={homeHash('privacy')}>{t.footerPrivacy}</a>
-              <a href={homeHash('terms')}>{t.footerTerms}</a>
+              <Link to="/privacy">{t.footerPrivacy}</Link>
+              <Link to="/terms">{t.footerTerms}</Link>
             </nav>
             <p className="mx-auto max-w-xs font-sans text-xs font-normal leading-snug text-features-muted sm:max-w-md md:text-sm">
               {t.footerCopyright}

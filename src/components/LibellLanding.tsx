@@ -872,8 +872,8 @@ export function LibellLanding() {
               <Link to="/features">{t.features}</Link>
               <a href="#about">{t.about}</a>
               <a href="#contact">{t.footerContact}</a>
-              <a href="#privacy">{t.footerPrivacy}</a>
-              <a href="#terms">{t.footerTerms}</a>
+              <Link to="/privacy">{t.footerPrivacy}</Link>
+              <Link to="/terms">{t.footerTerms}</Link>
             </nav>
             <p className="mx-auto max-w-xs font-sans text-xs font-normal leading-snug text-body-on-light sm:max-w-md md:text-sm">
               {t.footerCopyright}

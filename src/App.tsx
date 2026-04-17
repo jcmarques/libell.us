@@ -1,6 +1,8 @@
 import { Routes, Route } from 'react-router-dom'
 import { LibellLanding } from './components/LibellLanding'
 import { FeaturesPage } from './components/FeaturesPage'
+import { PrivacyPage } from './components/PrivacyPage'
+import { TermsPage } from './components/TermsPage'
 
 function App() {
   return (
@@ -8,6 +10,8 @@ function App() {
       <Routes>
         <Route path="/" element={<LibellLanding />} />
         <Route path="/features" element={<FeaturesPage />} />
+        <Route path="/privacy" element={<PrivacyPage />} />
+        <Route path="/terms" element={<TermsPage />} />
       </Routes>
     </div>
   )
