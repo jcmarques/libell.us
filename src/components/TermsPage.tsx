@@ -19,6 +19,10 @@ function DocHeading() {
       >
         Terms of Service v1.0
       </h1>
+      <div
+        className="mx-auto mt-4 h-px w-14 shrink-0 rounded-full bg-features-card-border/60"
+        aria-hidden
+      />
       <p className="mt-4 text-center text-base font-medium leading-snug text-features-muted md:text-lg">
         Effective Date: April 13, 2026
       </p>
@@ -123,9 +127,9 @@ export function TermsPage() {
               <Link to="/pricing" className="text-sm text-white/90 hover:text-white sm:text-base lg:text-lg">
                 {t.pricing}
               </Link>
-              <a href={homeHash('about')} className="text-sm text-white/90 hover:text-white sm:text-base lg:text-lg">
+              <Link to="/about" className="text-sm text-white/90 hover:text-white sm:text-base lg:text-lg">
                 {t.about}
-              </a>
+              </Link>
               <button
                 type="button"
                 className="whitespace-nowrap rounded-2xl border-2 border-features-accent/80 bg-features-accent px-4 py-2.5 text-sm font-medium text-features-bar hover:bg-features-accent-dim sm:px-5 sm:py-2.5 sm:text-base lg:px-6 lg:py-3 lg:text-base"
@@ -178,13 +182,13 @@ export function TermsPage() {
               >
                 {t.pricing}
               </Link>
-              <a
-                href={homeHash('about')}
+              <Link
+                to="/about"
                 className="w-full text-lg font-medium text-white hover:text-white/80"
                 onClick={closeMobileMenu}
               >
                 {t.about}
-              </a>
+              </Link>
               <button
                 type="button"
                 className="w-full max-w-xs rounded-2xl border-2 border-features-accent/80 bg-features-accent py-3 text-base font-medium text-features-bar hover:bg-features-accent-dim"
@@ -528,7 +532,7 @@ export function TermsPage() {
               <Link to="/features" className="text-sm sm:text-base lg:text-lg">
                 {t.features}
               </Link>
-              <a href={homeHash('about')}>{t.about}</a>
+              <Link to="/about">{t.about}</Link>
               <a href={homeHash('contact')}>{t.footerContact}</a>
               <Link to="/privacy">{t.footerPrivacy}</Link>
               <Link

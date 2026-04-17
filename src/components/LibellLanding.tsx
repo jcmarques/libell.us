@@ -324,9 +324,9 @@ export function LibellLanding() {
               <Link to="/pricing" className="text-sm text-white/90 hover:text-white sm:text-base lg:text-lg">
                 {t.pricing}
               </Link>
-              <a href="#about" className="text-sm text-white/90 hover:text-white sm:text-base lg:text-lg">
+              <Link to="/about" className="text-sm text-white/90 hover:text-white sm:text-base lg:text-lg">
                 {t.about}
-              </a>
+              </Link>
               <button
                 type="button"
                 className="whitespace-nowrap rounded-2xl border-2 border-features-accent/80 bg-features-accent px-4 py-2.5 text-sm font-medium text-features-bar hover:bg-features-accent-dim sm:px-5 sm:py-2.5 sm:text-base lg:px-6 lg:py-3 lg:text-base"
@@ -381,13 +381,13 @@ export function LibellLanding() {
               >
                 {t.pricing}
               </Link>
-              <a
-                href="#about"
+              <Link
+                to="/about"
                 className="w-full text-lg font-medium text-white hover:text-white/80"
                 onClick={closeMobileMenu}
               >
                 {t.about}
-              </a>
+              </Link>
               <button
                 type="button"
                 className="w-full max-w-xs rounded-2xl border-2 border-features-accent/80 bg-features-accent py-3 text-base font-medium text-features-bar hover:bg-features-accent-dim"
@@ -414,6 +414,10 @@ export function LibellLanding() {
                 {t.heroLine1}<br />
                 {t.heroLine2}
               </h1>
+              <div
+                className="mx-auto mt-4 h-px w-14 shrink-0 rounded-full bg-white/25 md:mx-0"
+                aria-hidden
+              />
               <p className="mx-auto mt-3 max-w-[400px] text-base text-neutral-6 md:mx-0 md:text-lg">
                 {t.heroDesc1}
                 <br className="md:hidden" />
@@ -459,7 +463,7 @@ export function LibellLanding() {
           <p className="mx-auto mt-2 text-center text-base text-white/80 md:text-lg">
             {t.writersSubtitle}
           </p>
-          <ul className="mx-auto mt-8 grid w-full max-w-5xl grid-cols-1 place-items-center gap-6 sm:grid-cols-2 sm:place-items-stretch sm:gap-x-6 sm:gap-y-6 lg:grid-cols-3 lg:gap-7 xl:gap-8">
+          <ul className="mx-auto mt-8 grid w-full max-w-6xl grid-cols-1 place-items-center gap-6 sm:grid-cols-2 sm:place-items-stretch sm:gap-x-6 sm:gap-y-6 lg:grid-cols-3 lg:gap-7 xl:gap-8">
             {[
               {
                 label: language === 'pt-BR' ? 'Aventuras interativas' : 'Interactive Adventures',
@@ -483,11 +487,11 @@ export function LibellLanding() {
               <li
                 key={id}
                 className={`group flex w-full flex-col items-center sm:items-stretch ${index === 2
-                  ? 'max-w-[300px] sm:col-span-2 sm:max-w-[calc((100%-1.5rem)/2)] sm:justify-self-center lg:col-span-1 lg:max-w-none'
-                  : 'max-w-[300px] sm:max-w-none'
+                  ? 'max-w-[360px] sm:col-span-2 sm:max-w-[calc((100%-1.5rem)/2)] sm:justify-self-center lg:col-span-1 lg:max-w-none'
+                  : 'max-w-[360px] sm:max-w-none'
                   }`}
               >
-                <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-2xl bg-white/10 p-2 sm:p-2.5 md:p-3">
+                <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-2xl bg-white/10 p-1.5 sm:p-2 md:p-2.5">
                   <img
                     alt={label}
                     className="h-full w-full object-contain transition-opacity duration-300 group-hover:opacity-0"
@@ -495,7 +499,7 @@ export function LibellLanding() {
                   />
                   <img
                     alt={label}
-                    className="pointer-events-none absolute inset-0 h-full w-full object-contain p-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                    className="pointer-events-none absolute inset-0 h-full w-full object-contain p-2.5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 sm:p-3"
                     src={colorImg}
                   />
                 </div>
@@ -578,7 +582,7 @@ export function LibellLanding() {
 
         {/* Who it's for - Built for Story Creators */}
         <section
-          id="about"
+          id="who-its-for"
           className="relative overflow-hidden bg-features-ink px-6 py-16 md:px-12 md:py-24"
           data-node-id="who-its-for"
         >
@@ -870,7 +874,7 @@ export function LibellLanding() {
             </div>
             <nav className="flex flex-wrap justify-center gap-3 text-sm md:gap-8 md:text-base">
               <Link to="/features">{t.features}</Link>
-              <a href="#about">{t.about}</a>
+              <Link to="/about">{t.about}</Link>
               <a href="#contact">{t.footerContact}</a>
               <Link to="/privacy">{t.footerPrivacy}</Link>
               <Link to="/terms">{t.footerTerms}</Link>

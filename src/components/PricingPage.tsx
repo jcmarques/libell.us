@@ -236,9 +236,9 @@ export function PricingPage() {
               <span className="text-sm font-medium text-features-accent sm:text-base lg:text-lg" aria-current="page">
                 {t.pricing}
               </span>
-              <a href={homeHash('about')} className="text-sm text-white/90 hover:text-white sm:text-base lg:text-lg">
+              <Link to="/about" className="text-sm text-white/90 hover:text-white sm:text-base lg:text-lg">
                 {t.about}
-              </a>
+              </Link>
               <button
                 type="button"
                 className="whitespace-nowrap rounded-2xl border-2 border-features-accent/80 bg-features-accent px-4 py-2.5 text-sm font-medium text-features-bar hover:bg-features-accent-dim sm:px-5 sm:py-2.5 sm:text-base lg:px-6 lg:py-3 lg:text-base"
@@ -285,13 +285,13 @@ export function PricingPage() {
                 {t.features}
               </Link>
               <span className="w-full text-lg font-medium text-features-accent">{t.pricing}</span>
-              <a
-                href={homeHash('about')}
+              <Link
+                to="/about"
                 className="w-full text-lg font-medium text-white hover:text-white/80"
                 onClick={closeMobileMenu}
               >
                 {t.about}
-              </a>
+              </Link>
               <button
                 type="button"
                 className="w-full max-w-xs rounded-2xl border-2 border-features-accent/80 bg-features-accent py-3 text-base font-medium text-features-bar hover:bg-features-accent-dim"
@@ -319,6 +319,10 @@ export function PricingPage() {
                     {p.heroHead2}
                   </span>
                 </h1>
+                <div
+                  className="mx-auto mt-4 h-px w-14 shrink-0 rounded-full bg-white/25 md:mx-0"
+                  aria-hidden
+                />
                 <p className="mt-3 w-full max-w-[450px] text-center text-base text-features-muted md:max-w-[300px] md:text-left md:text-lg min-[900px]:max-w-[450px] lg:mt-2.5 lg:leading-snug xl:mt-2">
                   {p.heroIntro}
                 </p>
@@ -404,7 +408,7 @@ export function PricingPage() {
               >
                 {t.features}
               </Link>
-              <a href={homeHash('about')}>{t.about}</a>
+              <Link to="/about">{t.about}</Link>
               <a href={homeHash('contact')}>{t.footerContact}</a>
               <Link to="/privacy">{t.footerPrivacy}</Link>
               <Link to="/terms">{t.footerTerms}</Link>
