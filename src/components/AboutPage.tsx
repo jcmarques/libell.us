@@ -291,17 +291,21 @@ export function AboutPage() {
   return (
     <div className="flex min-h-screen w-full flex-col items-center bg-features-bar font-sans text-white">
       <div className="w-full">
-        <header className="relative z-20 border-b border-features-bar-border bg-features-bar px-4 sm:px-6 md:px-12">
-          <div className="mx-auto flex h-20 min-h-[4rem] w-full max-w-6xl items-center justify-between py-3 sm:h-24">
-            <Link to="/" className="flex items-center gap-2 sm:gap-3" onClick={closeMobileMenu}>
-              <div className="flex size-12 items-center justify-center rounded-2xl bg-transparent sm:size-16">
-                <img
-                  alt="Libell.us logomark"
-                  className="size-10 object-contain brightness-0 invert sm:size-12"
-                  src={imgLogo}
-                />
-              </div>
-              <span className="font-sans text-lg font-semibold text-white sm:text-xl lg:text-2xl">Libell.us</span>
+        <header className="relative z-20 border-b border-features-bar-border bg-features-bar px-6 md:px-10 lg:px-16 xl:px-28 2xl:px-36">
+          <div className="mx-auto flex h-20 min-h-[4rem] w-full max-w-7xl items-center justify-between py-3 sm:h-24">
+            <Link
+              to="/"
+              className="flex shrink-0 flex-nowrap items-center gap-2 sm:gap-3"
+              onClick={closeMobileMenu}
+            >
+              <img
+                alt="Libell.us logomark"
+                className="size-10 shrink-0 object-contain brightness-0 invert sm:size-12"
+                src={imgLogo}
+              />
+              <span className="whitespace-nowrap font-sans text-lg font-semibold text-white sm:text-xl lg:text-2xl">
+                Libell.us
+              </span>
             </Link>
 
             <nav className="hidden items-center gap-3 sm:flex sm:gap-4 lg:gap-6">
@@ -348,7 +352,7 @@ export function AboutPage() {
 
         {mobileMenuOpen && (
           <div
-            className="fixed left-0 right-0 top-20 z-50 border-b border-features-bar-border bg-features-bar px-4 py-6 shadow-lg sm:hidden"
+            className="fixed left-0 right-0 top-20 z-50 border-b border-features-bar-border bg-features-bar px-6 py-6 shadow-lg sm:hidden"
             style={{ minHeight: 'calc(100vh - 5rem)' }}
           >
             <nav className="flex flex-col items-center gap-6 text-center">
@@ -379,8 +383,8 @@ export function AboutPage() {
         )}
 
         <main>
-          <section className="relative bg-black px-4 py-16 text-white sm:px-6 md:px-12 md:pb-24 md:pt-12 lg:pb-[100px] lg:pt-14">
-            <div className="mx-auto flex w-full max-w-6xl flex-col items-stretch gap-10 md:flex-row md:items-center md:gap-12 lg:gap-16">
+          <section className="relative bg-black px-6 py-16 text-white md:px-10 md:pb-24 md:pt-12 lg:px-16 lg:pb-[100px] lg:pt-14 xl:px-28 2xl:px-36">
+            <div className="mx-auto flex w-full max-w-7xl flex-col items-stretch gap-10 md:flex-row md:items-center md:gap-12 lg:gap-16">
               <div className="flex min-w-0 flex-1 flex-col items-center text-center md:items-start md:text-left">
                 <h1 className="w-full text-3xl font-semibold leading-tight tracking-tight text-white md:text-4xl lg:text-5xl lg:leading-[1.2]">
                   {c.introTitle}
@@ -465,7 +469,7 @@ export function AboutPage() {
 
           <section
             id="foundations"
-            className="scroll-mt-24 relative overflow-hidden bg-features-ink px-6 py-16 md:px-12 md:py-24"
+            className="scroll-mt-24 relative overflow-hidden bg-features-ink px-6 py-16 md:px-10 md:py-24 lg:px-16 xl:px-28 2xl:px-36"
             aria-labelledby="foundations-heading"
           >
             <div className="relative mx-auto max-w-6xl">
@@ -517,7 +521,7 @@ export function AboutPage() {
           </section>
         </main>
 
-        <footer className="border-t border-white/10 bg-black px-6 py-8 md:px-12 md:py-10">
+        <footer className="border-t border-white/10 bg-black px-6 py-8 md:px-10 md:py-10 lg:px-16 xl:px-28 2xl:px-36">
           <div className="mx-auto flex max-w-4xl flex-col items-center gap-8 text-center">
             <Link to="/" className="flex items-center gap-2">
               <img alt="" className="size-9 object-contain brightness-0 invert" src={imgLogo} />

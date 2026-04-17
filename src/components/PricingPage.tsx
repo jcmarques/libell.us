@@ -216,17 +216,21 @@ export function PricingPage() {
   return (
     <div className="flex min-h-screen w-full flex-col items-center bg-features-bar font-sans text-white">
       <div className="w-full">
-        <header className="relative z-20 border-b border-features-bar-border bg-features-bar px-4 sm:px-6 md:px-12">
-          <div className="mx-auto flex h-20 min-h-[4rem] w-full max-w-6xl items-center justify-between py-3 sm:h-24">
-            <Link to="/" className="flex items-center gap-2 sm:gap-3" onClick={closeMobileMenu}>
-              <div className="flex size-12 items-center justify-center rounded-2xl bg-transparent sm:size-16">
-                <img
-                  alt="Libell.us logomark"
-                  className="size-10 object-contain brightness-0 invert sm:size-12"
-                  src={imgLogo}
-                />
-              </div>
-              <span className="font-sans text-lg font-semibold text-white sm:text-xl lg:text-2xl">Libell.us</span>
+        <header className="relative z-20 border-b border-features-bar-border bg-features-bar px-6 md:px-10 lg:px-16 xl:px-28 2xl:px-36">
+          <div className="mx-auto flex h-20 min-h-[4rem] w-full max-w-7xl items-center justify-between py-3 sm:h-24">
+            <Link
+              to="/"
+              className="flex shrink-0 flex-nowrap items-center gap-2 sm:gap-3"
+              onClick={closeMobileMenu}
+            >
+              <img
+                alt="Libell.us logomark"
+                className="size-10 shrink-0 object-contain brightness-0 invert sm:size-12"
+                src={imgLogo}
+              />
+              <span className="whitespace-nowrap font-sans text-lg font-semibold text-white sm:text-xl lg:text-2xl">
+                Libell.us
+              </span>
             </Link>
 
             <nav className="hidden items-center gap-3 sm:flex sm:gap-4 lg:gap-6">
@@ -273,7 +277,7 @@ export function PricingPage() {
 
         {mobileMenuOpen && (
           <div
-            className="fixed left-0 right-0 top-20 z-50 border-b border-features-bar-border bg-features-bar px-4 py-6 shadow-lg sm:hidden"
+            className="fixed left-0 right-0 top-20 z-50 border-b border-features-bar-border bg-features-bar px-6 py-6 shadow-lg sm:hidden"
             style={{ minHeight: 'calc(100vh - 5rem)' }}
           >
             <nav className="flex flex-col items-center gap-6 text-center">

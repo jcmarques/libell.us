@@ -5,6 +5,7 @@ import { PricingPage } from './components/PricingPage'
 import { PrivacyPage } from './components/PrivacyPage'
 import { TermsPage } from './components/TermsPage'
 import { AboutPage } from './components/AboutPage'
+import { BetaWaitlistPage } from './components/BetaWaitlistPage'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<LibellLanding />} />
         <Route path="/features" element={<FeaturesPage />} />
         <Route path="/pricing" element={<PricingPage />} />
+        <Route path="/beta" element={<BetaWaitlistPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/privacy" element={<PrivacyPage />} />
         <Route path="/terms" element={<TermsPage />} />
