@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { imgLogo } from '../assets/figma-assets';
+import { imgLogo } from '../assets/brand-assets';
 import heroPricing from '../assets/hero/hero-pricing.png';
 import cardBasics from '../assets/pricing/theBasics.jpg';
 import cardCreator from '../assets/pricing/creator.jpg';

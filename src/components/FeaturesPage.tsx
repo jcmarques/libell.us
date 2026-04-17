@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { imgLogo } from '../assets/figma-assets';
+import { imgLogo } from '../assets/brand-assets';
 import booksPng from '../assets/books/books.png';
 import heroFeatures from '../assets/hero/hero-features.png';
 import mobileApps from '../assets/mobile/mobileApps.png';
@@ -221,7 +221,7 @@ function FeatureCard({
           {lead}
         </p>
         {bullets.length > 0 ? (
-          <ul className="mx-auto max-w-md list-disc space-y-1 pl-5 text-left text-[15px] leading-snug text-features-muted marker:text-features-accent-dim/50 md:text-base md:leading-snug">
+          <ul className="mx-auto max-w-md self-center list-disc space-y-1 pl-5 text-left text-[15px] leading-snug text-features-muted marker:text-features-accent-dim/50 md:text-base md:leading-snug lg:mx-0 lg:self-start">
             {bullets.map((item) => (
               <li key={item}>{item}</li>
             ))}

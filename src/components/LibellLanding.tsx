@@ -1,9 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  imgLogo,
-  imgVuesaxBoldGallery,
-} from '../assets/figma-assets';
+import { imgLogo } from '../assets/brand-assets';
 import heroImage from '../assets/hero/hero.png';
 import interactiveAdventuresImg from '../assets/writers/interactive.jpg';
 import interactiveAdventuresColorImg from '../assets/writers/interactive-adventures-color.jpg';
@@ -297,13 +294,10 @@ export function LibellLanding() {
   );
 
   return (
-    <div className="flex w-full flex-col items-center bg-features-bar font-sans" data-node-id="1:41">
+    <div className="flex w-full flex-col items-center bg-features-bar font-sans">
       <div className="w-full">
         {/* 0. Navigation */}
-        <header
-          className="relative border-b border-features-bar-border bg-features-bar px-4 sm:px-6 md:px-12"
-          data-node-id="1:258"
-        >
+        <header className="relative border-b border-features-bar-border bg-features-bar px-4 sm:px-6 md:px-12">
           <div className="mx-auto flex h-20 min-h-[4rem] w-full max-w-6xl items-center justify-between py-3 sm:h-24">
             <div className="flex items-center gap-2 sm:gap-3">
               <div className="flex size-12 items-center justify-center rounded-2xl bg-transparent sm:size-16">
@@ -403,7 +397,6 @@ export function LibellLanding() {
         <section
           ref={heroSectionRef}
           className="relative bg-black px-4 py-16 sm:px-6 md:px-[60px] md:py-24 lg:py-32"
-          data-node-id="1:243"
         >
           <div className="mx-auto flex w-full max-w-6xl flex-col items-center md:flex-row md:items-center md:justify-between md:gap-12">
             <div className="w-full max-w-2xl flex-1 text-center lg:max-w-3xl md:text-left">
@@ -448,10 +441,7 @@ export function LibellLanding() {
         </section>
 
         {/* 2. Writers want to create / Problem Section */}
-        <section
-          className="overflow-x-hidden bg-features-bar px-4 pb-10 pt-0 sm:px-6 md:px-12 md:pb-12 md:pt-0"
-          data-node-id="1:208"
-        >
+        <section className="overflow-x-hidden bg-features-bar px-4 pb-10 pt-0 sm:px-6 md:px-12 md:pb-12 md:pt-0">
           <div className="mb-14 h-px w-full shadow-[0_1px_0_0_rgba(255,255,255,0.15),0_2px_8px_-2px_rgba(255,255,255,0.08)] md:mb-16" aria-hidden />
           <h2 className="text-center text-xl font-medium text-white md:text-2xl">
             {t.writersTitle}
@@ -554,10 +544,7 @@ export function LibellLanding() {
         </section>
 
         {/* 3.1 Transition - Libell.us changes that */}
-        <section
-          className="flex flex-col items-center justify-center bg-black px-6 pt-0 pb-14 md:pb-16"
-          data-node-id="1:177"
-        >
+        <section className="flex flex-col items-center justify-center bg-black px-6 pt-0 pb-14 md:pb-16">
           <div className="mb-14 h-px w-full shadow-[0_1px_0_0_rgba(255,255,255,0.15),0_2px_8px_-2px_rgba(255,255,255,0.08)] md:mb-16" aria-hidden />
           <div
             ref={libellChangesRef}
@@ -580,7 +567,6 @@ export function LibellLanding() {
         <section
           id="who-its-for"
           className="relative overflow-hidden bg-features-ink px-6 py-16 md:px-12 md:py-24"
-          data-node-id="who-its-for"
         >
           <div className="relative">
             <h2 className="text-center text-xl font-medium tracking-wide text-white md:text-2xl lg:text-3xl">
@@ -635,7 +621,6 @@ export function LibellLanding() {
         <section
           ref={imaginationSectionRef}
           className="bg-white px-4 py-16 md:px-12 md:py-24"
-          data-node-id="1:184"
         >
           <h2 className="text-center text-2xl font-medium text-black md:text-3xl lg:text-4xl">
             {t.imaginationTitle}
@@ -737,7 +722,6 @@ export function LibellLanding() {
         <section
           id="features"
           className="relative overflow-hidden border-t border-b border-white/30 bg-features-bar px-6 py-16 md:px-12 md:py-24"
-          data-node-id="1:71"
         >
           <h2 className="text-center text-2xl font-medium text-white md:text-3xl lg:text-4xl">
             {t.platformTitle}
@@ -788,7 +772,7 @@ export function LibellLanding() {
                 className="flex aspect-square w-full max-w-[110px] flex-col overflow-hidden rounded-xl border border-white/20 bg-white/10 backdrop-blur-sm sm:max-w-[130px] md:max-w-[180px]"
               >
                 <div className="flex min-h-0 flex-1 items-center justify-center p-2">
-                  <img alt="" className="max-h-10 max-w-10 object-contain" src={imgVuesaxBoldGallery} />
+                  <i className="fa-solid fa-image text-2xl text-white/85" aria-hidden />
                 </div>
                 <p className="p-1.5 text-center text-xs text-white">{item.label[language]}</p>
               </div>
@@ -797,10 +781,7 @@ export function LibellLanding() {
         </section>
 
         {/* Community / Future */}
-        <section
-          className="relative overflow-hidden bg-white px-6 pb-px pt-0 md:px-12 md:pb-px md:pt-0"
-          data-node-id="community-future"
-        >
+        <section className="relative overflow-hidden bg-white px-6 pb-px pt-0 md:px-12 md:pb-px md:pt-0">
           <div className="mb-16 h-px w-full bg-black/10 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)] md:mb-24" aria-hidden />
           <div className="relative mx-auto max-w-4xl text-center">
             <h2 className="text-xl font-medium text-black md:text-2xl lg:text-3xl">
@@ -836,10 +817,7 @@ export function LibellLanding() {
         </section>
 
         {/* Back the Kickstarter CTA */}
-        <section
-          className="bg-features-ink px-6 py-8 md:px-12 md:py-10 lg:px-24 lg:py-12"
-          data-node-id="join-beta"
-        >
+        <section className="bg-features-ink px-6 py-8 md:px-12 md:py-10 lg:px-24 lg:py-12">
           <div className="mx-auto max-w-4xl text-center">
             <p className="text-base text-white/90 md:text-lg">
               {t.ctaText1}
@@ -858,10 +836,7 @@ export function LibellLanding() {
         </section>
 
         {/* Footer */}
-        <footer
-          className="border-t border-white/10 bg-black px-6 py-8 md:px-12 md:py-10"
-          data-node-id="1:43"
-        >
+        <footer className="border-t border-white/10 bg-black px-6 py-8 md:px-12 md:py-10">
           <div className="mx-auto flex max-w-4xl flex-col items-center gap-8 text-center">
             <div className="flex items-center gap-2">
               <img alt="" className="size-9 object-contain brightness-0 invert" src={imgLogo} />

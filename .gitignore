@@ -13,7 +13,7 @@ dist
 .DS_Store
 *.local
 
-# MCP config (may contain secrets e.g. Figma token)
+# MCP / local tool config (may contain secrets)
 .cursor/mcp.json
 
 # Cursor local tasks (not tracked)

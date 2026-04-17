@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { imgLogo } from '../assets/figma-assets';
+import { imgLogo } from '../assets/brand-assets';
 import { FEATURES_TEAL_FILTER, FEATURES_UI, homeHash, type Language } from './FeaturesPage';
 
 const INLINE_LINK =
