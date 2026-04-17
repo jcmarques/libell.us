@@ -382,12 +382,12 @@ export function AboutPage() {
                   {c.introBody}
                 </p>
               </div>
-              <div className="flex w-full flex-1 justify-center md:max-w-[min(100%,520px)] md:justify-end lg:max-w-[min(100%,580px)]">
-                <div className="w-full overflow-hidden rounded-2xl shadow-[0_30px_80px_rgba(0,0,0,0.55)]">
+              <div className="flex w-full flex-1 justify-center md:max-w-[min(100%,520px)] lg:max-w-[min(100%,580px)]">
+                <div className="flex w-full justify-center overflow-hidden rounded-2xl shadow-[0_30px_80px_rgba(0,0,0,0.55)]">
                   <img
                     src={aboutHeroImg}
                     alt={c.introTitle}
-                    className="box-content h-auto w-full object-contain"
+                    className="box-content h-auto w-[530px] max-w-full object-contain"
                   />
                 </div>
               </div>
