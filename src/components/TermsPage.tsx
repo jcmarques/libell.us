@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { imgLogo } from '../assets/brand-assets';
 import { FEATURES_TEAL_FILTER, FEATURES_UI, homeHash, type Language } from './FeaturesPage';
+import { LanguageSelectControl } from './LanguageSelectControl';
 
 const INLINE_LINK =
   'font-normal text-features-accent underline decoration-features-accent/40 underline-offset-2 transition-colors hover:text-features-accent-dim';
@@ -79,27 +80,6 @@ export function TermsPage() {
 
   const closeMobileMenu = () => setMobileMenuOpen(false);
 
-  const languageSelectClassName =
-    'cursor-pointer rounded-lg border border-white/25 bg-white/5 px-2 py-1 text-lg leading-none text-white outline-none transition-colors hover:bg-white/10 sm:text-xl lg:text-2xl';
-
-  const languageSelect = (id: string, wrapperClassName?: string) => (
-    <div className={wrapperClassName}>
-      <label className="sr-only" htmlFor={id}>
-        Language
-      </label>
-      <select
-        id={id}
-        value={language}
-        onChange={(event) => setLanguage(event.target.value as Language)}
-        className={languageSelectClassName}
-        aria-label="Language switcher"
-      >
-        <option value="en-US">🇺🇸</option>
-        <option value="pt-BR">🇧🇷</option>
-      </select>
-    </div>
-  );
-
   return (
     <div className="flex min-h-screen w-full flex-col items-center bg-features-bar font-sans text-white">
       <div className="w-full">
@@ -136,11 +116,22 @@ export function TermsPage() {
               >
                 {t.login}
               </Link>
-              {languageSelect('terms-language-desktop', 'ml-1')}
+              <LanguageSelectControl
+                variant="desktop"
+                id="terms-language-desktop"
+                language={language}
+                onLanguageChange={setLanguage}
+                wrapperClassName="ml-1"
+              />
             </nav>
 
             <div className="flex items-center gap-2 sm:hidden">
-              {languageSelect('terms-language-mobile-header')}
+              <LanguageSelectControl
+                variant="mobile"
+                id="terms-language-mobile-header"
+                language={language}
+                onLanguageChange={setLanguage}
+              />
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen((open) => !open)}

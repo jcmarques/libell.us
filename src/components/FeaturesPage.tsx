@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { imgLogo } from '../assets/brand-assets';
+import { LanguageSelectControl } from './LanguageSelectControl';
 import booksPng from '../assets/books/books.png';
 import heroFeatures from '../assets/hero/hero-features.png';
 import mobileApps from '../assets/mobile/mobileApps.png';
@@ -258,27 +259,6 @@ export function FeaturesPage() {
 
   const closeMobileMenu = () => setMobileMenuOpen(false);
 
-  const languageSelectClassName =
-    'cursor-pointer rounded-lg border border-white/25 bg-white/5 px-2 py-1 text-lg leading-none text-white outline-none transition-colors hover:bg-white/10 sm:text-xl lg:text-2xl';
-
-  const languageSelect = (id: string, wrapperClassName?: string) => (
-    <div className={wrapperClassName}>
-      <label className="sr-only" htmlFor={id}>
-        Language
-      </label>
-      <select
-        id={id}
-        value={language}
-        onChange={(event) => setLanguage(event.target.value as Language)}
-        className={languageSelectClassName}
-        aria-label="Language switcher"
-      >
-        <option value="en-US">🇺🇸</option>
-        <option value="pt-BR">🇧🇷</option>
-      </select>
-    </div>
-  );
-
   return (
     <div className="flex min-h-screen w-full flex-col items-center bg-features-bar font-sans text-white">
       <div className="w-full">
@@ -315,11 +295,22 @@ export function FeaturesPage() {
               >
                 {t.login}
               </Link>
-              {languageSelect('features-language-desktop', 'ml-1')}
+              <LanguageSelectControl
+                variant="desktop"
+                id="features-language-desktop"
+                language={language}
+                onLanguageChange={setLanguage}
+                wrapperClassName="ml-1"
+              />
             </nav>
 
             <div className="flex items-center gap-2 sm:hidden">
-              {languageSelect('features-language-mobile-header')}
+              <LanguageSelectControl
+                variant="mobile"
+                id="features-language-mobile-header"
+                language={language}
+                onLanguageChange={setLanguage}
+              />
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen((open) => !open)}
