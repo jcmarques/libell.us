@@ -17,21 +17,10 @@ import gameBooksColorImg from '../assets/writers/game-books-color.jpg';
 import writeStoriesImg from '../assets/imagination/write-stories.png';
 import buildWorldsImg from '../assets/imagination/build-worlds.png';
 import publishImg from '../assets/imagination/publish.png';
-import inkRain from '../assets/mobile/inkRain.png';
-import pixelSwamp from '../assets/mobile/pixelSwamp.png';
-import cartoonSwamp from '../assets/mobile/cartoonSwamp.png';
-import pixelMountains from '../assets/mobile/pixelMountains.png';
-import cartoonRain from '../assets/mobile/cartoonRain.png';
-import woodMountains from '../assets/mobile/woodMountains.png';
-import cartoonMountains from '../assets/mobile/cartoonMountains.png';
-import inkSwamp from '../assets/mobile/inkSwamp.png';
-import woodSwamp from '../assets/mobile/woodSwamp.png';
-import mangaRain from '../assets/mobile/mangaRain.png';
-import mangaSwamp from '../assets/mobile/mangaSwamp.png';
-import inkMountains from '../assets/mobile/inkMountains.png';
-import mangaMountains from '../assets/mobile/mangaMountains.png';
-import woodRain from '../assets/mobile/woodRain.png';
-import pixelRain from '../assets/mobile/pixelRain.png';
+
+/** Teal tint matching problem-section PNG icons (code, game-setting, request). */
+const FEATURES_TEAL_FILTER =
+  'opacity-95 [filter:brightness(0)_saturate(100%)_invert(83%)_sepia(31%)_saturate(1167%)_hue-rotate(116deg)_brightness(97%)_contrast(92%)]';
 
 type Language = 'en-US' | 'pt-BR';
 
@@ -85,24 +74,6 @@ const PLATFORM_TAB_CONTENT: Record<(typeof PLATFORM_TABS)[number]['id'], { label
   ],
 };
 
-const CAROUSEL_IMAGES = [
-  { src: inkRain, alt: { 'en-US': 'Rainy and windy day in the city', 'pt-BR': 'Dia chuvoso e ventoso na cidade' } },
-  { src: pixelSwamp, alt: { 'en-US': 'Foggy swamp with dense vegetation', 'pt-BR': 'Pântano com neblina e vegetação densa' } },
-  { src: cartoonSwamp, alt: { 'en-US': 'Foggy swamp with dense vegetation', 'pt-BR': 'Pântano com neblina e vegetação densa' } },
-  { src: pixelMountains, alt: { 'en-US': 'Snow in the mountains', 'pt-BR': 'Neve nas montanhas' } },
-  { src: cartoonRain, alt: { 'en-US': 'Rainy and windy day in the city', 'pt-BR': 'Dia chuvoso e ventoso na cidade' } },
-  { src: woodMountains, alt: { 'en-US': 'Snow in the mountains', 'pt-BR': 'Neve nas montanhas' } },
-  { src: cartoonMountains, alt: { 'en-US': 'Snow in the mountains', 'pt-BR': 'Neve nas montanhas' } },
-  { src: inkSwamp, alt: { 'en-US': 'Foggy swamp with dense vegetation', 'pt-BR': 'Pântano com neblina e vegetação densa' } },
-  { src: woodSwamp, alt: { 'en-US': 'Foggy swamp with dense vegetation', 'pt-BR': 'Pântano com neblina e vegetação densa' } },
-  { src: mangaRain, alt: { 'en-US': 'Rainy and windy day in the city', 'pt-BR': 'Dia chuvoso e ventoso na cidade' } },
-  { src: mangaSwamp, alt: { 'en-US': 'Foggy swamp with dense vegetation', 'pt-BR': 'Pântano com neblina e vegetação densa' } },
-  { src: inkMountains, alt: { 'en-US': 'Snow in the mountains', 'pt-BR': 'Neve nas montanhas' } },
-  { src: mangaMountains, alt: { 'en-US': 'Snow in the mountains', 'pt-BR': 'Neve nas montanhas' } },
-  { src: woodRain, alt: { 'en-US': 'Rainy and windy day in the city', 'pt-BR': 'Dia chuvoso e ventoso na cidade' } },
-  { src: pixelRain, alt: { 'en-US': 'Rainy and windy day in the city', 'pt-BR': 'Dia chuvoso e ventoso na cidade' } },
-];
-
 const UI_TEXT: Record<Language, Record<string, string>> = {
   'en-US': {
     features: 'Features',
@@ -144,11 +115,6 @@ const UI_TEXT: Record<Language, Record<string, string>> = {
     platformSubtitle1: 'is a creative platform where creators',
     platformSubtitle2: 'can build interactive stories with:',
     platformFeaturesAria: 'Platform features',
-    exploreStoriesTitle: 'Explore stories created with Libell.us',
-    exploreStoriesSubtitle: "From fantasy adventures and children's books to sci-fi interactive stories.",
-    previous: 'Previous',
-    next: 'Next',
-    readStory: 'Read a Story',
     communityTitle: 'Join the Next Generation of Storytelling',
     communityDesc1: 'We are building a platform for immersive, interactive stories.',
     communityDesc2: 'To see the platform in action, check out our',
@@ -200,11 +166,6 @@ const UI_TEXT: Record<Language, Record<string, string>> = {
     platformSubtitle1: 'é uma plataforma criativa onde criadores',
     platformSubtitle2: 'podem criar histórias interativas com:',
     platformFeaturesAria: 'Recursos da plataforma',
-    exploreStoriesTitle: 'Explore histórias criadas com a Libell.us',
-    exploreStoriesSubtitle: 'De aventuras de fantasia e livros infantis a histórias interativas de ficção científica.',
-    previous: 'Anterior',
-    next: 'Próximo',
-    readStory: 'Ler uma história',
     communityTitle: 'Junte-se à próxima geração da narrativa',
     communityDesc1: 'Estamos construindo uma plataforma para histórias imersivas e interativas.',
     communityDesc2: 'Para ver a plataforma em ação, confira nosso',
@@ -236,10 +197,6 @@ export function LibellLanding() {
   const [imaginationScrollDown, setImaginationScrollDown] = useState(true);
   const [flippedImaginationCard, setFlippedImaginationCard] = useState<number | null>(null);
   const scrollPosRef = useRef({ y: 0, prevY: 0 });
-  const exploreStoriesRef = useRef<HTMLElement>(null);
-  const [exploreStoriesVisible, setExploreStoriesVisible] = useState(false);
-  const [carouselIndex, setCarouselIndex] = useState(0);
-  const [carouselVisibleCount, setCarouselVisibleCount] = useState(3);
   const t = UI_TEXT[language];
   const imaginationFlipBack = [
     { title: t.writingFeaturesTitle, desc: t.writingFeaturesDesc },
@@ -250,19 +207,6 @@ export function LibellLanding() {
   useEffect(() => {
     window.localStorage.setItem('libell-language', language);
   }, [language]);
-
-  useEffect(() => {
-    const mq = window.matchMedia('(max-width: 767px)');
-    const visible = mq.matches ? 2 : 3;
-    setCarouselVisibleCount(visible);
-    const handler = (e: MediaQueryListEvent) => setCarouselVisibleCount(e.matches ? 2 : 3);
-    mq.addEventListener('change', handler);
-    return () => mq.removeEventListener('change', handler);
-  }, []);
-
-  useEffect(() => {
-    setCarouselIndex((i) => Math.min(i, Math.max(0, CAROUSEL_IMAGES.length - carouselVisibleCount)));
-  }, [carouselVisibleCount]);
 
   useEffect(() => {
     const el = heroSectionRef.current;
@@ -307,17 +251,6 @@ export function LibellLanding() {
         setImaginationSectionVisible(entry.isIntersecting);
       },
       { threshold: 0 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const el = exploreStoriesRef.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => setExploreStoriesVisible(entry.isIntersecting),
-      { threshold: 0.2 }
     );
     obs.observe(el);
     return () => obs.disconnect();
@@ -569,38 +502,42 @@ export function LibellLanding() {
             <h2 className="text-xl font-medium text-white md:text-2xl">
               {t.requiresTitle}
             </h2>
-            <div className="mt-10 flex w-full flex-col items-center justify-center gap-4 md:mt-12 md:flex-row md:items-end md:justify-center md:gap-10">
-              <div className="flex w-36 flex-shrink-0 flex-col items-center">
+            <div className="mt-10 flex w-full max-w-full flex-row items-end justify-center gap-2 sm:gap-4 md:mt-12 md:gap-10">
+              <div className="flex min-w-0 flex-1 basis-0 flex-col items-center">
                 <img
                   alt=""
-                  className="size-12 object-contain opacity-95 [filter:brightness(0)_saturate(100%)_invert(83%)_sepia(31%)_saturate(1167%)_hue-rotate(116deg)_brightness(97%)_contrast(92%)]"
+                  className={`size-9 object-contain sm:size-10 md:size-12 ${FEATURES_TEAL_FILTER}`}
                   src={codeIcon}
                 />
-                <p className="mt-2 text-center text-base text-white/90">{t.programming}</p>
+                <p className="mt-1.5 max-w-full px-0.5 text-center text-[11px] leading-snug text-white/90 sm:mt-2 sm:text-xs md:text-base">
+                  {t.programming}
+                </p>
               </div>
               <div
                 aria-hidden
-                className="hidden h-px w-16 flex-shrink-0 self-center bg-white/30 md:block"
+                className="h-px w-6 flex-shrink-0 self-center bg-white/30 sm:w-10 md:w-16"
               />
-              <div className="flex w-36 flex-shrink-0 flex-col items-center">
+              <div className="flex min-w-0 flex-1 basis-0 flex-col items-center">
                 <img
                   alt=""
-                  className="size-12 object-contain opacity-95 [filter:brightness(0)_saturate(100%)_invert(83%)_sepia(31%)_saturate(1167%)_hue-rotate(116deg)_brightness(97%)_contrast(92%)]"
+                  className={`size-9 object-contain sm:size-10 md:size-12 ${FEATURES_TEAL_FILTER}`}
                   src={gameSettingIcon}
                 />
-                <p className="mt-2 text-center text-base text-white/90">{t.gameEngines}</p>
+                <p className="mt-1.5 max-w-full px-0.5 text-center text-[11px] leading-snug text-white/90 sm:mt-2 sm:text-xs md:text-base">
+                  {t.gameEngines}
+                </p>
               </div>
               <div
                 aria-hidden
-                className="hidden h-px w-16 flex-shrink-0 self-center bg-white/30 md:block"
+                className="h-px w-6 flex-shrink-0 self-center bg-white/30 sm:w-10 md:w-16"
               />
-              <div className="flex w-36 flex-shrink-0 flex-col items-center">
+              <div className="flex min-w-0 flex-1 basis-0 flex-col items-center">
                 <img
                   alt=""
-                  className="size-12 object-contain opacity-95 [filter:brightness(0)_saturate(100%)_invert(83%)_sepia(31%)_saturate(1167%)_hue-rotate(116deg)_brightness(97%)_contrast(92%)]"
+                  className={`size-9 object-contain sm:size-10 md:size-12 ${FEATURES_TEAL_FILTER}`}
                   src={requestIcon}
                 />
-                <p className="mt-2 text-center text-base text-white/90">
+                <p className="mt-1.5 max-w-full px-0.5 text-center text-[11px] leading-snug text-white/90 sm:mt-2 sm:text-xs md:text-base">
                   {t.complexTools}
                 </p>
               </div>
@@ -671,15 +608,19 @@ export function LibellLanding() {
               ].map(({ title, description, icon }, index) => (
                 <div
                   key={title}
-                  className={`group relative flex w-full max-w-sm flex-col items-center rounded-2xl border border-black/10 bg-neutral-3 p-6 text-center backdrop-blur-sm transition-all duration-300 hover:border-black/20 hover:shadow-[0_0_40px_rgba(0,0,0,0.08),0_0_24px_rgba(45,212,191,0.2)] ${index === 2 ? 'sm:col-span-2 sm:w-[calc(50%-1rem)] sm:justify-self-center lg:col-span-1 lg:w-full' : ''
+                  className={`group relative flex w-full max-w-sm flex-col items-center rounded-2xl border border-white/10 bg-neutral-800 p-6 text-center backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:shadow-[0_0_40px_rgba(0,0,0,0.35),0_0_24px_rgba(45,212,191,0.22)] ${index === 2 ? 'sm:col-span-2 sm:w-[calc(50%-1rem)] sm:justify-self-center lg:col-span-1 lg:w-full' : ''
                     }`}
                 >
                   <i
-                    className={`fa-solid ${icon} mb-4 text-2xl text-transparent [-webkit-text-stroke:2.25px_#525252] md:text-3xl`}
+                    className={`fa-solid ${icon} mb-4 text-2xl text-black md:text-3xl ${FEATURES_TEAL_FILTER}`}
                     aria-hidden
                   />
-                  <h3 className="min-h-[2.75rem] text-lg font-medium text-black md:min-h-14 md:text-xl">{title}</h3>
-                  <p className="mt-2 text-base leading-relaxed text-black/80 md:text-lg">{description}</p>
+                  <h3
+                    className={`min-h-[2.75rem] text-lg font-medium text-black md:min-h-14 md:text-xl ${FEATURES_TEAL_FILTER}`}
+                  >
+                    {title}
+                  </h3>
+                  <p className="mt-2 text-base leading-relaxed text-white/80 md:text-lg">{description}</p>
                 </div>
               ))}
             </div>
@@ -844,96 +785,17 @@ export function LibellLanding() {
           </div>
         </section>
 
-        {/* Explore stories created with Libell.us */}
-        <section
-          ref={exploreStoriesRef}
-          className="bg-white px-6 py-16 md:px-12 md:py-24"
-          data-node-id="54:212"
-        >
-          <h2 className="text-center text-xl font-medium text-black md:text-2xl lg:text-3xl">
-            {t.exploreStoriesTitle}
-          </h2>
-          <p className="mx-auto mt-6 max-w-4xl text-center text-base text-body-on-light md:text-lg lg:text-xl">
-            {t.exploreStoriesSubtitle}
-          </p>
-          <div
-            className={`mx-auto mt-12 max-w-6xl [animation-fill-mode:backwards] ${exploreStoriesVisible ? 'animate-fade-in-up md:animate-fade-in-up-slow' : 'opacity-0'}`}
-          >
-            <div className="relative flex items-center justify-center gap-4 md:gap-6">
-              <button
-                type="button"
-                onClick={() => setCarouselIndex((i) => Math.max(0, i - 1))}
-                className="flex size-10 shrink-0 items-center justify-center rounded-full border-2 border-black/30 bg-white text-black transition-colors hover:border-black hover:bg-black hover:text-white disabled:opacity-40 md:size-12"
-                aria-label={t.previous}
-                disabled={carouselIndex === 0}
-              >
-                <svg className="size-5 md:size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-              <div className="flex flex-1 justify-center gap-4 overflow-hidden md:gap-6">
-                {Array.from({ length: carouselVisibleCount }).map((_, offset) => {
-                  const idx = carouselIndex + offset;
-                  const item = CAROUSEL_IMAGES[idx];
-                  if (!item) return null;
-                  return (
-                    <div key={idx} className="flex min-w-0 flex-1 basis-0 justify-center">
-                      <div className="overflow-hidden rounded-xl bg-white">
-                        <img
-                          alt={item.alt[language]}
-                          className="aspect-[9/16] w-full max-w-[240px] object-contain md:max-w-[240px]"
-                          src={item.src}
-                        />
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-              <button
-                type="button"
-                onClick={() => setCarouselIndex((i) => Math.min(CAROUSEL_IMAGES.length - carouselVisibleCount, i + 1))}
-                className="flex size-10 shrink-0 items-center justify-center rounded-full border-2 border-black/30 bg-white text-black transition-colors hover:border-black hover:bg-black hover:text-white disabled:opacity-40 md:size-12"
-                aria-label={t.next}
-                disabled={carouselIndex >= CAROUSEL_IMAGES.length - carouselVisibleCount}
-              >
-                <svg className="size-5 md:size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
-            <div className="mt-4 flex justify-center gap-1">
-              {Array.from({ length: CAROUSEL_IMAGES.length - carouselVisibleCount + 1 }).map((_, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  onClick={() => setCarouselIndex(i)}
-                  className={`size-2 rounded-full transition-colors md:size-2.5 ${carouselIndex === i ? 'bg-black' : 'bg-black/30'}`}
-                  aria-label={`Go to slide ${i + 1}`}
-                />
-              ))}
-            </div>
-          </div>
-          <div className="mt-12 flex flex-wrap justify-center gap-4">
-            <button
-              type="button"
-              className="rounded-2xl border-2 border-black bg-white px-6 py-3 text-base font-medium text-black transition-all duration-200 hover:scale-[1.03] hover:bg-white hover:shadow-lg md:text-lg"
-            >
-              {t.readStory}
-            </button>
-          </div>
-        </section>
-
         {/* Community / Future */}
         <section
-          className="relative overflow-hidden bg-features-bar px-6 pb-px pt-0 md:px-12 md:pb-px md:pt-0"
+          className="relative overflow-hidden bg-white px-6 pb-px pt-0 md:px-12 md:pb-px md:pt-0"
           data-node-id="community-future"
         >
-          <div className="mb-16 h-px w-full shadow-[0_1px_0_0_rgba(255,255,255,0.15),0_2px_8px_-2px_rgba(255,255,255,0.08)] md:mb-24" aria-hidden />
+          <div className="mb-16 h-px w-full bg-black/10 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)] md:mb-24" aria-hidden />
           <div className="relative mx-auto max-w-4xl text-center">
-            <h2 className="text-xl font-medium text-white md:text-2xl lg:text-3xl">
+            <h2 className="text-xl font-medium text-black md:text-2xl lg:text-3xl">
               {t.communityTitle}
             </h2>
-            <p className="mx-auto mt-6 max-w-2xl text-base text-white/70 md:text-lg">
+            <p className="mx-auto mt-6 max-w-2xl text-base text-body-on-light md:text-lg">
               {t.communityDesc1}
               <br className="hidden sm:block lg:hidden" />
               {' '}{t.communityDesc2}{' '}
@@ -941,7 +803,7 @@ export function LibellLanding() {
                 href="https://www.youtube.com/watch?v=TRqNSkkrD8o"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-medium text-white underline transition-colors hover:text-white/80"
+                className="font-medium text-black underline transition-colors hover:text-black/70"
               >
                 {t.youtubeChannel}
               </a>
@@ -959,7 +821,7 @@ export function LibellLanding() {
               />
             </div>
           </div>
-          <div className="mt-16 h-px w-full shadow-[0_1px_0_0_rgba(255,255,255,0.15),0_2px_8px_-2px_rgba(255,255,255,0.08)] md:mt-24" aria-hidden />
+          <div className="mt-16 h-px w-full bg-black/10 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)] md:mt-24" aria-hidden />
         </section>
 
         {/* Back the Kickstarter CTA */}
@@ -1001,7 +863,7 @@ export function LibellLanding() {
               <a href="#privacy">{t.footerPrivacy}</a>
               <a href="#terms">{t.footerTerms}</a>
             </nav>
-            <p className="mx-auto max-w-xs font-sans text-xs font-normal leading-snug text-features-muted sm:max-w-md md:text-sm">
+            <p className="mx-auto max-w-xs font-sans text-xs font-normal leading-snug text-body-on-light sm:max-w-md md:text-sm">
               {t.footerCopyright}
             </p>
           </div>
