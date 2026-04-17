@@ -1,4 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
+
+/** Splits on `\n` for two-line CTA labels (e.g. Portuguese on narrow screens). */
+function HeroCtaLabel({ text }: { text: string }) {
+  const lines = text.split('\n');
+  if (lines.length === 1) return lines[0];
+  return lines.map((line, i) => (
+    <span key={i} className="block leading-snug">
+      {line}
+    </span>
+  ));
+}
 import { Link } from 'react-router-dom';
 import { imgLogo } from '../assets/brand-assets';
 import heroImage from '../assets/hero/hero.png';
@@ -199,8 +210,8 @@ const UI_TEXT: Record<Language, Record<string, string>> = {
     heroDesc1: 'Crie aventuras com ramificações',
     heroDesc2: 'ou livros tradicionais com',
     heroDesc3: 'visuais, som e narrativa com IA.',
-    tryNow: 'Experimente agora!',
-    joinWaitlist: 'Entrar na lista de espera',
+    tryNow: 'Experimente\nagora!',
+    joinWaitlist: 'Entrar na lista\nde espera',
     heroNote: 'Sua plataforma completa. Sem código.',
     writersTitle: 'Escritores querem criar:',
     writersSubtitle: 'Diferentes formatos de narrativa interativa.',
@@ -454,25 +465,29 @@ export function LibellLanding() {
                 {t.heroLine1}<br />
                 {t.heroLine2}
               </h1>
-              <p className="mx-auto mt-7 max-w-[400px] text-base text-neutral-6 md:mx-0 md:text-lg">
+              <p
+                className={`mx-auto mt-7 text-base text-neutral-6 md:mx-0 md:text-lg ${language === 'pt-BR' ? 'max-w-[420px]' : 'max-w-[400px]'}`}
+              >
                 {t.heroDesc1}
                 <br className="md:hidden" />
                 {' '}{t.heroDesc2}
                 <br className="md:hidden" />
                 {' '}{t.heroDesc3}
               </p>
-              <div className="mt-6 flex flex-nowrap justify-center gap-3 md:justify-start">
+              <div
+                className={`mt-6 flex justify-center gap-3 md:justify-start ${language === 'pt-BR' ? 'flex-wrap' : 'flex-nowrap'}`}
+              >
                 <button
                   type="button"
-                  className="shrink-0 rounded-2xl border-2 border-white bg-white px-4 py-2.5 text-sm font-medium text-black transition-all duration-200 hover:scale-[1.03] hover:bg-white hover:shadow-lg sm:px-6 sm:py-3 sm:text-base"
+                  className={`rounded-2xl border-2 border-white bg-white px-4 py-2.5 text-sm font-medium text-black transition-all duration-200 hover:scale-[1.03] hover:bg-white hover:shadow-lg sm:px-6 sm:py-3 sm:text-base ${language === 'pt-BR' ? 'min-w-0 shrink text-center' : 'shrink-0'}`}
                 >
-                  {t.tryNow}
+                  <HeroCtaLabel text={t.tryNow} />
                 </button>
                 <button
                   type="button"
-                  className="shrink-0 rounded-2xl border-2 border-white bg-transparent px-4 py-2.5 text-sm text-white transition-all duration-200 hover:scale-[1.03] hover:bg-white/25 hover:shadow-md sm:px-6 sm:py-3 sm:text-base"
+                  className={`rounded-2xl border-2 border-white bg-transparent px-4 py-2.5 text-sm text-white transition-all duration-200 hover:scale-[1.03] hover:bg-white/25 hover:shadow-md sm:px-6 sm:py-3 sm:text-base ${language === 'pt-BR' ? 'min-w-0 shrink text-center' : 'shrink-0'}`}
                 >
-                  {t.joinWaitlist}
+                  <HeroCtaLabel text={t.joinWaitlist} />
                 </button>
               </div>
               <p className="mx-auto mt-2 w-[330px] text-sm text-neutral-6 md:mx-0 md:mt-4 md:text-base">
@@ -879,7 +894,7 @@ export function LibellLanding() {
                 href="#kickstarter"
                 className="inline-block rounded-2xl border-2 border-white bg-white px-4 py-2.5 text-sm font-medium text-black transition-all duration-200 hover:scale-[1.03] hover:bg-white hover:shadow-lg sm:px-6 sm:py-3 sm:text-base md:text-lg"
               >
-                {t.joinWaitlist}
+                {t.joinWaitlist.replace(/\n/g, ' ')}
               </a>
             </div>
           </div>
