@@ -214,16 +214,16 @@ export function BetaWaitlistPage() {
                 </ul>
               </div>
 
-              <div className="mt-10 flex flex-col items-stretch gap-3 sm:flex-row sm:justify-center sm:gap-4">
+              <div className="mt-10 flex w-full max-w-lg flex-row items-stretch justify-center gap-3 sm:mx-auto sm:gap-4">
                 <Link
                   to="/"
-                  className="inline-flex items-center justify-center rounded-2xl border-2 border-features-accent/80 bg-features-accent px-6 py-3 text-center text-sm font-medium text-features-bar transition-colors hover:bg-features-accent-dim sm:px-8 sm:text-base"
+                  className="inline-flex min-w-0 flex-1 items-center justify-center rounded-2xl border-2 border-features-accent/80 bg-features-accent px-4 py-3 text-center text-sm font-medium leading-snug text-features-bar transition-colors hover:bg-features-accent-dim sm:flex-none sm:px-8 sm:text-base"
                 >
                   {c.ctaHome}
                 </Link>
                 <Link
                   to="/features"
-                  className="inline-flex items-center justify-center rounded-2xl border border-white/25 bg-white/5 px-6 py-3 text-center text-sm font-medium text-white transition-colors hover:bg-white/10 sm:px-8 sm:text-base"
+                  className="inline-flex min-w-0 flex-1 items-center justify-center rounded-2xl border border-white/25 bg-white/5 px-4 py-3 text-center text-sm font-medium leading-snug text-white transition-colors hover:bg-white/10 sm:flex-none sm:px-8 sm:text-base"
                 >
                   {c.ctaFeatures}
                 </Link>
