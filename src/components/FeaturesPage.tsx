@@ -413,7 +413,7 @@ export function FeaturesPage() {
               <div className="flex w-full max-w-full items-center justify-center overflow-hidden rounded-2xl md:max-w-[1008px] lg:max-w-[1344px]">
                 <img
                   alt=""
-                  className="w-full object-contain"
+                  className="w-full max-w-[520px] object-contain md:max-w-none"
                   src={heroFeatures}
                 />
               </div>
