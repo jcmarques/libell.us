@@ -22,13 +22,24 @@ const FEATURES_TEAL_FILTER =
 type Language = 'en-US' | 'pt-BR';
 
 const PLATFORM_TABS = [
+  { id: 'ambience-fx', label: { 'en-US': 'Ambience F/X', 'pt-BR': 'Ambiência / F/X' } },
   { id: 'story-editor', label: { 'en-US': 'Story Editor', 'pt-BR': 'Editor de Histórias' } },
   { id: 'visual-styles', label: { 'en-US': 'Visual Styles', 'pt-BR': 'Estilos Visuais' } },
-  { id: 'ai-narration', label: { 'en-US': 'AI Narration', 'pt-BR': 'Narração por IA' } },
+  { id: 'human-like-narration', label: { 'en-US': 'Human-like Narration', 'pt-BR': 'Narração humanizada' } },
   { id: 'sound-effects', label: { 'en-US': 'Sound Effects', 'pt-BR': 'Efeitos Sonoros' } },
 ] as const;
 
 const PLATFORM_TAB_CONTENT: Record<(typeof PLATFORM_TABS)[number]['id'], { label: Record<Language, string> }[]> = {
+  'ambience-fx': [
+    { label: { 'en-US': 'Ambience', 'pt-BR': 'Ambiência' } },
+    { label: { 'en-US': 'SFX', 'pt-BR': 'SFX' } },
+    { label: { 'en-US': 'Music', 'pt-BR': 'Música' } },
+    { label: { 'en-US': 'Volume', 'pt-BR': 'Volume' } },
+    { label: { 'en-US': 'Fade', 'pt-BR': 'Fade' } },
+    { label: { 'en-US': 'Loop', 'pt-BR': 'Loop' } },
+    { label: { 'en-US': 'Spatial', 'pt-BR': 'Espacial' } },
+    { label: { 'en-US': 'Mixing', 'pt-BR': 'Mixagem' } },
+  ],
   'story-editor': [
     { label: { 'en-US': 'Branches', 'pt-BR': 'Ramificacoes' } },
     { label: { 'en-US': 'Choices', 'pt-BR': 'Escolhas' } },
@@ -49,7 +60,7 @@ const PLATFORM_TAB_CONTENT: Record<(typeof PLATFORM_TABS)[number]['id'], { label
     { label: { 'en-US': 'Animations', 'pt-BR': 'Animações' } },
     { label: { 'en-US': 'Preview', 'pt-BR': 'Preview' } },
   ],
-  'ai-narration': [
+  'human-like-narration': [
     { label: { 'en-US': 'Voices', 'pt-BR': 'Vozes' } },
     { label: { 'en-US': 'Pace', 'pt-BR': 'Ritmo' } },
     { label: { 'en-US': 'Emotion', 'pt-BR': 'Emoção' } },
@@ -60,14 +71,14 @@ const PLATFORM_TAB_CONTENT: Record<(typeof PLATFORM_TABS)[number]['id'], { label
     { label: { 'en-US': 'Settings', 'pt-BR': 'Configurações' } },
   ],
   'sound-effects': [
-    { label: { 'en-US': 'Ambience', 'pt-BR': 'Ambiência' } },
-    { label: { 'en-US': 'SFX', 'pt-BR': 'SFX' } },
-    { label: { 'en-US': 'Music', 'pt-BR': 'Musica' } },
-    { label: { 'en-US': 'Volume', 'pt-BR': 'Volume' } },
-    { label: { 'en-US': 'Fade', 'pt-BR': 'Fade' } },
-    { label: { 'en-US': 'Loop', 'pt-BR': 'Loop' } },
-    { label: { 'en-US': 'Triggers', 'pt-BR': 'Gatilhos' } },
-    { label: { 'en-US': 'Library', 'pt-BR': 'Biblioteca' } },
+    { label: { 'en-US': 'Footsteps (dry)', 'pt-BR': 'Passos (seco)' } },
+    { label: { 'en-US': 'Whoosh pass-by', 'pt-BR': 'Whoosh ao passar' } },
+    { label: { 'en-US': 'Thunder crack', 'pt-BR': 'Trovão seco' } },
+    { label: { 'en-US': 'Rain loop bed', 'pt-BR': 'Loop de chuva' } },
+    { label: { 'en-US': 'UI soft click', 'pt-BR': 'Clique suave UI' } },
+    { label: { 'en-US': 'Heartbeat bed', 'pt-BR': 'Batimento (loop)' } },
+    { label: { 'en-US': 'Bell tower', 'pt-BR': 'Sino distante' } },
+    { label: { 'en-US': 'Door creak', 'pt-BR': 'Ranger de porta' } },
   ],
 };
 
