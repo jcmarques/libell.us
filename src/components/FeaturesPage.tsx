@@ -299,9 +299,9 @@ export function FeaturesPage() {
               <span className="text-sm font-medium text-features-accent sm:text-base lg:text-lg" aria-current="page">
                 {t.features}
               </span>
-              <a href={homeHash('pricing')} className="text-sm text-white/90 hover:text-white sm:text-base lg:text-lg">
+              <Link to="/pricing" className="text-sm text-white/90 hover:text-white sm:text-base lg:text-lg">
                 {t.pricing}
-              </a>
+              </Link>
               <a href={homeHash('about')} className="text-sm text-white/90 hover:text-white sm:text-base lg:text-lg">
                 {t.about}
               </a>
@@ -344,13 +344,13 @@ export function FeaturesPage() {
           >
             <nav className="flex flex-col items-center gap-6 text-center">
               <span className="w-full text-lg font-medium text-features-accent">{t.features}</span>
-              <a
-                href={homeHash('pricing')}
+              <Link
+                to="/pricing"
                 className="w-full text-lg font-medium text-white hover:text-white/80"
                 onClick={closeMobileMenu}
               >
                 {t.pricing}
-              </a>
+              </Link>
               <a
                 href={homeHash('about')}
                 className="w-full text-lg font-medium text-white hover:text-white/80"
@@ -370,8 +370,8 @@ export function FeaturesPage() {
         )}
 
         {/* Hero — scoped to /features (not a repeat of the homepage hero) */}
-        <section className="relative bg-black px-4 py-16 sm:px-6 md:px-12 md:pb-24 md:pt-12 lg:pb-32 lg:pt-14">
-          <div className="mx-auto flex w-full max-w-6xl flex-col items-center md:flex-row md:items-center md:justify-between md:gap-12">
+        <section className="relative bg-black px-4 py-16 sm:px-6 md:px-12 md:pb-24 md:pt-12 lg:pb-[100px] lg:pt-14">
+          <div className="mx-auto flex w-full max-w-6xl flex-col items-center px-[5px] md:flex-row md:items-center md:justify-between md:gap-12">
             <div className="flex w-full max-w-xl flex-1 flex-col items-center md:max-w-lg md:items-start lg:max-w-xl">
               <div className="mx-auto flex w-full max-w-sm flex-col items-stretch md:mx-0 md:w-fit md:max-w-full">
                 <h1 className="text-center text-3xl font-semibold leading-tight text-white md:text-left md:text-4xl lg:text-5xl lg:leading-[1.2] xl:leading-[1.12]">

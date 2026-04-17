@@ -321,9 +321,9 @@ export function LibellLanding() {
               <Link to="/features" className="text-sm text-white/90 hover:text-white sm:text-base lg:text-lg">
                 {t.features}
               </Link>
-              <a href="#pricing" className="text-sm text-white/90 hover:text-white sm:text-base lg:text-lg">
+              <Link to="/pricing" className="text-sm text-white/90 hover:text-white sm:text-base lg:text-lg">
                 {t.pricing}
-              </a>
+              </Link>
               <a href="#about" className="text-sm text-white/90 hover:text-white sm:text-base lg:text-lg">
                 {t.about}
               </a>
@@ -374,13 +374,13 @@ export function LibellLanding() {
               >
                 {t.features}
               </Link>
-              <a
-                href="#pricing"
+              <Link
+                to="/pricing"
                 className="w-full text-lg font-medium text-white hover:text-white/80"
                 onClick={closeMobileMenu}
               >
                 {t.pricing}
-              </a>
+              </Link>
               <a
                 href="#about"
                 className="w-full text-lg font-medium text-white hover:text-white/80"
@@ -402,7 +402,7 @@ export function LibellLanding() {
         {/* 1. Hero */}
         <section
           ref={heroSectionRef}
-          className="relative bg-black px-4 py-16 sm:px-6 md:px-12 md:py-24 lg:py-32"
+          className="relative bg-black px-4 py-16 sm:px-6 md:px-[60px] md:py-24 lg:py-32"
           data-node-id="1:243"
         >
           <div className="mx-auto flex w-full max-w-6xl flex-col items-center md:flex-row md:items-center md:justify-between md:gap-12">
@@ -435,13 +435,13 @@ export function LibellLanding() {
                   {t.joinWaitlist}
                 </button>
               </div>
-              <p className="mt-2 text-sm text-neutral-6 md:mt-4 md:text-base">
+              <p className="mx-auto mt-2 w-[330px] text-sm text-neutral-6 md:mx-0 md:mt-4 md:text-base">
                 {t.heroNote}
               </p>
             </div>
             <div className={`mt-8 flex flex-1 items-center justify-center self-center md:mt-0 md:max-w-[1008px] lg:max-w-[1344px] [animation-fill-mode:backwards] ${heroSectionVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
               <div className="flex w-full max-w-full items-center justify-center overflow-hidden rounded-2xl md:max-w-[1008px] lg:max-w-[1344px]">
-                <img alt="Create interactive stories with Libell" className="w-full object-contain mix-blend-screen" src={heroImage} />
+                <img alt="Create interactive stories with Libell" className="h-[380px] w-full object-contain mix-blend-screen" src={heroImage} />
               </div>
             </div>
           </div>
@@ -459,7 +459,7 @@ export function LibellLanding() {
           <p className="mx-auto mt-2 text-center text-base text-white/80 md:text-lg">
             {t.writersSubtitle}
           </p>
-          <ul className="mx-auto mt-8 grid w-full max-w-4xl grid-cols-1 place-items-center gap-5 sm:grid-cols-2 sm:place-items-stretch sm:gap-x-5 sm:gap-y-5 lg:grid-cols-3 lg:gap-6 xl:gap-7">
+          <ul className="mx-auto mt-8 grid w-full max-w-5xl grid-cols-1 place-items-center gap-6 sm:grid-cols-2 sm:place-items-stretch sm:gap-x-6 sm:gap-y-6 lg:grid-cols-3 lg:gap-7 xl:gap-8">
             {[
               {
                 label: language === 'pt-BR' ? 'Aventuras interativas' : 'Interactive Adventures',
@@ -483,8 +483,8 @@ export function LibellLanding() {
               <li
                 key={id}
                 className={`group flex w-full flex-col items-center sm:items-stretch ${index === 2
-                  ? 'max-w-[280px] sm:col-span-2 sm:max-w-[calc((100%-1.25rem)/2)] sm:justify-self-center lg:col-span-1 lg:max-w-none'
-                  : 'max-w-[280px] sm:max-w-none'
+                  ? 'max-w-[300px] sm:col-span-2 sm:max-w-[calc((100%-1.5rem)/2)] sm:justify-self-center lg:col-span-1 lg:max-w-none'
+                  : 'max-w-[300px] sm:max-w-none'
                   }`}
               >
                 <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-2xl bg-white/10 p-2 sm:p-2.5 md:p-3">

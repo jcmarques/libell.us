@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import { LibellLanding } from './components/LibellLanding'
 import { FeaturesPage } from './components/FeaturesPage'
+import { PricingPage } from './components/PricingPage'
 import { PrivacyPage } from './components/PrivacyPage'
 import { TermsPage } from './components/TermsPage'
 
@@ -10,6 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LibellLanding />} />
         <Route path="/features" element={<FeaturesPage />} />
+        <Route path="/pricing" element={<PricingPage />} />
         <Route path="/privacy" element={<PrivacyPage />} />
         <Route path="/terms" element={<TermsPage />} />
       </Routes>

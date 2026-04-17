@@ -126,9 +126,9 @@ export function PrivacyPage() {
               >
                 {t.features}
               </Link>
-              <a href={homeHash('pricing')} className="text-sm text-white/90 hover:text-white sm:text-base lg:text-lg">
+              <Link to="/pricing" className="text-sm text-white/90 hover:text-white sm:text-base lg:text-lg">
                 {t.pricing}
-              </a>
+              </Link>
               <a href={homeHash('about')} className="text-sm text-white/90 hover:text-white sm:text-base lg:text-lg">
                 {t.about}
               </a>
@@ -177,13 +177,13 @@ export function PrivacyPage() {
               >
                 {t.features}
               </Link>
-              <a
-                href={homeHash('pricing')}
+              <Link
+                to="/pricing"
                 className="w-full text-lg font-medium text-white hover:text-white/80"
                 onClick={closeMobileMenu}
               >
                 {t.pricing}
-              </a>
+              </Link>
               <a
                 href={homeHash('about')}
                 className="w-full text-lg font-medium text-white hover:text-white/80"
