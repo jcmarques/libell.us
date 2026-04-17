@@ -298,7 +298,7 @@ export function LibellLanding() {
 
   return (
     <div className="flex w-full flex-col items-center bg-features-bar font-sans" data-node-id="1:41">
-      <div className="w-full max-w-[2560px]">
+      <div className="w-full">
         {/* 0. Navigation */}
         <header
           className="relative border-b border-features-bar-border bg-features-bar px-4 sm:px-6 md:px-12"

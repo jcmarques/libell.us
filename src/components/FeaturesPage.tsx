@@ -34,6 +34,8 @@ export const FEATURES_UI: Record<
     heroStack1: string;
     heroStack2: string;
     heroIntro: string;
+    tryNow: string;
+    joinWaitlist: string;
     authoringTitle: string;
     authoringLead: string;
     authoringBullets: string[];
@@ -72,6 +74,8 @@ export const FEATURES_UI: Record<
     heroStack2: 'with these features',
     heroIntro:
       'Visual tools, branching structure, characters and worlds, voice, and atmosphere—everything you need to author a story and deliver it on iOS and Android.',
+    tryNow: 'Try It Now!',
+    joinWaitlist: 'Join the Waitlist',
     authoringTitle: 'Authoring Console',
     authoringLead: 'Feature-rich authoring console: create books with ease',
     authoringBullets: [
@@ -133,6 +137,8 @@ export const FEATURES_UI: Record<
     heroStack2: 'com estes recursos',
     heroIntro:
       'Ferramentas visuais, estrutura ramificada, personagens e mundos, voz e atmosfera—tudo para criar e publicar sua história nos apps para iOS e Android.',
+    tryNow: 'Experimente agora!',
+    joinWaitlist: 'Entrar na lista de espera',
     authoringTitle: 'Console de autoria',
     authoringLead: 'Um só lugar para rascunhar histórias ramificadas e livros lineares—sem sair do navegador',
     authoringBullets: [
@@ -275,7 +281,7 @@ export function FeaturesPage() {
 
   return (
     <div className="flex min-h-screen w-full flex-col items-center bg-features-bar font-sans text-white">
-      <div className="w-full max-w-[2560px]">
+      <div className="w-full">
         <header className="relative z-20 border-b border-features-bar-border bg-features-bar px-4 sm:px-6 md:px-12">
           <div className="mx-auto flex h-20 min-h-[4rem] w-full max-w-6xl items-center justify-between py-3 sm:h-24">
             <Link to="/" className="flex items-center gap-2 sm:gap-3" onClick={closeMobileMenu}>
@@ -387,6 +393,20 @@ export function FeaturesPage() {
                 <p className="mt-3 w-full max-w-[450px] text-center text-base text-features-muted md:max-w-[300px] md:text-left md:text-lg min-[900px]:max-w-[450px] lg:mt-2.5 lg:leading-snug xl:mt-2">
                   {t.heroIntro}
                 </p>
+                <div className="mt-6 flex flex-nowrap justify-center gap-3 md:justify-start">
+                  <button
+                    type="button"
+                    className="shrink-0 rounded-2xl border-2 border-white bg-white px-4 py-2.5 text-sm font-medium text-black transition-all duration-200 hover:scale-[1.03] hover:bg-white hover:shadow-lg sm:px-6 sm:py-3 sm:text-base"
+                  >
+                    {t.tryNow}
+                  </button>
+                  <button
+                    type="button"
+                    className="shrink-0 rounded-2xl border-2 border-white bg-transparent px-4 py-2.5 text-sm text-white transition-all duration-200 hover:scale-[1.03] hover:bg-white/25 hover:shadow-md sm:px-6 sm:py-3 sm:text-base"
+                  >
+                    {t.joinWaitlist}
+                  </button>
+                </div>
               </div>
             </div>
             <div className="mt-8 flex w-full flex-1 items-center justify-center self-center md:mt-0 md:max-w-[min(100%,1008px)] lg:max-w-[min(100%,1344px)]">

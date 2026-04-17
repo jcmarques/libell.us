@@ -102,7 +102,7 @@ export function TermsPage() {
 
   return (
     <div className="flex min-h-screen w-full flex-col items-center bg-features-bar font-sans text-white">
-      <div className="w-full max-w-[2560px]">
+      <div className="w-full">
         <header className="relative z-20 border-b border-features-bar-border bg-features-bar px-4 sm:px-6 md:px-12">
           <div className="mx-auto flex h-20 min-h-[4rem] w-full max-w-6xl items-center justify-between py-3 sm:h-24">
             <Link to="/" className="flex items-center gap-2 sm:gap-3" onClick={closeMobileMenu}>
